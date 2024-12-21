@@ -6,10 +6,12 @@ const glassStore = useGlassesStore();
 </script>
 
 <template>
-    <!-- Visning af briller -->
+  
   <div v-if="!glassStore.isLoading && !glassStore.error">
     <div class="Card" v-for="glass in glassStore.glasses" :key="glass.id">
-      <h3>{{ glass.name }}</h3>
+      <router-link :to="{ name: 'ProductDetails', params: { id: glass.id } }">
+        <h3>{{ glass.name }}</h3>
+      </router-link>
       <p v-html="glass.short_description"></p>
       <div class="imageholder">
         <img v-for="glassImage in glass.images" :key="glassImage.id" :src="glassImage.src" alt="glassImage.alt" />
@@ -29,7 +31,7 @@ const glassStore = useGlassesStore();
 
 img {
   height: 100px;
-  width: 200px; /* Sørg for at bredden har en enhed */
+  width: 200px;
   object-fit: contain;
 }
 </style>
