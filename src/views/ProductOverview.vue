@@ -1,37 +1,30 @@
 <script setup>
 import TheSpinner from '../components/TheSpinner.vue';
+import ProductCard from '@/components/ProductCard.vue';
 import { useGlassesStore } from "../stores/glasses";
 
 const glassStore = useGlassesStore();
 </script>
 
 <template>
-  
-  <div v-if="!glassStore.isLoading && !glassStore.error">
-    <div class="Card" v-for="glass in glassStore.glasses" :key="glass.id">
-      <router-link :to="{ name: 'ProductDetails', params: { id: glass.id } }">
-        <h3>{{ glass.name }}</h3>
-      </router-link>
-      <p v-html="glass.short_description"></p>
-      <div class="imageholder">
-        <img v-for="glassImage in glass.images" :key="glassImage.id" :src="glassImage.src" alt="glassImage.alt" />
+  <section>
+    <h1>hej</h1>
+    <div>
+      <div v-if="!glassStore.isLoading && !glassStore.error">
+          <ProductCard></ProductCard>
       </div>
+    
+      <!-- Loading-indikator for briller -->
+      <div v-if="glassStore.isLoading"><TheSpinner /></div>
+      <div v-if="glassStore.error">{{ glassStore.error }}</div>
     </div>
-  </div>
-
-  <!-- Loading-indikator for briller -->
-  <div v-if="glassStore.isLoading"><TheSpinner /></div>
-  <div v-if="glassStore.error">{{ glassStore.error }}</div>
+  </section>
 </template>
 
 <style scoped>
-.imageholder {
-  display: flex;
-}
-
-img {
-  height: 100px;
-  width: 200px;
-  object-fit: contain;
+section{
+  display: grid;
+  grid-template-columns: 0.75fr 2fr 0.1fr;
+  gap: 2rem;
 }
 </style>
