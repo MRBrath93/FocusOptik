@@ -39,6 +39,11 @@
 } */
 
 
+
+/* ================================================
+   GLOBAL STYLES
+   ================================================ */
+
 :root {
   --FocusOrange: #FF6200;
   --Peach: #FFC28C;
@@ -121,7 +126,13 @@ h6 {
   font-weight: 500;
 }
 
-.navbar{
+
+
+/* ================================================
+   NAVIGATION
+   ================================================ */
+
+.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -130,7 +141,7 @@ h6 {
   z-index: 200;
 }
 
-.bookingNav{
+.bookingNav {
   background-color: var(--FocusOrange);
   text-decoration: none;
   color: var(--SnowWhite);
@@ -161,15 +172,16 @@ h6 {
   height: 100%;
 }
 
-.dropdown{
+.dropdown {
   height: 100%;
 }
 
-.dropdown>.nav-link, .nav-links>li>.nav-link{
+.dropdown>.nav-link,
+.nav-links>li>.nav-link {
   margin: 0 30px;
 }
 
-ul{
+ul {
   padding-inline-start: 0;
 }
 
@@ -193,14 +205,14 @@ ul{
 
 /* Når der hovers over dropdown, vises menuen med en glidende effekt */
 .dropdown:hover .dropdown-menu {
-  visibility: visible; 
+  visibility: visible;
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0s 0s;
 }
 
 
-.NavImageContainer{
+.NavImageContainer {
   width: 35%;
   margin-left: 10%;
 }
@@ -220,7 +232,8 @@ ul{
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.dropdown-menu .nav-link:hover, .nav-link:hover  {
+.dropdown-menu .nav-link:hover,
+.nav-link:hover {
   color: var(--FocusOrange);
 }
 
@@ -228,12 +241,12 @@ li {
   list-style-type: none;
 }
 
-.logo{
+.logo {
   height: 90%;
   margin-left: 1rem;
 }
 
-.plusIcon{
+.plusIcon {
   height: 1.125rem;
 }
 
@@ -247,6 +260,130 @@ li {
 
 /* Klasse der fjerner den lodrette linje */
 .line-hidden {
-  stroke-width: 0px; /* Skjul linjen ved at sætte stroke-width til 0 */
-  stroke: transparent; /* Gør linjen usynlig */
+  stroke-width: 0px;
+  /* Skjul linjen ved at sætte stroke-width til 0 */
+  stroke: transparent;
+  /* Gør linjen usynlig */
 }
+
+
+
+/* ================================================
+   FORSIDE
+   ================================================ */
+
+
+
+
+
+
+
+
+
+/* ================================================
+   BRILLER
+   ================================================ */
+
+
+
+
+
+
+
+
+
+/* ================================================
+   OM BRILLER
+   ================================================ */
+
+
+
+
+
+
+
+
+/* ================================================
+   SYN & SUNDHED
+   ================================================ */
+
+
+
+
+
+
+
+
+/* ================================================
+   OEJENSUNDHED
+   ================================================ */
+
+
+
+
+
+
+
+
+/* ================================================
+   VIDEN OM BRILLER OG LINSER
+   ================================================ */
+
+
+
+
+
+
+
+/* ================================================
+   SYNSTEST & AFPROEVNING
+   ================================================ */
+
+
+
+
+
+
+
+
+/* ================================================
+   OM FOCUS OPTIK
+   ================================================ */
+
+
+
+
+
+
+
+
+
+/* ================================================
+   VORES TEAM
+   ================================================ */
+
+
+
+
+
+
+
+
+
+
+/* ================================================
+   BUTIKKEN
+   ================================================ */
+
+
+
+
+
+
+
+
+
+
+/* ================================================
+   FOCUS FLEX
+   ================================================ */
