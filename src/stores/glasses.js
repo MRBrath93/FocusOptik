@@ -23,6 +23,22 @@ export const useGlassesStore = defineStore("glasses", () => {
         }).format(numericPrice);
     }
 
+    // Hexkode Mapping
+    const hexMapping = {
+        // Gul
+        1: '#FFE602',
+        // Grøn
+        2: '#11B509',
+        // Rød
+        3: '#EE0B0B',
+        // Blå
+        4: '#0945B5',
+        5: 'Sølv',
+        6: 'Guld',
+        // Sort
+        7: '#0B0B0B'
+    };
+
     // Fetch data
     fetch(APIBaseUrl + consumerKey + consumerSecret)
         .then((res) => {
@@ -33,7 +49,7 @@ export const useGlassesStore = defineStore("glasses", () => {
         })
         .then((data) => {
             // Formater hvert item i mit data array.
-            // Map opretter et nyt array og looper igennen hver item og formatere de nævnte områder nedenfor. Vi laver derfor nyt objekt hvor nedenstående er keys og deres values forbliver values.
+            // Map opretter et nyt array og looper igennem hvert item og formatere de nævnte områder nedenfor. Vi laver derfor nyt objekt hvor nedenstående er keys og deres values forbliver values.
             glasses.value = data.map(item => {
                 const {
                     id,
@@ -53,13 +69,32 @@ export const useGlassesStore = defineStore("glasses", () => {
                     related_ids
                 } = item;
 
-                // Vi ønsker at tynde ud i den store mængde data vi får tilsendt fra Wordpres og woocommerce. Derfor vil vil gerne anvende destructuring til at gøre vores data letter tilgængelig i vores kode. Vi reducere derfor herunder 'attributes' arrayet til et objekt, hvor nøglerne er attributternes 'name' og værdierne er sammenkædede 'options' som en string. Hver attribute i vores attributes array bliver nu gennemgået og reduceret til et nyt object som kun består af atributtens "name" og attributtens options. De bliver henholdsvis key og value i vores nye object. 
+                // Reducing attributes
                 const attributesObj = attributes.reduce((newAttributeObject, attribute) => {
-                    // Sætter en ny egenskab på 'newAttributeObject' objektet, hvor navnet på attributten bliver nøglen, og dens options bliver værdien som en komma-separeret streng
-                    newAttributeObject[attribute.name] = attribute.options.join(", ");
-                    // Returnerer det akkumulerede objekt, så det kan fortsætte med næste element i 'attributes' arrayet
+                    const attributeName = attribute.name.toLowerCase();
+
+                    // Hvis der findes indhold i 'focus flex gruppe', så tilføj en 'Hexkode' key
+                    if (attributeName === 'focus flex gruppe') {
+
+                        // Finder en hexværdi baseret på option (søger efter den værdi der matcher med "focus flex gruppe" værdien i mit hexMapping array) og gemmer den værdi sammen den nye key der hedder Hexvalue.
+                        const hexValue = hexMapping[attribute.options[0]] || "Ukendt";
+
+                        // Tilføjer et nyt objekt til 'newAttributeObject', hvor 'focus flex gruppe' er key, og det indeholder både en værdi for 'value' og den tilhørende 'Hexkode'
+                        newAttributeObject[attributeName] = {
+                            // Kombinerer alle værdier i 'options' til en kommasepareret string
+                            value: attribute.options.join(", "),
+
+                            // Tilføjer hex-værdien til objektet
+                            Hexkode: hexValue
+                        };
+                    } else {
+                        // Normal attribute behandling (for andre attributter end 'focus flex gruppe')
+                        newAttributeObject[attributeName] = attribute.options.join(", ");  // Kombinerer alle værdier i 'options' til en kommasepareret string
+                    }
+
+
                     return newAttributeObject;
-                }, {}); // Start med et tomt objekt ({}), som vil blive fyldt op
+                }, {});
 
                 // Returnerer det formatterede produkt
                 return {
@@ -74,14 +109,15 @@ export const useGlassesStore = defineStore("glasses", () => {
                     description,
                     short_description,
                     dimensions,
-                    // går igennen alle billederne i images og trækker både src og alt tekst ud. Gemmer dem i keys (src og alt)
+                    // Går igennem alle billederne i images og trækker både src og alt tekst ud. Gemmer dem i keys (src og alt)
                     images: images.map(image => ({
                         src: image.src,
-                        // Hvis der ikke findes en alt tekst så indsættes denne string. 
+                        // Hvis der ikke findes en alt tekst så indsættes denne string.
                         alt: image.alt || "Alt-tekst mangler"
                     })),
                     categories: categories.map(cat => cat.name),
                     tags: tags.map(tag => tag.name),
+                    // Vores nye objekt som indeholder alle vores attributer på en mere struktureret måde. 
                     attributes: attributesObj,
                     related_ids
                 };

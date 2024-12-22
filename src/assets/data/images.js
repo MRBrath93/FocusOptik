@@ -9,35 +9,35 @@ import img8 from '@/assets/img/COLOURBOX56794364-10.jpg';
 
 export const cartoonGlasses = [
     {
-        alt_text: 'Tre billeder af naturkatastrofer',
+        alt_text: 'Sjove tegnede briller',
         image: img1,
     },
     {
-        alt_text: 'En skovbrand forårsaget af global opvarmning',
+        alt_text: 'Sjove tegnede briller',
         image: img2,
     },
     {
-        alt_text: 'Et billede af jordebunden der er helt udtørret og har slået sprækker',
+        alt_text: 'Sjove tegnede briller',
         image: img3,
     },
     {
-        alt_text: 'En oversvømmet vej',
+        alt_text: 'Sjove tegnede briller',
         image: img4,
     },
     {
-        alt_text: 'En trappeopgang der er oversømmet',
+        alt_text: 'Sjove tegnede briller',
         image: img5,
     },
     {
-        alt_text: 'En trappeopgang der er oversømmet',
+        alt_text: 'Sjove tegnede briller',
         image: img6,
     },
     {
-        alt_text: 'En trappeopgang der er oversømmet',
+        alt_text: 'Sjove tegnede briller',
         image: img7,
     },
     {
-        alt_text: 'En trappeopgang der er oversømmet',
+        alt_text: 'Sjove tegnede briller',
         image: img8,
     },
 ];
