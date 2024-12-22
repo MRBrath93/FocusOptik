@@ -72,7 +72,7 @@ const getFocusFlexStyle = (hexValue) => {
 <style scoped>
 .glassesGrid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);  /* 4 kolonner med lige stor plads */
     gap: 1rem;
     place-items: center;
 }
@@ -83,23 +83,25 @@ const getFocusFlexStyle = (hexValue) => {
     align-items: center;
 }
 
-.focusFlexColor{
-    border-radius: 50%;
-    height: 15px;
-    width: 15px;
-}
-
 .productCard {
     padding: 2rem;
     text-decoration: none;
     color: var(--Black);
     border-radius: 12px;
-    max-width:250px;
-
+    width: 250px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.productCard:hover{
+.productCard:hover {
     box-shadow: 0 4px 8px hsla(0, 0%, 60%, 0.25), 0 6px 20px rgba(153, 153, 153, 0.25);
+    /* hævninger kortet */
+    transform: translateY(-5px);
+}
+
+.focusFlexColor{
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
 }
 
 .smallText{
@@ -119,5 +121,23 @@ img {
   height: 100px;
   max-width: 200px;
   object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+    .glassesGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .glassesGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .glassesGrid {
+        grid-template-columns: 1fr;
+    }
 }
 </style>

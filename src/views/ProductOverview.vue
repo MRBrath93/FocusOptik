@@ -1,6 +1,7 @@
 <script setup>
 import TheSpinner from '../components/TheSpinner.vue';
 import ProductCard from '@/components/ProductCard.vue';
+import TheFilter from '@/components/TheFilter.vue';
 import { useGlassesStore } from "../stores/glasses";
 
 const glassStore = useGlassesStore();
@@ -8,7 +9,7 @@ const glassStore = useGlassesStore();
 
 <template>
   <section>
-    <h1>hej</h1>
+    <TheFilter v-if="!glassStore.isLoading && !glassStore.error"></TheFilter>
     <div>
       <div v-if="!glassStore.isLoading && !glassStore.error">
           <ProductCard></ProductCard>
