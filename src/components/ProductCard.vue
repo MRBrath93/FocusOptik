@@ -3,6 +3,7 @@ import { ref, computed } from 'vue';
 import { useGlassesStore } from "../stores/glasses";
 import goldenImage from '../assets/img/golden.webp';
 import silverImage from '../assets/img/silver.jpg';
+import TheSpinner from './TheSpinner.vue';
 
 const glassStore = useGlassesStore();
 
@@ -102,7 +103,17 @@ const resetFilters = () => {
 </script>
 
 <template>
-    <div class="webshop">
+    <div class="topGrid">
+        <div class="spaceContainer">
+
+        </div>
+        <div class="breadCrumbs">
+            <a class="bread" href="#">Briller > Alle > briller</a>
+            <button class="sortering">Sortering</button>
+        </div>
+    </div>
+    <TheSpinner v-if="glassStore.isLoading"></TheSpinner>
+    <div v-if="!glassStore.isLoading" class="webshop">
      <div class="filter">
          <h4>Vælg Farve</h4>
        <div class="filter-group filterCheckBoxContainer">
@@ -151,8 +162,6 @@ const resetFilters = () => {
            <button @click="resetFilters">Nulstil Filtre</button>
        </div>
      </div>
- 
-     <!-- Produkt Grid -->
      <section class="glassesGrid">
          <h4 style="grid-column: 1 / -1;" v-if="filterApplied && filteredResults.length === 0">Der kunne desværre ikke findes nogen briller, der matchede din søgning.</h4>
        <router-link 
@@ -180,19 +189,45 @@ const resetFilters = () => {
  </template>
  
 <style scoped>
-
-
-.webshop{
-  display: grid;
-  grid-template-columns: 0.50fr 2fr;
-  gap: 2rem;
+.bread{
+    grid-column: 1/2;
+}
+.sortering{
+    grid-column: 4/5;
+    width: fit-content;
 }
 
+.webshop{
+    display: grid;
+    grid-template-columns: 0.4fr 2fr;
+    gap: 2rem;
+    margin-top: 5rem;
+    min-height: 100vh;
+}
+
+.topGrid{
+    display: grid;
+    grid-template-columns: 0.4fr 2fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.breadCrumbs{
+    display: flex;
+    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 1rem;
+}
+
+.spaceContainer{
+    padding: 1rem;
+}
 .glassesGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 1rem;
-  place-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 1rem;
+    place-items: center;
 }
 
 .flexFlex{
@@ -260,7 +295,7 @@ img {
 
 .filterCheckBoxContainer{
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(2,1fr);
     margin-top: 1rem;
 }
 
@@ -300,7 +335,7 @@ input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   height: 10px;
-  background: #ddd;
+  background: var(--FocusOrange);
   border-radius: 5px;
 }
 
@@ -312,7 +347,7 @@ input[type="range"]::-webkit-slider-runnable-track {
 
 input[type="range"]::-moz-range-track {
   height: 10px;
-  background: #007BFF;
+  background: var(--FocusOrange);
   border-radius: 5px;
 }
 
