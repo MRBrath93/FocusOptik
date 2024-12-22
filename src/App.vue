@@ -12,10 +12,7 @@
       <router-view />
     </main>
 
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2024 BrilleWebshop</p>
-    </footer>
+   
   </div>
 </template>
 

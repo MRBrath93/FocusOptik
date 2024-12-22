@@ -7,7 +7,8 @@ const glassStore = useGlassesStore();
 
 // Funktion der håndterer både farver og billeder baseret på Hexkode valuen fra dataen. 
 const getFocusFlexStyle = (hexValue) => {
-  if (!hexValue) return { backgroundColor: '#FFFFF' }; // Default hvis der ikke er en Hexkode
+    // Default hvis der ikke er en Hexkode
+  if (!hexValue) return { backgroundColor: '#FFFFF' };
 
   // Tjek om HexValue er 'Guld'
   if (hexValue === 'Guld') {
@@ -20,21 +21,21 @@ const getFocusFlexStyle = (hexValue) => {
     };
   }
 
-  // Tjek om HexValue er 'Sølv'
+  // Tjekker om HexValue er 'Sølv'
   if (hexValue.startsWith("Sølv")) {
     return {
       backgroundImage: `url(${silverImage})`,
       backgroundSize: 'cover',
-      // Fjern baggrundsfarven, hvis der er et billede
+      // Fjerner baggrundsfarven, hvis der er et billede
       backgroundColor: ''
     };
   }
 
-  // Hvis det er en hex-kode (f.eks. #FF0000), brug farven direkte
+  // Hvis det er en hex-kode (f.eks. #FF0000), bruges farven direkte
   return {
-    // Brug farven direkte hvis det er en hex-kode
+    // Bruger farven direkte hvis det er en hex-kode
     backgroundColor: hexValue,
-    // Fjern baggrundsbilledet
+    // Fjerner baggrundsbilledet
     backgroundImage: ''
   };
 };
@@ -73,6 +74,7 @@ const getFocusFlexStyle = (hexValue) => {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
+    place-items: center;
 }
 
 .flexFlex{
@@ -91,6 +93,13 @@ const getFocusFlexStyle = (hexValue) => {
     padding: 2rem;
     text-decoration: none;
     color: var(--Black);
+    border-radius: 12px;
+    max-width:250px;
+
+}
+
+.productCard:hover{
+    box-shadow: 0 4px 8px hsla(0, 0%, 60%, 0.25), 0 6px 20px rgba(153, 153, 153, 0.25);
 }
 
 .smallText{
@@ -105,9 +114,6 @@ const getFocusFlexStyle = (hexValue) => {
     font-family: var( --PoppinsFont);
 }
 
-.imageholder {
-  display: flex;
-}
 
 img {
   height: 100px;

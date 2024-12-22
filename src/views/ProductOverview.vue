@@ -24,7 +24,7 @@ const glassStore = useGlassesStore();
 <style scoped>
 section{
   display: grid;
-  grid-template-columns: 0.75fr 2fr 0.1fr;
+  grid-template-columns: 0.50fr 2fr;
   gap: 2rem;
 }
 </style>
