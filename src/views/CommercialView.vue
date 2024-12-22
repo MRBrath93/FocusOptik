@@ -1,7 +1,7 @@
 <script setup>
-import TheSpinner from '../../components/TheSpinner.vue';
-import { useCommercialsStore } from '../../stores/commercials';
-import { backgrounds } from '../data/images';
+import TheSpinner from '../components/TheSpinner.vue';
+import { useCommercialsStore } from '../stores/commercials';
+import { backgrounds } from '../assets/data/images';
 
 const commercialStore = useCommercialsStore();
 

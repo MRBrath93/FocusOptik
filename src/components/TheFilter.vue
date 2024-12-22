@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import { useGlassesStore } from '../stores/glasses';
 
 const glassStore = useGlassesStore();
@@ -7,33 +7,27 @@ const glassStore = useGlassesStore();
 // Farve muligheder
 const colorOptions = computed(() => {
   const colors = new Set();
-  
-  // Gennemgå alle produkter i store og tilføj farver
   glassStore.glasses.forEach((product) => {
-    if (product.attributes?.farver) {
-      const colorArray = product.attributes.farver.split(", "); // Forvent at farverne er kommaseparerede
-      colorArray.forEach((color) => {
-        colors.add(color);
-      });
+    if (product.attributes.farver) {
+      const colorArray = product.attributes.farver.split(", ");
+      colorArray.forEach((color) => colors.add(color));
     }
   });
-
-  return Array.from(colors); // Konverter Set til array for at få unikke farver
+  return Array.from(colors);
 });
 
-// Startværdi for farvefilter
 const selectedColors = ref([]);
+const minPrice = ref(0); // Minimum pris slider
+const maxPrice = ref(5000); // Maksimum pris slider
+const filteredResults = ref({}); // Variabel til at gemme filtreringsvalgene
 
-// Startværdi for prisfilter (f.eks. minimum 0, maximum 5000)
-const minPrice = 0;
-const maxPrice = 5000;
-const priceRange = ref([minPrice, maxPrice]);
-
-// Funktion der anvender filtrene
+// Filtreringslogik
 const applyFilters = () => {
-  console.log('Valgte Farver:', selectedColors.value);
-  console.log('Pris Interval:', priceRange.value);
-  // Her kan du tilføje logik til at filtrere produkterne baseret på de valgte farver og prisrange
+  filteredResults.value = {
+    colors: selectedColors.value,
+    priceRange: { min: minPrice.value, max: maxPrice.value },
+  };
+  console.log('Filtreringsresultater:', filteredResults.value);
 };
 </script>
 
@@ -56,19 +50,31 @@ const applyFilters = () => {
     <!-- Prisfilter -->
     <div class="filter-group">
       <h4>Pris</h4>
-      <input 
-        type="range" 
-        v-model="priceRange" 
-        :min="minPrice" 
-        :max="maxPrice" 
-        step="1"
-      />
-      <div class="price-values">
-        <span>{{ priceRange[0] }}</span> - 
-        <span>{{ priceRange[1] }}</span>
+      <div class="price-sliders">
+        <label for="min-price">Minimum</label>
+        <input 
+          id="min-price"
+          type="range" 
+          v-model="minPrice" 
+          :min="0" 
+          :max="5000" 
+          step="1"
+        />
+        <span>{{ minPrice }}</span>
+
+        <label for="max-price">Maksimum</label>
+        <input 
+          id="max-price"
+          type="range" 
+          v-model="maxPrice" 
+          :min="0" 
+          :max="5000" 
+          step="1"
+        />
+        <span>{{ maxPrice }}</span>
       </div>
     </div>
-
+    
     <button @click="applyFilters">Anvend Filtre</button>
   </div>
 </template>
@@ -116,7 +122,7 @@ button:hover {
 input[type="range"] {
   width: 100%;
   margin: 10px 0;
-  -webkit-appearance: none; /* Fjern standard udseende i Safari */
+  -webkit-appearance: none;
   appearance: none;
   height: 10px;
   background: #ddd; /* Baggrundsfarve */
@@ -161,4 +167,22 @@ input[type="range"]:focus {
   outline: none;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
+
+.price-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.price-sliders label {
+  font-weight: bold;
+}
+
+.price-sliders span {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
 </style>

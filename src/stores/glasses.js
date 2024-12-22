@@ -40,97 +40,101 @@ export const useGlassesStore = defineStore("glasses", () => {
     };
 
     // Fetch data
-    fetch(APIBaseUrl + consumerKey + consumerSecret)
-        .then((res) => {
-            if (!res.ok) {
-                throw new Error("Fejl ved hentning af data");
-            }
-            return res.json();
-        })
-        .then((data) => {
-            // Formater hvert item i mit data array.
-            // Map opretter et nyt array og looper igennem hvert item og formatere de nævnte områder nedenfor. Vi laver derfor nyt objekt hvor nedenstående er keys og deres values forbliver values.
-            glasses.value = data.map(item => {
-                const {
-                    id,
-                    name,
-                    slug,
-                    date_created,
-                    price,
-                    regular_price,
-                    sale_price,
-                    description,
-                    short_description,
-                    dimensions,
-                    images,
-                    categories,
-                    tags,
-                    attributes,
-                    related_ids
-                } = item;
+    function fetchData() {
+        fetch(APIBaseUrl + consumerKey + consumerSecret)
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error("Fejl ved hentning af data");
+                }
+                return res.json();
+            })
+            .then((data) => {
+                // Formater hvert item i mit data array.
+                // Map opretter et nyt array og looper igennem hvert item og formatere de nævnte områder nedenfor. Vi laver derfor nyt objekt hvor nedenstående er keys og deres values forbliver values.
+                glasses.value = data.map(item => {
+                    const {
+                        id,
+                        name,
+                        slug,
+                        date_created,
+                        price,
+                        regular_price,
+                        sale_price,
+                        description,
+                        short_description,
+                        dimensions,
+                        images,
+                        categories,
+                        tags,
+                        attributes,
+                        related_ids
+                    } = item;
 
-                // Reducing attributes
-                const attributesObj = attributes.reduce((newAttributeObject, attribute) => {
-                    const attributeName = attribute.name.toLowerCase();
+                    // Reducing attributes
+                    const attributesObj = attributes.reduce((newAttributeObject, attribute) => {
+                        const attributeName = attribute.name.toLowerCase();
 
-                    // Hvis der findes indhold i 'focus flex gruppe', så tilføj en 'Hexkode' key
-                    if (attributeName === 'focus flex gruppe') {
+                        // Hvis der findes indhold i 'focus flex gruppe', så tilføj en 'Hexkode' key
+                        if (attributeName === 'focus flex gruppe') {
 
-                        // Finder en hexværdi baseret på option (søger efter den værdi der matcher med "focus flex gruppe" værdien i mit hexMapping array) og gemmer den værdi sammen den nye key der hedder Hexvalue.
-                        const hexValue = hexMapping[attribute.options[0]] || "Ukendt";
+                            // Finder en hexværdi baseret på option (søger efter den værdi der matcher med "focus flex gruppe" værdien i mit hexMapping array) og gemmer den værdi sammen den nye key der hedder Hexvalue.
+                            const hexValue = hexMapping[attribute.options[0]] || "Ukendt";
 
-                        // Tilføjer et nyt objekt til 'newAttributeObject', hvor 'focus flex gruppe' er key, og det indeholder både en værdi for 'value' og den tilhørende 'Hexkode'
-                        newAttributeObject[attributeName] = {
-                            // Kombinerer alle værdier i 'options' til en kommasepareret string
-                            value: attribute.options.join(", "),
+                            // Tilføjer et nyt objekt til 'newAttributeObject', hvor 'focus flex gruppe' er key, og det indeholder både en værdi for 'value' og den tilhørende 'Hexkode'
+                            newAttributeObject[attributeName] = {
+                                // Kombinerer alle værdier i 'options' til en kommasepareret string
+                                value: attribute.options.join(", "),
 
-                            // Tilføjer hex-værdien til objektet
-                            Hexkode: hexValue
-                        };
-                    } else {
-                        // Normal attribute behandling (for andre attributter end 'focus flex gruppe')
-                        newAttributeObject[attributeName] = attribute.options.join(", ");  // Kombinerer alle værdier i 'options' til en kommasepareret string
-                    }
+                                // Tilføjer hex-værdien til objektet
+                                Hexkode: hexValue
+                            };
+                        } else {
+                            // Normal attribute behandling (for andre attributter end 'focus flex gruppe')
+                            newAttributeObject[attributeName] = attribute.options.join(", ");  // Kombinerer alle værdier i 'options' til en kommasepareret string
+                        }
 
+                        return newAttributeObject;
+                    }, {});
 
-                    return newAttributeObject;
-                }, {});
+                    // Returnerer det formatterede produkt
+                    return {
+                        id,
+                        name,
+                        slug,
+                        date_created,
+                        price: formatPrice(price),
+                        regular_price: formatPrice(regular_price),
+                        // ternary operator som undersøger om sale_price findes. hvis ikke sættes den til null og der sker ikke mere.
+                        sale_price: sale_price ? formatPrice(sale_price) : null,
+                        description,
+                        short_description,
+                        dimensions,
+                        // Går igennem alle billederne i images og trækker både src og alt tekst ud. Gemmer dem i keys (src og alt)
+                        images: images.map(image => ({
+                            src: image.src,
+                            // Hvis der ikke findes en alt tekst så indsættes denne string.
+                            alt: image.alt || "Alt-tekst mangler"
+                        })),
+                        categories: categories.map(cat => cat.name),
+                        tags: tags.map(tag => tag.name),
+                        // Vores nye objekt som indeholder alle vores attributer på en mere struktureret måde. 
+                        attributes: attributesObj,
+                        related_ids
+                    };
+                });
 
-                // Returnerer det formatterede produkt
-                return {
-                    id,
-                    name,
-                    slug,
-                    date_created,
-                    price: formatPrice(price),
-                    regular_price: formatPrice(regular_price),
-                    // ternary operator som undersøger om sale_price findes. hvis ikke sættes den til null og der sker ikke mere.
-                    sale_price: sale_price ? formatPrice(sale_price) : null,
-                    description,
-                    short_description,
-                    dimensions,
-                    // Går igennem alle billederne i images og trækker både src og alt tekst ud. Gemmer dem i keys (src og alt)
-                    images: images.map(image => ({
-                        src: image.src,
-                        // Hvis der ikke findes en alt tekst så indsættes denne string.
-                        alt: image.alt || "Alt-tekst mangler"
-                    })),
-                    categories: categories.map(cat => cat.name),
-                    tags: tags.map(tag => tag.name),
-                    // Vores nye objekt som indeholder alle vores attributer på en mere struktureret måde. 
-                    attributes: attributesObj,
-                    related_ids
-                };
+                console.log("Processed Glasses Data:", glasses.value);
+            })
+            .catch((err) => {
+                error.value = err.message;
+            })
+            .finally(() => {
+                isLoading.value = false;
             });
+    }
 
-            console.log("Processed Glasses Data:", glasses.value);
-        })
-        .catch((err) => {
-            error.value = err.message;
-        })
-        .finally(() => {
-            isLoading.value = false;
-        });
+    // Call fetchData when store is initialized
+    fetchData();
 
-    return { glasses, isLoading, error };
+    return { glasses, isLoading, error, fetchData };
 });
