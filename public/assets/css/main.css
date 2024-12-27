@@ -52,6 +52,7 @@
   --Dust: #D9C5A1;
   --SnowWhite: #ffffff;
   --Black: #060606;
+  --MouseGrey: #E6E3E3;
 
   --PoppinsFont: "Poppins", serif;
   --WixFont: "Wix Madefor Text", serif;
@@ -69,6 +70,10 @@
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 p {
   font-family: var(--WixFont);
   /* 18px */
@@ -82,6 +87,8 @@ a {
   font-size: 1.25rem;
   font-weight: 600;
   font-family: var(--PoppinsFont);
+  text-decoration: none;
+  color: var(--Black);
 }
 
 h1 {
@@ -89,6 +96,7 @@ h1 {
   font-size: 3rem;
   font-family: var(--PoppinsFont);
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 h2 {
@@ -96,6 +104,7 @@ h2 {
   font-size: 48px;
   font-family: var(--PoppinsFont);
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 h3 {
@@ -103,6 +112,7 @@ h3 {
   font-size: 2rem;
   font-family: var(--PoppinsFont);
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 h4 {
@@ -110,6 +120,7 @@ h4 {
   font-size: 1.5rem;
   font-family: var(--PoppinsFont);
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 h5 {
@@ -117,12 +128,27 @@ h5 {
   font-size: 1.25rem;
   font-family: var(--PoppinsFont);
   font-weight: 500;
+  text-transform: uppercase;
 }
 
 h6 {
   /* 18px */
   font-size: 1.125rem;
   font-family: var(--PoppinsFont);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+
+.smallText {
+  font-family: var(--WixFont);
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+label {
+  font-size: 1.125rem;
+  font-family: var(--WixFont);
   font-weight: 500;
 }
 

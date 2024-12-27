@@ -4,6 +4,7 @@ import { useGlassesStore } from "../stores/glasses";
 import goldenImage from '../assets/img/golden.webp';
 import silverImage from '../assets/img/silver.jpg';
 import TheSpinner from './TheSpinner.vue';
+import TheBtn from './TheBtn.vue';
 
 const glassStore = useGlassesStore();
 
@@ -103,91 +104,92 @@ const resetFilters = () => {
 </script>
 
 <template>
-    <div class="topGrid">
-        <div class="spaceContainer">
+  <div class="topGrid">
+    <div class="spaceContainer"></div>
+    <div class="breadCrumbs">
+      <a class="bread" href="#">Briller > Alle > briller</a>
+      <TheBtn label="Sortering" />
+    </div>
+  </div>
+  <TheSpinner v-if="glassStore.isLoading" />
+  <div v-if="!glassStore.isLoading" class="webshop">
+    <div class="filter">
+      <h4>Vælg Farve</h4>
+      <div class="filter-group filterCheckBoxContainer">
+        <div v-for="(color, index) in colorOptions" :key="index" class="color-checkbox">
+          <input
+            class="checkbox"
+            type="checkbox"
+            :id="'color-' + index"
+            v-model="selectedColors"
+            :value="color"
+          />
+          <label :for="'color-' + index">{{ color }}</label>
+        </div>
+      </div>
 
+      <h4>Pris</h4>
+      <div class="filter-group priceSlidersContainer">
+        <div class="price-sliders">
+          <label for="min-price">Minimum</label>
+          <input
+            id="min-price"
+            type="range"
+            v-model="minPrice"
+            :min="0"
+            :max="5000"
+            step="1"
+          />
+          <span>{{ minPrice }}</span>
         </div>
-        <div class="breadCrumbs">
-            <a class="bread" href="#">Briller > Alle > briller</a>
-            <button class="sortering">Sortering</button>
+        <div class="price-sliders">
+          <label for="max-price">Maksimum</label>
+          <input
+            id="max-price"
+            type="range"
+            v-model="maxPrice"
+            :min="0"
+            :max="5000"
+            step="1"
+          />
+          <span>{{ maxPrice }}</span>
         </div>
+      </div>
+
+      <div class="flexFlex">
+        <TheBtn label="Anvend Filtre" :onClick="applyFilters" />
+        <TheBtn label="Nulstil Filtre" :onClick="resetFilters" />
+      </div>
     </div>
-    <TheSpinner v-if="glassStore.isLoading"></TheSpinner>
-    <div v-if="!glassStore.isLoading" class="webshop">
-     <div class="filter">
-         <h4>Vælg Farve</h4>
-       <div class="filter-group filterCheckBoxContainer">
-         <div v-for="(color, index) in colorOptions" :key="index" class="color-checkbox">
-           <input
-             class="checkbox" 
-             type="checkbox" 
-             :id="'color-' + index" 
-             v-model="selectedColors" 
-             :value="color"
-           />
-           <label :for="'color-' + index">{{ color }}</label>
-         </div>
-       </div>
- 
-       <h4>Pris</h4>
-       <div class="filter-group priceSlidersContainer">
-         <div class="price-sliders">
-           <label for="min-price">Minimum</label>
-           <input 
-             id="min-price"
-             type="range" 
-             v-model="minPrice" 
-             :min="0" 
-             :max="5000" 
-             step="1"
-           />
-           <span>{{ minPrice }}</span>
-         </div>
-         <div class="price-sliders">
-           <label for="max-price">Maksimum</label>
-           <input 
-             id="max-price"
-             type="range" 
-             v-model="maxPrice" 
-             :min="0" 
-             :max="5000" 
-             step="1"
-           />
-           <span>{{ maxPrice }}</span>
-         </div>
-       </div>
-       
-       <div class="flexFlex">
-           <button @click="applyFilters">Anvend Filtre</button>
-           <button @click="resetFilters">Nulstil Filtre</button>
-       </div>
-     </div>
-     <section class="glassesGrid">
-         <h4 style="grid-column: 1 / -1;" v-if="filterApplied && filteredResults.length === 0">Der kunne desværre ikke findes nogen briller, der matchede din søgning.</h4>
-       <router-link 
-         class="productCard" 
-         v-for="glass in glassesToDisplay" 
-         :key="glass.id" 
-         :to="{ name: 'ProductDetails', params: { id: glass.id } }"
-       >
-         <div class="imageholder">
-           <img :src="glass.images[0].src" :alt="glass.images[0].alt || 'Glass image'" />
-         </div>
-         <h5>{{ glass.name }}</h5>
-         <p class="smallText">{{ glass.attributes.brand }}</p>
-         <p v-html="glass.price"></p>
-         <div class="flexFlex">
-           <p class="smallestText">Focus Flex Gr.</p>
-           <div 
-             class="focusFlexColor" 
-             :style="getFocusFlexStyle(glass.attributes['focus flex gruppe']?.Hexkode)"
-           ></div>
-         </div>
-       </router-link>
-     </section>
-    </div>
- </template>
- 
+
+    <section class="glassesGrid">
+      <h4 style="grid-column: 1 / -1;" v-if="filterApplied && filteredResults.length === 0">
+        Der kunne desværre ikke findes nogen briller, der matchede din søgning.
+      </h4>
+      <router-link
+        class="productCard"
+        v-for="glass in glassesToDisplay"
+        :key="glass.id"
+        :to="{ name: 'ProductDetails', params: { id: glass.id } }"
+      >
+        <div class="imageholder">
+          <img :src="glass.images[0].src" :alt="glass.images[0].alt || 'Glass image'" />
+        </div>
+        <h5>{{ glass.name }}</h5>
+        <p class="smallText">{{ glass.attributes.brand }}</p>
+        <p v-html="glass.price"></p>
+        <div class="flexFlex">
+          <p class="smallestText">Focus Flex Gr.</p>
+          <div
+            class="focusFlexColor"
+            :style="getFocusFlexStyle(glass.attributes['focus flex gruppe']?.Hexkode)"
+          ></div>
+        </div>
+      </router-link>
+    </section>
+  </div>
+</template>
+
 <style scoped>
 .bread{
     grid-column: 1/2;
@@ -227,7 +229,6 @@ const resetFilters = () => {
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
     gap: 1rem;
-    place-items: center;
 }
 
 .flexFlex{
@@ -242,7 +243,9 @@ const resetFilters = () => {
   color: var(--Black);
   border-radius: 12px;
   width: 250px;
+  height: 300px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin: 0 auto;
 }
 
 .productCard:hover {
@@ -316,17 +319,24 @@ input[type="range"] {
 }
 
 button {
+  display: inline-block;
+  font-family: var(--PoppinsFont);
+  padding: 10px 20px;
+  width: fit-content;
+  color: white;
   background-color: var(--FocusOrange);
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: none;
+  border: 2px solid var(--FocusOrange);
   border-radius: 12px;
-  cursor: pointer;
-  font-weight: 700;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-  background-color: var(--FocusOrange);
+  text-decoration: underline;
+}
+
+.button:active {
+    box-shadow: inset 0 -2px 7px rgba(0, 0, 0, 0.25), inset 0 4px 7px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
 }
 
 input[type="range"] {
