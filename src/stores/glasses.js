@@ -10,18 +10,17 @@ export const useGlassesStore = defineStore("glasses", () => {
     const isLoading = ref(true);
     const error = ref(null);
 
-    // Check if glasses data is in localStorage
-    const loadFromLocalStorage = () => {
-        const storedData = localStorage.getItem('glassesData');
+    const loadFromSessionStorage = () => {
+        const storedData = sessionStorage.getItem('glassesData');
         if (storedData) {
             glasses.value = JSON.parse(storedData);
             isLoading.value = false;
         } else {
-            fetchData(); // Fetch data if not found in localStorage
+            fetchData();
         }
     };
 
-    // Format price function
+
     function formatPrice(price) {
         const numericPrice = parseFloat(price);
         return new Intl.NumberFormat('da-DK', {
@@ -42,7 +41,7 @@ export const useGlassesStore = defineStore("glasses", () => {
         7: '#0B0B0B'
     };
 
-    // Fetch data from the API and update localStorage
+
     function fetchData() {
         fetch(APIBaseUrl + consumerKey + consumerSecret)
             .then((res) => {
@@ -79,8 +78,7 @@ export const useGlassesStore = defineStore("glasses", () => {
                     };
                 });
 
-                // Save to localStorage
-                localStorage.setItem('glassesData', JSON.stringify(glasses.value));
+                sessionStorage.setItem('glassesData', JSON.stringify(glasses.value));
 
                 console.log("Processed Glasses Data:", glasses.value);
             })
@@ -92,8 +90,7 @@ export const useGlassesStore = defineStore("glasses", () => {
             });
     }
 
-    // Load data when store is initialized
-    loadFromLocalStorage();
+    loadFromSessionStorage();
 
     return { glasses, isLoading, error, fetchData };
 });
