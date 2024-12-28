@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useGlassesStore } from "../stores/glasses";
+import { useCommercialsStore } from '../stores/commercials';
 import TheSpinner from '@/components/TheSpinner.vue';
 import goldenImage from '../assets/img/golden.webp';
 import silverImage from '../assets/img/silver.jpg';
@@ -10,6 +11,21 @@ import TheBtn from '@/components/TheBtn.vue';
 const route = useRoute();
 const glassStore = useGlassesStore();
 const selectedOption = ref('enkeltstyrke');
+const props = defineProps({
+  id: {
+    type: [String, Number],
+    required: true
+  }
+});
+
+const commercialStore = useCommercialsStore();
+
+const backgroundStyle = {
+  backgroundImage: `url(${ commercialStore.commercialPosts[0].featuredImage})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat'
+};
 
 // Henter brilledetaljer baseret på ID fra URL'en
 const glass = computed(() => glassStore.glasses.find(g => g.id === parseInt(route.params.id)));
@@ -146,6 +162,10 @@ const getFocusFlexStyle = (hexValue) => {
         </div>
     </div>
   </section>
+  <article class="commercial" :style="backgroundStyle">
+    <h5>{{ commercialStore.commercialPosts[0].title }}</h5>
+    <p>{{ commercialStore.commercialPosts[0].indholdstekst }}</p>
+  </article>
 </template>
 
 <style scoped>
@@ -313,5 +333,14 @@ text-decoration: underline;
 
 .lessFatFont{
   font-weight: 500;
+}
+
+.commercial{
+  height: 300px;
+  width: 1270px;
+}
+
+.commercial p {
+  width: 50ch;
 }
 </style>
