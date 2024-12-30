@@ -7,6 +7,12 @@ import TheSpinner from './TheSpinner.vue';
 import TheBtn from './TheBtn.vue';
 
 const glassStore = useGlassesStore();
+const selectedColors = ref([]);
+const minPrice = ref(0);
+const maxPrice = ref(5000);
+const filteredResults = ref([]);
+const allGlasses = computed(() => glassStore.glasses);
+const filterApplied = ref(false);
 
 // Farve muligheder
 const colorOptions = computed(() => {
@@ -19,14 +25,6 @@ const colorOptions = computed(() => {
   });
   return Array.from(colors);
 });
-
-const selectedColors = ref([]);
-const minPrice = ref(0); // Minimum pris slider
-const maxPrice = ref(5000); // Maksimum pris slider
-const filteredResults = ref([]); // Variabel til at gemme filtrerede produkter
-const allGlasses = computed(() => glassStore.glasses); // Vis alle briller ved første indlæsning
-
-const filterApplied = ref(false); // Ny variabel til at holde styr på om filtrering er anvendt
 
 // Funktion der håndterer både farver og billeder baseret på Hexkode valuen fra dataen.
 const getFocusFlexStyle = (hexValue) => {
@@ -57,30 +55,20 @@ const getFocusFlexStyle = (hexValue) => {
 // Filtreringslogik
 const applyFilters = () => {
   console.log('Kører applyFilters...');
-  filteredResults.value = []; // Nulstil filteredResults før vi starter filtreringen.
+  filteredResults.value = glassStore.glasses.filter(glass => {
+    const colorMatch =
+      selectedColors.value.length === 0 ||
+      selectedColors.value.some(color => glass.attributes.farver.includes(color));
+    const price = parseFloat(glass.price.replace('.', '').replace(',', '.'));
+    const priceMatch = price >= minPrice.value && price <= maxPrice.value;
 
-  glassStore.glasses.forEach(glass => {
-    // Filtrer efter farve
-    const colorMatch = selectedColors.value.length === 0 || selectedColors.value.some(color => glass.attributes.farver.includes(color));
-
-    // Filtrer efter pris
-    const priceMatch = parseFloat(glass.price.replace('.', '').replace(',', '.')) >= minPrice.value && parseFloat(glass.price.replace('.', '').replace(',', '.')) <= maxPrice.value;
-
-    if (colorMatch && priceMatch) {
-      filteredResults.value.push(glass); // Tilføj glass til filteredResults
-    }
+    return colorMatch && priceMatch;
   });
 
-  // Hvis der ikke er nogen matchende briller, vis besked
-  if (filteredResults.value.length === 0) {
-    filteredResults.value = []; // Ingen briller at vise
-  }
-
-  // Opdater filterApplied flaget
   filterApplied.value = true;
-
   console.log('Filtreringsresultater:', filteredResults.value);
 };
+
 
 // Computed for at returnere filtrerede briller eller alle briller, hvis der ikke er anvendt filtre
 const glassesToDisplay = computed(() => {
@@ -105,11 +93,10 @@ const resetFilters = () => {
 
 <template>
   <div class="topGrid">
-    <div class="spaceContainer"></div>
     <div class="breadCrumbs">
       <a class="bread" href="#">Briller > Alle > briller</a>
-      <TheBtn label="Sortering" />
     </div>
+    <TheBtn label="Sortering" />
   </div>
   <TheSpinner v-if="glassStore.isLoading" />
   <div v-if="!glassStore.isLoading" class="webshop">
@@ -175,9 +162,9 @@ const resetFilters = () => {
         <div class="imageholder">
           <img :src="glass.images[0].src" :alt="glass.images[0].alt || 'Glass image'" />
         </div>
-        <h5>{{ glass.name }}</h5>
+        <h6>{{ glass.name }}</h6>
         <p class="smallText">{{ glass.attributes.brand }}</p>
-        <p v-html="glass.price"></p>
+        <p class="price" v-html="glass.price"></p>
         <div class="flexFlex">
           <p class="smallestText">Focus Flex Gr.</p>
           <div
@@ -201,34 +188,33 @@ const resetFilters = () => {
 
 .webshop{
     display: grid;
-    grid-template-columns: 0.4fr 2fr;
+    grid-template-columns: 0.6fr 2fr;
     gap: 2rem;
     margin-top: 5rem;
     min-height: 100vh;
 }
 
 .topGrid{
-    display: grid;
-    grid-template-columns: 0.4fr 2fr;
-    gap: 2rem;
-    margin-top: 2rem;
+display: flex; 
 }
 
 .breadCrumbs{
     display: flex;
     justify-content: space-between;
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 1rem;
+    gap: 2rem 1rem;
 }
 
 .spaceContainer{
     padding: 1rem;
 }
+
 .glassesGrid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
+    justify-content: flex-start;
+    grid-auto-rows: 300px;
+    gap: 2rem 1rem;
 }
 
 .flexFlex{
@@ -276,6 +262,7 @@ img {
   max-width: 200px;
   object-fit: contain;
 }
+
 
 
 
@@ -379,6 +366,9 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 50%;
   cursor: pointer;
 }
+
+
+
 
 
 .checkbox {

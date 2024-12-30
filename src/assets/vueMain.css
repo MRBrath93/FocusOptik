@@ -82,9 +82,10 @@ p {
   font-weight: 400;
 }
 
-a {
+a,
+button {
   /* 20px */
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
   font-family: var(--PoppinsFont);
   text-decoration: none;

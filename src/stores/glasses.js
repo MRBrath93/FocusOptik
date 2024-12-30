@@ -52,7 +52,19 @@ export const useGlassesStore = defineStore("glasses", () => {
             })
             .then((data) => {
                 glasses.value = data.map(item => {
-                    const { id, name, price, regular_price, sale_price, description, images, categories, tags, attributes } = item;
+                    const { id, name, price, regular_price, sale_price, description, images, categories, tags, attributes, dimensions, related_ids } = item;
+
+                    // Hent dimensionerne
+                    const dimensionsObj = dimensions ? {
+                        length: dimensions.length,
+                        width: dimensions.width,
+                        height: dimensions.height
+                    } : {};
+
+                    // Hent relaterede produkter
+                    const relatedGlasses = related_ids || [];
+
+                    // Behandle attributter
                     const attributesObj = attributes.reduce((newAttributeObject, attribute) => {
                         const attributeName = attribute.name.toLowerCase();
                         if (attributeName === 'focus flex gruppe') {
@@ -74,7 +86,9 @@ export const useGlassesStore = defineStore("glasses", () => {
                         images: images.map(image => ({ src: image.src, alt: image.alt || "Alt-tekst mangler" })),
                         categories: categories.map(cat => cat.name),
                         tags: tags.map(tag => tag.name),
-                        attributes: attributesObj
+                        attributes: attributesObj,
+                        dimensions: dimensionsObj,   // Tilføj dimensionerne
+                        related_ids: relatedGlasses   // Tilføj relaterede produkter
                     };
                 });
 
@@ -89,6 +103,7 @@ export const useGlassesStore = defineStore("glasses", () => {
                 isLoading.value = false;
             });
     }
+
 
     loadFromSessionStorage();
 

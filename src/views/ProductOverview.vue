@@ -1,13 +1,11 @@
 <script setup>
-import ProductCard from '@/components/ProductCard.vue';
-import { useGlassesStore } from "../stores/glasses";
+import ProductOverview from '@/components/ProductOverview.vue';
 
-const glassStore = useGlassesStore();
 </script>
 
 <template>
   <section>
-    <ProductCard></ProductCard>
+    <ProductOverview></ProductOverview>
   </section>
 </template>
 

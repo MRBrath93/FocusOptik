@@ -35,6 +35,8 @@ const handleClick = () => {
   text-align: center;
   text-decoration: none;
   border-radius: 12px;
+  text-transform: uppercase;
+  font-weight: 500;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -46,4 +48,6 @@ text-decoration: underline;
     box-shadow: inset 0 -2px 7px rgba(0, 0, 0, 0.25), inset 0 4px 7px rgba(0, 0, 0, 0.25);
     text-decoration: none;
 }
+
+
 </style>

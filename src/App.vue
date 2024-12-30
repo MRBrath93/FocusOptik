@@ -10,8 +10,6 @@
 
       <!-- Router View viser det indhold, der matcher den aktuelle rute -->
       <router-view />
-
-   
   </div>
 </template>
 
