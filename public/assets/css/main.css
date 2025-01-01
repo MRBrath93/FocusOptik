@@ -416,7 +416,8 @@ li {
   text-align: center;
 }
 
-.card a, article a {
+.card a,
+article a {
   text-decoration: none;
   color: var(--SnowWhite);
   background-color: var(--FocusOrange);
@@ -515,6 +516,38 @@ li {
 /* ================================================
    BUTIKKEN
    ================================================ */
+.twoColumnSection {
+  display: flex;
+  gap: 2rem;
+}
+
+.imageContainer {}
+
+.galleryItem {
+  /* width: 100%; */
+  cursor: pointer;
+}
+
+.iconStylingOrange {
+  color: var(--FocusOrange);
+  font-size: 3rem;
+  stroke: var(--FocusOrange);
+  stroke-width: 2px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.iconStylingBlack {
+  color: var(--Black);
+  font-size: 3rem;
+  stroke: var(--FocusOrange);
+  stroke-width: 2px;
+}
+
+.sideImg {
+  width: 100%;
+  object-fit: cover;
+}
 
 
 
