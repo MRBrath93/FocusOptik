@@ -542,6 +542,7 @@ article a {
   font-size: 3rem;
   stroke: var(--FocusOrange);
   stroke-width: 2px;
+  padding: 0.5rem;
 }
 
 .sideImg {
@@ -549,7 +550,29 @@ article a {
   object-fit: cover;
 }
 
+.cardHelp {
+  position: relative;
+}
 
+.cardHelp img {
+  width: 80vw;
+  max-height: 450px;
+  object-fit: cover;
+}
+
+.cardHelpText {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+}
+
+.centerText {
+  display: flex;
+  align-items: center;
+}
 
 
 
