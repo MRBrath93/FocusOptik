@@ -53,6 +53,8 @@
   --SnowWhite: #ffffff;
   --Black: #060606;
 
+  --Grey: #f4f4f4;
+
   --PoppinsFont: "Poppins", serif;
   --WixFont: "Wix Madefor Text", serif;
 
@@ -350,11 +352,111 @@ li {
    OM FOCUS OPTIK
    ================================================ */
 
+/* Hero section  */
 
+.heroImg {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
 
+.headerContainer {
+  position: relative;
+}
 
+.headerContainer h1 {
+  position: absolute;
+  top: 45%;
+  left: 5%;
+}
 
+/* Breadcrumbs */
 
+.breadcrumbs {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: var(--Black);
+}
+
+/* card section */
+
+.cardContainer {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  border-radius: 5px;
+  background-color: var(--Grey);
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card img {
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.card p {
+  max-width: 80%;
+  text-align: center;
+}
+
+.card a {
+  text-decoration: none;
+  color: var(--SnowWhite);
+  background-color: var(--FocusOrange);
+  padding: 10px 15px;
+  border-radius: 12px;
+  stroke: var(--FocusOrange);
+  stroke-width: 2px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.cardBtn {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* vores værdier sektion */
+
+.valuesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.valuesItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.valuesHeader {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
 
 
 
