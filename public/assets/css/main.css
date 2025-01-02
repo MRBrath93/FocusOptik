@@ -60,7 +60,9 @@
 
   --VerticalSectionSpace: 50px;
 
-  /* Angiv vairabler så som farver, størrelser på margin, padding osv. */
+  --pageMarginDesktop: 10rem;
+  --pageMarginMobile: 1rem:
+    /* Angiv vairabler så som farver, størrelser på margin, padding osv. */
 }
 
 
@@ -128,7 +130,11 @@ h6 {
   font-weight: 500;
 }
 
-
+/* OBS VED MERCH */
+main {
+  margin-left: var(--pageMarginDesktop);
+  margin-right: var(--pageMarginDesktop);
+}
 
 /* ================================================
    NAVIGATION
@@ -574,6 +580,51 @@ article a {
   align-items: center;
 }
 
+.accordions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 55rem;
+
+}
+
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--Grey);
+  border-radius: 5px;
+  border-color: var(--Grey);
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.accordionHeader:hover {
+  background-color: var(--FocusOrange);
+  color: var(--SnowWhite);
+}
+
+.accordionContent {
+  display: none;
+  padding: 1rem;
+  border-radius: 5px;
+  border-color: var(--Grey);
+  background-color: var(--Grey);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+  width: 100%;
+  transition: max-height 0.9s ease-in;
+  font-family: var(--WixFont);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.accordionContentActive {
+  display: block;
+  max-height: 500px;
+}
 
 
 
