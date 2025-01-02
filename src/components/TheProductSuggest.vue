@@ -73,7 +73,7 @@ onMounted(() => {
         <p class="smallestText">Focus Flex Gr.</p>
         <div
           class="focusFlexColor"
-          :style="getFocusFlexStyle(relatedGlass.attributes['focus flex gruppe']?.Hexkode)"
+          :style="getFocusFlexStyle(relatedGlass.attributes.focusflexgruppe?.Hexkode)"
         ></div>
       </div>
     </router-link>
@@ -91,7 +91,7 @@ onMounted(() => {
 }
 
 .productCard {
-  padding: 2rem;
+  padding: 1rem;
   text-decoration: none;
   color: var(--Black);
   border-radius: 12px;
@@ -125,8 +125,19 @@ onMounted(() => {
 }
 
 img {
-  height: 100px;
+  height: 130px;
   max-width: 200px;
   object-fit: contain;
+}
+
+.imageholder{
+display: flex;
+justify-content: center;
+}
+
+.flexFlex{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 </style>

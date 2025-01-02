@@ -14,7 +14,7 @@ const props = defineProps({
     <div class="container">
         <h5>{{ title }}</h5>
         <p>{{ textContent }}</p>
-        <TheBtn label="Se alle brands"></TheBtn>
+        <TheBtn class="customButton customButtonPoint" label="Se alle brands" link="#"><span>Se alle brands</span> <i class="fa-solid fa-arrow-right"></i></TheBtn>
     </div>
   </article>
 </template>
@@ -39,6 +39,42 @@ const props = defineProps({
     display: flex;
     flex-direction: column;
     justify-content: space-around ;
+}
+
+
+.customButton:hover{
+  text-decoration: none;
+}
+
+.customButton:hover span{
+  text-decoration: underline;
+}
+
+.customButton:active span{
+  text-decoration: none;
+}
+
+.customButton i {
+  transition: transform 0.5s ease;
+}
+
+@keyframes PointRight {
+  0%, 100% {
+    transform: translateX(0px) scale(1.1);
+  }
+  25% {
+    transform: translateX(-2px) scale(1.1);
+  }
+  50% {
+    transform: translateX(2px) scale(1.1);
+  }
+  75% {
+    transform: translateX(-2px) scale(1.1);
+  }
+}
+
+.customButtonPoint:hover i {
+  animation: PointRight 2s infinite linear;
 }
 
 </style>

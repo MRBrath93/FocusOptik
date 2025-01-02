@@ -13,21 +13,29 @@ const handleClick = () => {
 </script>
 
 <template>
-    <button
-      v-if="!link"
-      class="button"
-      @click="handleClick"
-    >
+  <button
+    v-if="!link"
+    class="button"
+    @click="handleClick"
+  >
+    <slot>
       {{ label }}
-    </button>
-    <a v-else :href="link" class="button">{{ label }}</a>
-  </template>
+    </slot> <!-- Plads til indhold via slot -->
+  </button>
+  <a v-else :href="link" class="button">
+    <slot>
+      {{ label }}
+    </slot> <!-- Plads til indhold via slot -->
+  </a>
+</template>
 
 <style scoped>
 .theButton, .button {
-  display: inline-block;
+  display: inline-flex; /* Juster til inline-flex for at placere ikon og tekst på samme linje */
+  gap: 0.3rem;
+  align-items: center; /* Sørg for at tekst og ikon er centreret vertikalt */
   font-family: var(--PoppinsFont);
-  padding: 10px 20px;
+  padding: 5px 10px;
   width: fit-content;
   color: white;
   background-color: var(--FocusOrange);
@@ -37,17 +45,21 @@ const handleClick = () => {
   border-radius: 12px;
   text-transform: uppercase;
   font-weight: 500;
+  cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+
 .theButton:hover, .button:hover {
-text-decoration: underline;
+  text-decoration: underline;
 }
 
 .theButton:active, .button:active {
-    box-shadow: inset 0 -2px 7px rgba(0, 0, 0, 0.25), inset 0 4px 7px rgba(0, 0, 0, 0.25);
-    text-decoration: none;
+  box-shadow: inset 0 -2px 7px rgba(0, 0, 0, 0.25), inset 0 4px 7px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
 }
 
-
+.button i {
+  margin-right: 8px; /* Afstand mellem ikonet og tekst */
+}
 </style>

@@ -88,7 +88,7 @@ const getFocusFlexStyle = (hexValue) => {
       <a href="#" class="focusFlexGroup">
         <div 
                class="focusFlexColor" 
-               :style="getFocusFlexStyle(glass.attributes['focus flex gruppe']?.Hexkode)"
+               :style="getFocusFlexStyle(glass.attributes.focusflexgruppe?.Hexkode)"
              >
             </div>
             <h6>FOCUS FLEX GRUPPE</h6>
@@ -110,6 +110,7 @@ const getFocusFlexStyle = (hexValue) => {
         <p class="smallText">Du finder priseksemplet nedenfor under <a class="smallText" href="#finanses">finansering</a></p>
       </div>
       <TheBtn label="BOOK TID" link="#" ></TheBtn>
+      <TheBtn class="customButton customButtonPoint" label="Book Tid" link="#"><span>Book tid</span> <i class="fa-solid fa-arrow-right"></i></TheBtn>
     </div>
   </section>
 </template>
@@ -235,5 +236,39 @@ text-decoration: underline;
 }
 
 
+.customButton:hover{
+  text-decoration: none;
+}
+
+.customButton:hover span{
+  text-decoration: underline;
+}
+
+.customButton:active span{
+  text-decoration: none;
+}
+
+.customButton i {
+  transition: transform 0.5s ease;
+}
+
+@keyframes PointRight {
+  0%, 100% {
+    transform: translateX(0px) scale(1.1);
+  }
+  25% {
+    transform: translateX(-2px) scale(1.1);
+  }
+  50% {
+    transform: translateX(2px) scale(1.1);
+  }
+  75% {
+    transform: translateX(-2px) scale(1.1);
+  }
+}
+
+.customButtonPoint:hover i {
+  animation: PointRight 2s infinite linear;
+}
 
 </style>

@@ -36,8 +36,8 @@ export const useGlassesStore = defineStore("glasses", () => {
         2: '#11B509',
         3: '#EE0B0B',
         4: '#0945B5',
-        5: 'Sølv',
-        6: 'Guld',
+        5: 'sølv',
+        6: 'guld',
         7: '#0B0B0B'
     };
 
@@ -67,9 +67,9 @@ export const useGlassesStore = defineStore("glasses", () => {
                     // Behandle attributter
                     const attributesObj = attributes.reduce((newAttributeObject, attribute) => {
                         const attributeName = attribute.name.toLowerCase();
-                        if (attributeName === 'focus flex gruppe') {
+                        if (attributeName === 'focusflexgruppe') {
                             const hexValue = hexMapping[attribute.options[0]] || "Ukendt";
-                            newAttributeObject[attributeName] = { value: attribute.options.join(", "), Hexkode: hexValue };
+                            newAttributeObject[attributeName] = { gruppenr: attribute.options.join(", "), Hexkode: hexValue };
                         } else {
                             newAttributeObject[attributeName] = attribute.options.join(", ");
                         }

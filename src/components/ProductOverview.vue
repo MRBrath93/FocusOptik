@@ -8,6 +8,10 @@ import TheBtn from './TheBtn.vue';
 
 const glassStore = useGlassesStore();
 const selectedColors = ref([]);
+const selectedBrands = ref([]);
+const selectedGlassForm = ref([]);
+const selectedGlassType = ref([]);
+const selectedFocusFlexGroups = ref([]);
 const minPrice = ref(0);
 const maxPrice = ref(5000);
 const filteredResults = ref([]);
@@ -18,56 +22,136 @@ const filterApplied = ref(false);
 const colorOptions = computed(() => {
   const colors = new Set();
   glassStore.glasses.forEach((product) => {
-    if (product.attributes.farver) {
-      const colorArray = product.attributes.farver.split(", ");
-      colorArray.forEach((color) => colors.add(color));
-    }
+    const colorArray = product.attributes.farver?.split(", ") || [];
+    colorArray.forEach((color) => colors.add(color));
   });
-  return Array.from(colors);
+  return Array.from(colors).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
 });
 
-// Funktion der håndterer både farver og billeder baseret på Hexkode valuen fra dataen.
+// Brand Muligheder
+const brandOptions = computed(() => {
+  const brands = new Set();
+  glassStore.glasses.forEach((product) => {
+    const brandArray = product.attributes.brand?.split(", ") || [];
+    brandArray.forEach((brand) => brands.add(brand));
+  });
+  return Array.from(brands).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+});
+
+// Glasform Muligheder
+const glassformOptions = computed(() => {
+  const glassforms = new Set();
+  glassStore.glasses.forEach((product) => {
+    const glassformArray = product.attributes.glasform?.split(", ") || [];
+    glassformArray.forEach((glassform) => glassforms.add(glassform));
+  });
+  return Array.from(glassforms).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+});
+
+// Glasform Muligheder
+const glassTypeOptions = computed(() => {
+  const glassTypes = new Set();
+  glassStore.glasses.forEach((product) => {
+    const glassTypeArray = product.attributes.type?.split(", ") || [];
+    glassTypeArray.forEach((glassType) => glassTypes.add(glassType));
+  });
+  return Array.from(glassTypes).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+});
+
+// Glasform Muligheder
+const focusFlexOptions = computed(() => {
+  const flexGroups = new Set();
+  glassStore.glasses.forEach((product) => {
+    const flexGroupArray = product.attributes.focusflexgruppe?.Hexkode.split(", ") || [];
+    flexGroupArray.forEach((hexkode) => flexGroups.add(hexkode));
+  });
+  return Array.from(flexGroups).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+});
+
+
+
+
+// Funktion der håndterer både farver og billeder baseret på Hexkode valuen fra dataen. Dette anvendes til focusflex farven.
 const getFocusFlexStyle = (hexValue) => {
-  if (!hexValue) return { backgroundColor: '#FFFFF' };
+  if (!hexValue) return { backgroundColor: '#FFFFFF' };
 
-  if (hexValue === 'Guld') {
-    return {
-      backgroundImage: `url(${goldenImage})`,
-      backgroundSize: 'cover',
-      backgroundColor: ''
-    };
+  if (hexValue === 'guld') {
+    return { backgroundImage: `url(${goldenImage})`, backgroundSize: 'cover' };
   }
 
-  if (hexValue.startsWith("Sølv")) {
-    return {
-      backgroundImage: `url(${silverImage})`,
-      backgroundSize: 'cover',
-      backgroundColor: ''
-    };
+  if (hexValue.startsWith("sølv")) {
+    return { backgroundImage: `url(${silverImage})`, backgroundSize: 'cover' };
   }
 
+  // Default stil
   return {
-    backgroundColor: hexValue,
-    backgroundImage: ''
+    backgroundColor: hexValue || '#CCCCCC',
   };
 };
 
-// Filtreringslogik
+
+// ColorFilter
+const colorFilter = (glass) => {
+  return (
+    selectedColors.value.length === 0 ||
+    selectedColors.value.some((color) => glass.attributes.farver.includes(color))
+  );
+};
+
+const focusFlexGroupsFilter = (glass) => {
+  return (
+    selectedFocusFlexGroups.value.length === 0 ||
+    selectedFocusFlexGroups.value.some((Hexkode) => glass.attributes.focusflexgruppe.Hexkode.includes(Hexkode))
+  );
+};
+
+// BrandFilter
+const brandFilter = (glass) => {
+  return (
+    selectedBrands.value.length === 0 ||
+    selectedBrands.value.some((brand) => glass.attributes.brand.includes(brand))
+  );
+};
+
+// BrandFilter
+const glassformFilter = (glass) => {
+  return (
+    selectedGlassForm.value.length === 0 ||
+    selectedGlassForm.value.some((glasform) => glass.attributes.glasform.includes(glasform))
+  );
+};
+
+// TypeFilter
+const glassTypeFilter = (glass) => {
+  return (
+    selectedGlassType.value.length === 0 ||
+    selectedGlassType.value.some((type) => glass.attributes.type.includes(type))
+  );
+};
+
+// PriceFilter
+const priceFilter = (glass) => {
+  const price = parseFloat(glass.price.replace('.', '').replace(',', '.'));
+  return price >= minPrice.value && price <= maxPrice.value;
+};
+
+// Anvend alle filtre
 const applyFilters = () => {
   console.log('Kører applyFilters...');
-  filteredResults.value = glassStore.glasses.filter(glass => {
-    const colorMatch =
-      selectedColors.value.length === 0 ||
-      selectedColors.value.some(color => glass.attributes.farver.includes(color));
-    const price = parseFloat(glass.price.replace('.', '').replace(',', '.'));
-    const priceMatch = price >= minPrice.value && price <= maxPrice.value;
-
-    return colorMatch && priceMatch;
-  });
+  filteredResults.value = glassStore.glasses.filter(
+    (glass) => colorFilter(glass) && priceFilter(glass) && brandFilter(glass) && glassformFilter(glass) && glassTypeFilter(glass) && focusFlexGroupsFilter(glass)
+  );
 
   filterApplied.value = true;
   console.log('Filtreringsresultater:', filteredResults.value);
+
+  // Scroll til toppen af siden
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth', // Gør scrollen glidende
+  });
 };
+
 
 
 // Computed for at returnere filtrerede briller eller alle briller, hvis der ikke er anvendt filtre
@@ -84,11 +168,36 @@ const glassesToDisplay = computed(() => {
 // Funktion til at nulstille filtre
 const resetFilters = () => {
   selectedColors.value = [];
+  selectedBrands.value = [];
+  selectedGlassForm.value = [];
+  selectedGlassType.value = [];
+  selectedFocusFlexGroups.value = [];
   minPrice.value = 0;
   maxPrice.value = 5000;
   filteredResults.value = [];
   filterApplied.value = false;
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth', // Gør scrollen glidende
+  });
 };
+
+
+const TheFocusFlexClass = (Hexkode) => {
+  if (!Hexkode) return 'default-color';
+
+  if (Hexkode === 'guld') {
+    return 'focus-flex-gold checkbox';
+  }
+
+  if (Hexkode.startsWith("sølv")) {
+    return 'focus-flex-silver checkbox';
+  }
+
+  // Default klasse
+  return 'focus-flex-default checkbox';
+};
+
 </script>
 
 <template>
@@ -98,54 +207,84 @@ const resetFilters = () => {
     </div>
     <TheBtn label="Sortering" />
   </div>
-  <TheSpinner v-if="glassStore.isLoading" />
+
+  <TheSpinner v-if="glassStore.isLoading || filterApplied.value && filteredResults.value.length === 0" />
+
   <div v-if="!glassStore.isLoading" class="webshop">
     <div class="filter">
-      <h4>Vælg Farve</h4>
-      <div class="filter-group filterCheckBoxContainer">
-        <div v-for="(color, index) in colorOptions" :key="index" class="color-checkbox">
-          <input
-            class="checkbox"
-            type="checkbox"
-            :id="'color-' + index"
-            v-model="selectedColors"
-            :value="color"
-          />
-          <label :for="'color-' + index">{{ color }}</label>
+      <div>
+        <h4 class="filterheading">Vælg Stelfarve <i class="fa-solid fa-palette"></i></h4>
+        <div class="filter-group filterCheckBoxContainer">
+          <div v-for="(color, index) in colorOptions" :key="index" class="color-checkbox">
+            <input class="checkbox" type="checkbox" :id="'color-' + index" v-model="selectedColors" :value="color" />
+            <label :for="'color-' + index">{{ color }}</label>
+          </div>
         </div>
       </div>
 
-      <h4>Pris</h4>
-      <div class="filter-group priceSlidersContainer">
-        <div class="price-sliders">
-          <label for="min-price">Minimum</label>
-          <input
-            id="min-price"
-            type="range"
-            v-model="minPrice"
-            :min="0"
-            :max="5000"
-            step="1"
-          />
-          <span>{{ minPrice }}</span>
+      <div>
+        <h4 class="filterheading">Vælg Form <i class="fa-solid fa-shapes"></i></h4>
+        <div class="filter-group brandBoxContainer">
+          <div v-for="(form, index) in glassformOptions" :key="index" class="color-checkbox">
+            <input class="checkbox" type="checkbox" :id="'form-' + index" v-model="selectedGlassForm" :value="form" />
+            <label :for="'form-' + index">{{ form }}</label>
+          </div>
         </div>
-        <div class="price-sliders">
-          <label for="max-price">Maksimum</label>
-          <input
-            id="max-price"
-            type="range"
-            v-model="maxPrice"
-            :min="0"
-            :max="5000"
-            step="1"
-          />
-          <span>{{ maxPrice }}</span>
+      </div>
+
+      <div>
+        <h4 class="filterheading">Vælg Brilletype <i class="fa-solid fa-glasses"></i></h4>
+        <div class="filter-group brandBoxContainer">
+          <div v-for="(type, index) in glassTypeOptions" :key="index" class="color-checkbox">
+            <input class="checkbox" type="checkbox" :id="'type-' + index" v-model="selectedGlassType" :value="type" />
+            <label :for="'type-' + index">{{ type }}</label>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="filterheading">Vælg Brand <i class="fa-solid fa-tag"></i></h4>
+        <div class="filter-group brandBoxContainer">
+          <div v-for="(brand, index) in brandOptions" :key="index" class="brand-checkbox">
+            <input class="checkbox" type="checkbox" :id="'brand-' + index" v-model="selectedBrands" :value="brand"/>
+            <label :for="'brand-' + index">{{ brand }}</label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="filterheading">Vælg Focus Flex Gruppe <i class="fa-solid fa-layer-group"></i></h4>
+        <div class="filter-group filterCheckBoxContainer">
+          <div v-for="(Hexkode, index) in focusFlexOptions" :key="index" class="color-checkbox">
+            <input :class="TheFocusFlexClass(Hexkode)" type="checkbox" :id="'hexcode-' + index" v-model="selectedFocusFlexGroups" :value="Hexkode" />
+            <label :for="'hexcode-' + index"> <div
+            class="focusFlexColorSquare"
+            :style="getFocusFlexStyle(Hexkode)"
+          ></div>
+        </label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="filterheading">Pris <i class="fa-solid fa-coins"></i></h4>
+        <div class="filter-group priceSlidersContainer">
+          <div class="price-sliders">
+            <label for="min-price">Minimum</label>
+            <input id="min-price" type="range" v-model="minPrice" :min="0" :max="5000" step="1" />
+            <span>{{ minPrice }}</span>
+          </div>
+          <div class="price-sliders">
+            <label for="max-price">Maksimum</label>
+            <input id="max-price" type="range" v-model="maxPrice" :min="0" :max="5000" step="1" />
+            <span>{{ maxPrice }}</span>
+          </div>
         </div>
       </div>
 
       <div class="flexFlex">
-        <TheBtn label="Anvend Filtre" :onClick="applyFilters" />
-        <TheBtn label="Nulstil Filtre" :onClick="resetFilters" />
+        <TheBtn class="customButton customButtonRotate" label="Anvend Filtre" :onClick="applyFilters"><span>Anvend Filtre</span> <i class="fa-solid fa-rotate-right"></i></TheBtn>
+        <TheBtn class="customButton customButtonWiggle" label="Reset Filtre" :onClick="applyFilters"><span>Reset Filtre</span> <i class="fa-solid fa-trash"></i></TheBtn>
       </div>
     </div>
 
@@ -153,24 +292,21 @@ const resetFilters = () => {
       <h4 style="grid-column: 1 / -1;" v-if="filterApplied && filteredResults.length === 0">
         Der kunne desværre ikke findes nogen briller, der matchede din søgning.
       </h4>
-      <router-link
-        class="productCard"
-        v-for="glass in glassesToDisplay"
-        :key="glass.id"
-        :to="{ name: 'ProductDetails', params: { id: glass.id } }"
-      >
-        <div class="imageholder">
-          <img :src="glass.images[0].src" :alt="glass.images[0].alt || 'Glass image'" />
-        </div>
-        <h6>{{ glass.name }}</h6>
-        <p class="smallText">{{ glass.attributes.brand }}</p>
-        <p class="price" v-html="glass.price"></p>
-        <div class="flexFlex">
-          <p class="smallestText">Focus Flex Gr.</p>
-          <div
-            class="focusFlexColor"
-            :style="getFocusFlexStyle(glass.attributes['focus flex gruppe']?.Hexkode)"
-          ></div>
+      <router-link class="productCard" v-for="glass in glassesToDisplay" :key="glass.id" :to="{ name: 'ProductDetails', params: { id: glass.id } }" >
+        <div class="alignBox">
+          <div class="imageholder">
+            <img :src="glass.images[0].src" :alt="glass.images[0].alt || 'Glass image'" />
+          </div>
+          <h6>{{ glass.name }}</h6>
+          <p class="smallText">{{ glass.attributes.brand }}</p>
+          <p class="price" v-html="glass.price"></p>
+          <div class="flexFlex">
+            <p class="smallestText">Focus Flex Gr.</p>
+            <div
+              class="focusFlexColor"
+              :style="getFocusFlexStyle(glass.attributes.focusflexgruppe?.Hexkode)"
+            ></div>
+          </div>
         </div>
       </router-link>
     </section>
@@ -190,7 +326,7 @@ const resetFilters = () => {
     display: grid;
     grid-template-columns: 0.6fr 2fr;
     gap: 2rem;
-    margin-top: 5rem;
+    margin-top: var(--VerticalSectionSpace);
     min-height: 100vh;
 }
 
@@ -224,13 +360,17 @@ display: flex;
 }
 
 .productCard {
-  padding: 2rem;
+  padding: 1rem;
   text-decoration: none;
   color: var(--Black);
   border-radius: 12px;
   width: 250px;
-  height: 300px;
+  height: fit-content;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin: 0 auto;
+}
+
+.alignBox{
   margin: 0 auto;
 }
 
@@ -243,6 +383,12 @@ display: flex;
   border-radius: 50%;
   height: 15px;
   width: 15px;
+}
+
+.focusFlexColorSquare{
+  border-radius: 12px;
+  height: 20px;
+  width: 20px;
 }
 
 .smallText{
@@ -258,9 +404,18 @@ display: flex;
 }
 
 img {
-  height: 100px;
+  height: 130px;
   max-width: 200px;
   object-fit: contain;
+}
+
+.imageholder{
+display: flex;
+justify-content: center;
+}
+
+.filterheading{
+  font-size: 16px;
 }
 
 
@@ -273,26 +428,42 @@ img {
   border-radius: 0 8px 8px 0;
   background-color: #fff;
   font-family: var(--WixFont);
+  width: fit-content;
+  height: fit-content;
 }
 
 .filter-group {
   margin-bottom: 1rem;
 }
 
-.color-checkbox {
+.color-checkbox, .brand-checkbox {
   margin-bottom: 0.5rem;
+}
+
+.color-checkbox {
+  display: flex; /* Gør containeren til flexbox */
+  align-items: center; /* Sørger for at elementerne er justeret vertikalt */
+  gap: 10px; /* Tilføjer lidt mellemrum mellem checkbox og farveprik */
 }
 
 .filterCheckBoxContainer{
     display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin-top: 0.5rem;
+    gap: 0.2rem;
+}
+
+.brandBoxContainer{
+    display: grid;
+    margin-top: 0.5rem;
     grid-template-columns: repeat(2,1fr);
-    margin-top: 1rem;
+    gap: 0.5rem;
 }
 
 .priceSlidersContainer{
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .price-values {
@@ -305,26 +476,6 @@ input[type="range"] {
   margin: 10px 0;
 }
 
-button {
-  display: inline-block;
-  font-family: var(--PoppinsFont);
-  padding: 10px 20px;
-  width: fit-content;
-  color: white;
-  background-color: var(--FocusOrange);
-  border: 2px solid var(--FocusOrange);
-  border-radius: 12px;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-button:hover {
-  text-decoration: underline;
-}
-
-.button:active {
-    box-shadow: inset 0 -2px 7px rgba(0, 0, 0, 0.25), inset 0 4px 7px rgba(0, 0, 0, 0.25);
-    text-decoration: none;
-}
 
 input[type="range"] {
   width: 100%;
@@ -377,9 +528,13 @@ input[type="range"]::-moz-range-thumb {
 
 .checkbox + label {
   position: relative;
-  padding-left: 30px;
+  padding-left: 25px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
+}
+
+label{
+  font-size: 14px;
 }
 
 .checkbox + label::before {
@@ -389,8 +544,8 @@ input[type="range"]::-moz-range-thumb {
   top: 0;
   width: 20px;
   height: 20px;
-  border: 2px solid #9f9f9f;
-  background-color: #fff;
+  border: 2px solid #e7e7e7;
+  background-color: #e7e7e7;
   border-radius: 4px;
   transition: background-color 0.3s;
 }
@@ -400,4 +555,45 @@ input[type="range"]::-moz-range-thumb {
   border-color: rgb(206, 110, 0);
 }
 
+.customButton:hover{
+  text-decoration: none;
+}
+
+.customButton:hover span{
+  text-decoration: underline;
+}
+
+.customButton:active span{
+  text-decoration: none;
+}
+
+.customButton i {
+  transition: transform 0.5s ease;
+}
+
+.customButtonRotate:hover i {
+  transform: rotate(360deg);
+  text-decoration: none;
+}
+
+
+@keyframes WiggleALittle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  75% {
+    transform: rotate(-15deg);
+  }
+}
+
+.customButtonWiggle:hover i {
+  animation: WiggleALittle 0.5s ease-in-out;
+}
 </style>
+

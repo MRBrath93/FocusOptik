@@ -70,7 +70,6 @@ const glass = computed(() => glassStore.glasses.find(g => g.id === parseInt(rout
 }
 
 
-
 .specifications h5, #finanses h5{
   padding: 0.5rem 1.5rem;
   background-color: rgb(192, 192, 192);
