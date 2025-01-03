@@ -98,3 +98,21 @@ locationEl.forEach((el) => {
 
 // INSPIRATIONSKILDE: JavaScript Intersection Observer Ultimate Guide. 10.01.2022. Web Dev Simplified Blog [online] Accssed 03.01.25. URL: https://blog.webdevsimplified.com/2022-01/intersection-observer/
 // INSPIRATIONSKILDE: Intersection Observer API. 2025. Mozilla Corporations [online] https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+
+
+// Funktion til at opdatere dot's position baseret på scroll
+const updateDotPosition = () => {
+    const scrollPosition = window.scrollY; // Få den aktuelle scroll-position
+    const dot = document.getElementById('dot'); // Find dot-elementet
+  
+    // Beregn den nye position for dot
+    const newPosition = scrollPosition * 0.065; // Juster denne værdi efter behov
+  
+    // Opdater dot's position
+    dot.style.top = `${newPosition}px`;
+  };
+  
+  // Lyt efter scroll-begivenheder
+  window.addEventListener('scroll', updateDotPosition);
+
+//   INSPIRATIONSKILDE: Window: scrollY property. 2025. Mozilla Corporations [online] URL: https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
