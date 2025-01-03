@@ -58,6 +58,7 @@
   --WixFont: "Wix Madefor Text", serif;
 
   --VerticalSectionSpace: 50px;
+  --pageMarginDesktop: 10rem;
 
   /* Angiv vairabler så som farver, størrelser på margin, padding osv. */
 }

@@ -57,62 +57,53 @@ const getFocusFlexStyle = (hexValue) => {
 </script>
 
 <template>
-    <section class="productSection">
-    <div class="breadcrumbs">
-      <a class="smallText" href="">Briller</a>
-      <p class="smallText">/</p>
-      <a class="smallText" href="">{{ glass.name }}</a>
-    </div>
+<section class="productSection">
+    <nav class="breadcrumbs">
+        <ol class="breadcrumbs">
+            <li><a class="smallText" href="#">Forside</a></li>
+            <li class="smallText">/</li>
+            <li><a class="smallText" href="#">Alle Briller</a></li>
+            <li class="smallText">/</li>
+            <li class="smallText">{{glass.name}}</li>
+        </ol>
+    </nav>
     <h1>{{ glass.name }}</h1>
     <div class="imageHolder" v-if="glass">
         <div class="bigImage">
-          <img :src="currentImage.src" :alt="currentImage.alt">
+            <img :src="currentImage.src" :alt="currentImage.alt">
         </div>
         <div class="smallImageHolder">
-          <img 
-            v-for="glassImage in glass.images" 
-            :key="glassImage.id" 
-            class="smallImage" 
-            :src="glassImage.src" 
-            :alt="glassImage.alt" 
-            @click="changeImage(glassImage)"
-            :class="{ selected: currentImage?.src === glassImage.src }"
-          />
+            <img v-for="glassImage in glass.images" :key="glassImage.id" class="smallImage" :src="glassImage.src" :alt="glassImage.alt" @click="changeImage(glassImage)" :class="{ selected: currentImage?.src === glassImage.src }"/>
         </div>
     </div>
     <div v-else>
-      <TheSpinner></TheSpinner>
+        <TheSpinner></TheSpinner>
     </div>
     <div class="textContentContainer">
-      <h4>{{ glass.price }}</h4>
-      <a href="#" class="focusFlexGroup">
-        <div 
-               class="focusFlexColor" 
-               :style="getFocusFlexStyle(glass.attributes.focusflexgruppe?.Hexkode)"
-             >
-            </div>
+        <h4>{{ glass.price }}</h4>
+        <a href="#" class="focusFlexGroup">
+            <div class="focusFlexColor" :style="getFocusFlexStyle(glass.attributes.focusflexgruppe?.Hexkode)"></div>
             <h6>FOCUS FLEX GRUPPE</h6>
-      </a>
-      <div>
-        <h6>Beskrivelse</h6>
-        <p v-html="glass.description"></p>
-      </div>
-      <div>
-        <p>For priseksempel med vores Focus flex abonnement, venligst vælg glas:</p>
-        <div class="radioGroup">
-          <label>
-            <input type="radio" value="enkeltstyrke" v-model="selectedOption"/>Enkeltstyrke
-          </label>
-          <label>
-            <input type="radio" value="flerstyrke" v-model="selectedOption"/>Flerstyrke
-          </label>
+        </a>
+        <div>
+            <h6>Beskrivelse</h6>
+            <p v-html="glass.description"></p>
         </div>
-        <p class="smallText">Du finder priseksemplet nedenfor under <a class="smallText" href="#finanses">finansering</a></p>
-      </div>
-      <TheBtn label="BOOK TID" link="#" ></TheBtn>
-      <TheBtn class="customButton customButtonPoint" label="Book Tid" link="#"><span>Book tid</span> <i class="fa-solid fa-arrow-right"></i></TheBtn>
+        <div>
+            <p>For priseksempel med vores Focus flex abonnement, venligst vælg glas:</p>
+            <div class="radioGroup">
+                <label>
+                    <input type="radio" value="enkeltstyrke" v-model="selectedOption"/>Enkeltstyrke
+                </label>
+                <label>
+                    <input type="radio" value="flerstyrke" v-model="selectedOption"/>Flerstyrke
+                </label>
+            </div>
+            <p class="smallText">Du finder priseksemplet nedenfor under <a class="smallText" href="#finanses">finansering</a></p>
+        </div>
+        <TheBtn class="customButton customButtonPoint" label="Book Tid" link="#"><span>Book tid</span> <i class="fa-solid fa-arrow-right"></i></TheBtn>
     </div>
-  </section>
+</section>
 </template>
 
 <style scoped>
@@ -133,10 +124,16 @@ const getFocusFlexStyle = (hexValue) => {
   gap: 0.5rem;
 }
 
-.breadcrumbs a, .breadcrumbs p{
+.breadcrumbs a, .breadcrumbs li{
   font-size: 0.9rem;
   font-weight: 400;
+  color: rgb(94, 94, 94);
 }
+
+.breadcrumbs a:hover{
+    color: var(--Black);
+}
+
 
 /* PICTURES */
 .smallImageholder {
