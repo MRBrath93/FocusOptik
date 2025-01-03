@@ -224,7 +224,6 @@ const getFocusFlexStyle = (hexValue) => {
 </script>
 
 <template>
-
     <nav>
         <ol class="breadcrumbs">
             <li><a class="smallText" href="/forside.html">Forside</a></li>
@@ -233,6 +232,7 @@ const getFocusFlexStyle = (hexValue) => {
         </ol>
     </nav>
 
+    <h1>Vores briller</h1>
 
   <TheSpinner v-if="glassStore.isLoading || filterApplied.value && filteredResults.value.length === 0" />
 
@@ -363,6 +363,9 @@ const getFocusFlexStyle = (hexValue) => {
 </template>
 
 <style scoped>
+h1{
+  text-align: center;
+}
 .breadcrumbs{
   display: flex;
   gap: 0.5rem;
@@ -392,7 +395,7 @@ ol {
 
 .webshop{
     display: grid;
-    grid-template-columns: 0.55fr 2fr;
+    grid-template-columns: 0.6fr 2fr;
     gap: 2rem;
     margin-top: var(--VerticalSectionSpace);
     min-height: 100vh;

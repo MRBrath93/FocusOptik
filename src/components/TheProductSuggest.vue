@@ -65,6 +65,7 @@ onMounted(() => {
       :to="{ name: 'ProductDetails', params: { id: relatedGlass.id } }"
     >
       <div class="imageholder">
+        <div class="saleBadge" v-if="relatedGlass.on_sale"><p class="saleText">Tilbud</p></div>
         <img :src="relatedGlass.images[0].src" :alt="relatedGlass.images[0].alt || 'Glass image'" />
       </div>
       <h6>{{ relatedGlass.name }}</h6>
@@ -130,7 +131,25 @@ img {
 .imageholder{
 display: flex;
 justify-content: center;
+position: relative;
 }
+
+.saleBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--YellowSun);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.saleText{
+  color: var(--Black);
+  font-size: 0.9rem;
+  font-weight: bold;
+  font-family: var(--WixFont);
+}
+
 
 .flexFlex{
   display: flex;
