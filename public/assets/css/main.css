@@ -79,6 +79,7 @@ p {
   font-size: 1.125rem;
   line-height: 1.5;
   font-weight: 400;
+  max-width: 75ch;
 }
 
 a {
@@ -298,6 +299,23 @@ li {
 }
 
 /* ================================================
+   UNIVERSELLE STILSÆTNINGER
+   ================================================ */
+
+/* OBS VED MERCH */
+.imgStyling {
+  border-radius: 5px;
+}
+
+.cardImg {
+  width: 80vw;
+  max-height: 18rem;
+  object-fit: cover;
+}
+
+
+
+/* ================================================
    FORSIDE
    ================================================ */
 
@@ -360,12 +378,35 @@ li {
 
 
 /* ================================================
-   VIDEN OM BRILLER OG LINSER
+   VIDEN OM BRILLE- OG SYNSSTYRKER
    ================================================ */
 
+.cardLeftText {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: absolute;
+  top: 25%;
+  left: 10%;
+  width: 35vw;
+}
 
+.textStyling {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  max-width: 50%;
+}
 
+.imgWidth {
+  max-width: 100%;
+  object-fit: cover;
+}
 
+.introText {
+  margin-bottom: 1.5rem;
+}
 
 
 
@@ -388,7 +429,7 @@ li {
 
 .heroImg {
   width: 100%;
-  height: auto;
+  max-height: 18rem;
   object-fit: cover;
 }
 
@@ -409,6 +450,7 @@ li {
   gap: 0.5rem;
   margin-top: 1rem;
   margin-left: 1rem;
+  margin-bottom: 3rem;
 }
 
 .breadcrumbs a {
@@ -453,6 +495,10 @@ li {
   max-width: 80%;
   text-align: center;
   padding-bottom: 1rem;
+}
+
+.cardText h3 {
+  text-align: center;
 }
 
 /* .navCard a,
@@ -565,6 +611,7 @@ article a {
 .twoColumnSection {
   display: flex;
   gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .imageContainer {}
@@ -651,11 +698,7 @@ article a {
   position: relative;
 }
 
-.cardHelp img {
-  width: 80vw;
-  max-height: 450px;
-  object-fit: cover;
-}
+
 
 .cardHelpText {
   display: flex;
@@ -663,7 +706,7 @@ article a {
   gap: 1rem;
   position: absolute;
   top: 20%;
-  left: 50%;
+  left: 60%;
 }
 
 .centerText {
