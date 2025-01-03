@@ -58,3 +58,43 @@ document.querySelectorAll('.accordionHeader').forEach(button => {
         }
     });
 });
+
+// INTERN NAVIGATION - SYNSTEST OG VRILLEAFPRØVNING 
+
+const navLinkEl = document.querySelectorAll('.internNav');
+const locationEl = document.querySelectorAll('.location');
+
+// Funktion til at fjerne "active" klassen fra alle navLinkEl. Dette gøres indledningsvist for at sikre, at kun den aktive sektion har "active" klassen.
+const removeActiveClass = () => {
+    navLinkEl.forEach((link) => { // forEach metoden anvendes for at gennemgå alle navLinkEl elementer og evt. fjerne "active" klassen fra dem.
+        link.classList.remove('active');
+    });
+};
+
+// API Til at observere elementer i viewporten af browseren
+// "IntersectionObserver" anvendes til at observere alle locationEl elementer gennem et API der overvåger elementer i viewporten af browseren.
+const observer = new IntersectionObserver((entries) => {
+    // Der oprettes en callback funktion med ForEach metoden til at gennemgå listen af entries der overvåges af IntersectionObserver. Når et element krydser viewboardet og er synligt kaldes callback funktionen.
+    entries.forEach((entry) => {
+        const locationID = entry.target.getAttribute('id'); // id-attributten for de elementer der observeres af IntersectionObserver gemmer elementets id-attribute i variablen locationID.
+        const navLink = document.querySelector(`.internNav[href="#${locationID}"]`);  // querySelector metoden anvendes til at vælge det navLinkEl element der har en href-attribut der matcher locationID.
+
+        // tilføj/fjerne klassen "active" hvis elementet er synligt i viewporten 
+        if (entry.isIntersecting) { // isIntersecting-propertyen beskriver om elementet er synligt i viewporten vha. en boolean værdi.
+            removeActiveClass();
+            navLink.classList.add('active');
+        } else {
+            navLink.classList.remove('active');
+        }
+    });
+}, {
+    threshold: 0.5 // threshold-propertyen (på 0.5) beskriver at callback funktionen først kaldes, når 50% af elementet er synligt i viewporten.
+});
+
+// Setup/"Vagtplan" af hvilke elementer der skal observeres af IntersectionObserver (alle locationEl elementer) 
+locationEl.forEach((el) => {
+    observer.observe(el);
+});
+
+// INSPIRATIONSKILDE: JavaScript Intersection Observer Ultimate Guide. 10.01.2022. Web Dev Simplified Blog [online] Accssed 03.01.25. URL: https://blog.webdevsimplified.com/2022-01/intersection-observer/
+// INSPIRATIONSKILDE: Intersection Observer API. 2025. Mozilla Corporations [online] https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
