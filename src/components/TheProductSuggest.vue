@@ -25,7 +25,7 @@ console.log(relatedGlasses.value);
 const getFocusFlexStyle = (hexValue) => {
   if (!hexValue) return { backgroundColor: '#FFFFF' };
 
-  if (hexValue === 'Guld') {
+  if (hexValue === 'guld') {
     return {
       backgroundImage: `url(${goldenImage})`,
       backgroundSize: 'cover',
@@ -33,7 +33,7 @@ const getFocusFlexStyle = (hexValue) => {
     };
   }
 
-  if (hexValue.startsWith("Sølv")) {
+  if (hexValue.startsWith("sølv")) {
     return {
       backgroundImage: `url(${silverImage})`,
       backgroundSize: 'cover',
@@ -86,7 +86,7 @@ onMounted(() => {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 kolonner */
   gap: 1rem;
-  margin: 50px 160px;
+  margin: var(--VerticalSectionSpace) var(--pageMarginDesktop);
   padding: 1rem;
   box-shadow: 0 4px 8px hsla(0, 0%, 60%, 0.25), 0 6px 20px rgba(153, 153, 153, 0.25);
 }
@@ -113,11 +113,7 @@ onMounted(() => {
   width: 15px;
 }
 
-.smallText {
-  font-size: 1rem;
-  font-weight: 200;
-  font-family: var(--PoppinsFont);
-}
+
 
 .smallestText {
   font-size: 0.7rem;
@@ -141,4 +137,18 @@ justify-content: center;
   gap: 1rem;
   align-items: center;
 }
+
+
+
+@media screen and (max-width: 1600px) {
+  .productCard {
+    width: 210px;
+}
+}
+
+@media screen and (max-width: 1200px) {
+
+
+}
+
 </style>

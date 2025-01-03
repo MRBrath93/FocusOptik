@@ -22,11 +22,10 @@ const props = defineProps({
 <style scoped>
 .commercial {
   height: 300px;
-  width: 1270px;
   background-size: cover;
   background-position: center;
   background-repeat: 'no-repeat';
-  margin: 2rem auto;
+  margin: 2rem var(--pageMarginDesktop);
 }
 
 .commercial p {

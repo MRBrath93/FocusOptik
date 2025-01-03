@@ -83,11 +83,11 @@ const discountPercentage = computed(() => {
 
 <template>
 <section class="productSection">
-    <nav class="breadcrumbs">
+    <nav>
         <ol class="breadcrumbs">
-            <li><a class="smallText" href="#">Forside</a></li>
+            <li><a class="smallText" href="/forside.html">Forside</a></li>
             <li class="smallText">/</li>
-            <li><a class="smallText" href="#">Alle Briller</a></li>
+            <li><a class="smallText" href="/index.html">Alle Briller</a></li>
             <li class="smallText">/</li>
             <li class="smallText">{{glass.name}}</li>
         </ol>
@@ -154,7 +154,7 @@ const discountPercentage = computed(() => {
 }
 
 .productSection{
-  margin: 0 160px;
+  margin: 0 var(--pageMarginDesktop);
   margin-top: 4rem;
   display: grid;
   grid-template-columns: 60% 40%;
@@ -170,7 +170,7 @@ const discountPercentage = computed(() => {
   gap: 0.5rem;
 }
 
-.breadcrumbs ol {
+ol {
     padding-inline-start: 0;
 }
 
@@ -333,7 +333,7 @@ const discountPercentage = computed(() => {
 .textContentContainer{
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .focusFlexColor{
@@ -346,7 +346,7 @@ const discountPercentage = computed(() => {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
+  padding: 0.5rem;
   width: fit-content;
   height: fit-content;
   border-radius: 12px;

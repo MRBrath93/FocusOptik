@@ -146,7 +146,7 @@ h6 {
 .smallText {
   font-family: var(--WixFont);
   font-weight: 400;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 label {
@@ -295,7 +295,68 @@ li {
   /* Gør linjen usynlig */
 }
 
+@media screen and (max-width: 1600px) {
 
+  .dropdown>.nav-link,
+  .nav-links>li>.nav-link {
+    margin: 0 5px;
+  }
+
+  .nav-link {
+    padding: 0.5rem;
+  }
+
+  .nav-links {
+    gap: 0;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+}
+
+@media screen and (max-width: 1200px) {
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+  }
+
+  h5 {
+    font-size: 1.25rem;
+  }
+
+  h6 {
+    font-size: 1.125rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  a {
+    font-size: 1rem;
+  }
+
+  .plusIcon {
+    height: 1rem;
+  }
+
+  .dropdown>.nav-link,
+  .nav-links>li>.nav-link {
+    margin: 0;
+  }
+}
 
 /* ================================================
    FORSIDE

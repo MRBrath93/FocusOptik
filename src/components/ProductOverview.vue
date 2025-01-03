@@ -224,18 +224,20 @@ const getFocusFlexStyle = (hexValue) => {
 </script>
 
 <template>
-  <div class="topGrid">
-    <div class="breadCrumbs">
-      <a class="bread" href="#">Briller > Alle > briller</a>
-    </div>
-    <TheBtn label="Sortering" />
-  </div>
+
+    <nav>
+        <ol class="breadcrumbs">
+            <li><a class="smallText" href="/forside.html">Forside</a></li>
+            <li class="smallText">/</li>
+            <li class="smallText">Alle Briller</li>
+        </ol>
+    </nav>
+
 
   <TheSpinner v-if="glassStore.isLoading || filterApplied.value && filteredResults.value.length === 0" />
 
   <div v-if="!glassStore.isLoading" class="webshop">
     <div class="filter">
-
       <div>
         <h4 class="filterheading">Vælg køn <i class="fa-solid fa-venus-mars"></i></h4>
         <div class="filter-group filterCheckBoxContainer">
@@ -336,6 +338,7 @@ const getFocusFlexStyle = (hexValue) => {
   <h4 style="grid-column: 1 / -1;" v-if="filterApplied && filteredResults.length === 0">
     Der kunne desværre ikke findes nogen briller, der matchede din søgning.
   </h4>
+  
   <router-link class="productCard" v-for="glass in glassesToDisplay" :key="glass.id" :to="{ name: 'ProductDetails', params: { id: glass.id } }">
     <div class="alignBox">
       <div class="imageholder">
@@ -360,9 +363,28 @@ const getFocusFlexStyle = (hexValue) => {
 </template>
 
 <style scoped>
-.bread{
-    grid-column: 1/2;
+.breadcrumbs{
+  display: flex;
+  gap: 0.5rem;
+  grid-column: 1/2;
+  margin-left: var(--pageMarginDesktop);
 }
+
+ol {
+    padding-inline-start: 0;
+}
+
+.breadcrumbs a, .breadcrumbs li{
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgb(94, 94, 94);
+}
+
+.breadcrumbs a:hover{
+    color: var(--Black);
+}
+
+
 .sortering{
     grid-column: 4/5;
     width: fit-content;
@@ -370,7 +392,7 @@ const getFocusFlexStyle = (hexValue) => {
 
 .webshop{
     display: grid;
-    grid-template-columns: 0.6fr 2fr;
+    grid-template-columns: 0.55fr 2fr;
     gap: 2rem;
     margin-top: var(--VerticalSectionSpace);
     min-height: 100vh;
@@ -378,13 +400,6 @@ const getFocusFlexStyle = (hexValue) => {
 
 .topGrid{
 display: flex; 
-}
-
-.breadCrumbs{
-    display: flex;
-    justify-content: space-between;
-    display: grid;
-    gap: 2rem 1rem;
 }
 
 .spaceContainer{
@@ -437,11 +452,6 @@ display: flex;
   width: 20px;
 }
 
-.smallText{
-  font-size: 1rem;
-  font-weight: 200;
-  font-family: var( --PoppinsFont);
-}
 
 .smallestText{
   font-size: 0.7rem;

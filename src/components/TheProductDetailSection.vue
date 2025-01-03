@@ -13,25 +13,40 @@ const glass = computed(() => glassStore.glasses.find(g => g.id === parseInt(rout
     <div class="specifications">
       <h5>Specifikationer</h5>
       <div class="detailsBox">
-        <div class="flexColum">
-          <p class="fatFont">Køn:</p>
-          <p class="fatFont">Alder:</p>
-          <p class="fatFont">Ansigtstype:</p>
-          <p class="fatFont">Brand:</p>
-          <p class="fatFont">Farve & Mønster:</p>
-          <p class="fatFont">Glasform:</p>
-          <p class="fatFont">Materiale:</p>
-        </div>
-        <div class="flexColum">
-          <p>{{ glass.attributes.køn }}</p>
-          <p>{{ glass.attributes.alder }}</p>
-          <p>{{ glass.attributes.ansigtstype }}</p>
-          <p>{{ glass.attributes.brand }}</p>
-          <p>{{ glass.attributes.farver }}</p>
-          <p>{{ glass.attributes.glasform }}</p>
-          <p>{{ glass.attributes.materiale }}</p>
-        </div>
-      </div>
+  <div class="detailRow">
+    <p class="fatFont">Køn:</p>
+    <p>{{ glass.attributes.køn }}</p>
+  </div>
+  <div class="detailRow">
+    <p class="fatFont">Alder:</p>
+    <p>{{ glass.attributes.alder }}</p>
+  </div>
+  <div class="detailRow">
+    <p class="fatFont">Ansigtstype:</p>
+    <p>{{ glass.attributes.ansigtstype }}</p>
+  </div>
+  <div class="detailRow">
+    <p class="fatFont">Brand:</p>
+    <p>{{ glass.attributes.brand }}</p>
+  </div>
+  <div class="detailRow">
+    <p class="fatFont">Farve & Mønster:</p>
+    <p>{{ glass.attributes.farver }}</p>
+  </div>
+  <div class="detailRow">
+    <p class="fatFont">Glasform:</p>
+    <p>{{ glass.attributes.glasform }}</p>
+  </div>
+  <div class="detailRow">
+    <p class="fatFont">Materiale:</p>
+    <p>{{ glass.attributes.materiale }}</p>
+  </div>
+  <div class="detailRow">
+    <p class="fatFont">Mål:</p>
+    <p>{{ glass.dimensions.length }} cm X {{ glass.dimensions.width }} cm X {{ glass.dimensions.height }} cm</p>
+  </div>
+</div>
+
     </div>
     <div id="finanses">
       <h5>Finansering</h5>
@@ -53,26 +68,48 @@ const glass = computed(() => glassStore.glasses.find(g => g.id === parseInt(rout
 
 <style scoped>
 
+.detailsBox {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+  padding: 1.5rem;
+  background-color: var(--MouseGrey);
+  height: 90%;
+  width: 100%;
+}
+
+.detailRow {
+  display: contents; /* Sørg for at bruge grid direkte i detailsBox */
+}
+
+.fatFont {
+  font-weight: bold;
+  white-space: nowrap; /* Forhindrer labels i at bryde linjer */
+}
+
+.detailsBox p {
+  margin: 0;
+}
+
 .halfHalf{
   display: grid;
-  margin: 0 160px;
+  margin: 0 var(--pageMarginDesktop);
   margin-top: 3rem;
   grid-template-columns: repeat(2,1fr);
   gap: 2rem;
+  grid-auto-rows: max-content;
 }
 
-.detailsBox{
-  display: flex;
-  gap: 10rem;
-  background-color: var(--MouseGrey);
-  padding: 1.5rem;
-  min-height: 315px;
-}
+
 
 
 .specifications h5, #finanses h5{
   padding: 0.5rem 1.5rem;
   background-color: rgb(192, 192, 192);
+}
+
+.specifications{
+  width: 100%;
 }
 
 .finansText{
@@ -81,6 +118,7 @@ const glass = computed(() => glassStore.glasses.find(g => g.id === parseInt(rout
   flex-direction: column;
   gap: 0.5rem;
   background-color: var(--MouseGrey);
+  height: 90%;
 }
 
 .flexColum{
