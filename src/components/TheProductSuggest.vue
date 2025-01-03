@@ -15,11 +15,12 @@ const glass = computed(() => glassStore.glasses.find(g => g.id === parseInt(rout
 
 // Find de relaterede briller
 const relatedGlasses = computed(() => {
-  return glass.value?.related_ids
-    .slice(0, 4) // Begrænser til 4 relaterede briller
-    .map(id => glassStore.glasses.find(g => g.id === id))
-    .filter(g => g);
+  if (!glass.value?.upsell_ids) return [];
+  
+  // Find fulde glasobjekter baseret på upsell_ids
+  return glass.value.upsell_ids.map(id => glassStore.glasses.find(g => g.id === id)).filter(Boolean);
 });
+console.log(relatedGlasses.value);
 
 const getFocusFlexStyle = (hexValue) => {
   if (!hexValue) return { backgroundColor: '#FFFFF' };

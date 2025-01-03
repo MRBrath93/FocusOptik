@@ -53,6 +53,7 @@
   --SnowWhite: #ffffff;
   --Black: #060606;
   --MouseGrey: #E6E3E3;
+  --YellowSun: #FFD24B;
 
   --PoppinsFont: "Poppins", serif;
   --WixFont: "Wix Madefor Text", serif;
@@ -151,7 +152,7 @@ h6 {
 label {
   font-size: 1.125rem;
   font-family: var(--WixFont);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 

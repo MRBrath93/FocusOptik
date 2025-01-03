@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 
 const APIBaseUrl = "https://focusoptik.brathcodestudio.com/wp-json/wc/v3/products?";
 const consumerKey = "consumer_key=ck_b9c003f89db3b0666fd0ec6ac229d2a2d5038b00&";
-const consumerSecret = "consumer_secret=cs_1b8f99c3c6bb955b8b1ee16be34e6b480d2d54c3";
+const consumerSecret = "consumer_secret=cs_1b8f99c3c6bb955b8b1ee16be34e6b480d2d54c3&per_page=50";
 
 export const useGlassesStore = defineStore("glasses", () => {
     const glasses = ref([]);
@@ -52,7 +52,7 @@ export const useGlassesStore = defineStore("glasses", () => {
             })
             .then((data) => {
                 glasses.value = data.map(item => {
-                    const { id, name, price, regular_price, sale_price, description, images, categories, tags, attributes, dimensions, related_ids } = item;
+                    const { id, name, price, regular_price, sale_price, on_sale, description, images, categories, tags, attributes, dimensions, upsell_ids } = item;
 
                     // Hent dimensionerne
                     const dimensionsObj = dimensions ? {
@@ -62,7 +62,7 @@ export const useGlassesStore = defineStore("glasses", () => {
                     } : {};
 
                     // Hent relaterede produkter
-                    const relatedGlasses = related_ids || [];
+                    const relatedGlasses = upsell_ids || [];
 
                     // Behandle attributter
                     const attributesObj = attributes.reduce((newAttributeObject, attribute) => {
@@ -83,12 +83,13 @@ export const useGlassesStore = defineStore("glasses", () => {
                         regular_price: formatPrice(regular_price),
                         sale_price: sale_price ? formatPrice(sale_price) : null,
                         description,
+                        on_sale,
                         images: images.map(image => ({ src: image.src, alt: image.alt || "Alt-tekst mangler" })),
                         categories: categories.map(cat => cat.name),
                         tags: tags.map(tag => tag.name),
                         attributes: attributesObj,
                         dimensions: dimensionsObj,   // Tilføj dimensionerne
-                        related_ids: relatedGlasses   // Tilføj relaterede produkter
+                        upsell_ids: relatedGlasses   // Tilføj relaterede produkter
                     };
                 });
 

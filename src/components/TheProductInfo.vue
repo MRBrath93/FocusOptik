@@ -33,7 +33,7 @@ function changeImage(image) {
 const getFocusFlexStyle = (hexValue) => {
   if (!hexValue) return { backgroundColor: '#FFFFF' };
 
-  if (hexValue === 'Guld') {
+  if (hexValue === 'guld') {
     return {
       backgroundImage: `url(${goldenImage})`,
       backgroundSize: 'cover',
@@ -41,7 +41,7 @@ const getFocusFlexStyle = (hexValue) => {
     };
   }
 
-  if (hexValue.startsWith("Sølv")) {
+  if (hexValue.startsWith("sølv")) {
     return {
       backgroundImage: `url(${silverImage})`,
       backgroundSize: 'cover',
@@ -54,6 +54,31 @@ const getFocusFlexStyle = (hexValue) => {
     backgroundImage: ''
   };
 };
+
+// Reaktiv variabel til at styre lightbox
+const isLightboxOpen = ref(false);
+
+// Funktion til at åbne lightbox
+function openLightbox() {
+  isLightboxOpen.value = true;
+}
+
+// Funktion til at lukke lightbox
+function closeLightbox() {
+  isLightboxOpen.value = false;
+}
+
+const discountPercentage = computed(() => {
+  if (glass.value && glass.value.regular_price && glass.value.price) {
+    const regularPrice = parseFloat(glass.value.regular_price);
+    const currentPrice = parseFloat(glass.value.price);
+
+    if (regularPrice > 0) {
+      return ((regularPrice - currentPrice) / regularPrice) * 100;
+    }
+  }
+  return 0;
+});
 </script>
 
 <template>
@@ -69,8 +94,16 @@ const getFocusFlexStyle = (hexValue) => {
     </nav>
     <h1>{{ glass.name }}</h1>
     <div class="imageHolder" v-if="glass">
-        <div class="bigImage">
-            <img :src="currentImage.src" :alt="currentImage.alt">
+        <div class="bigImage" @click="openLightbox">
+            <img :src="currentImage.src" :alt="currentImage.alt" />
+            <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+            <div class="discountBadge" v-if="glass.on_sale"><p>Spar {{ discountPercentage.toFixed(0) }}%</p></div>
+        </div>
+        <div v-if="isLightboxOpen" class="lightbox" @click="closeLightbox">
+            <div class="lightbox-content">
+                <img :src="currentImage.src" :alt="currentImage.alt" />
+                <i class="fa-solid fa-times close-icon" @click.stop="closeLightbox"></i>
+            </div>
         </div>
         <div class="smallImageHolder">
             <img v-for="glassImage in glass.images" :key="glassImage.id" class="smallImage" :src="glassImage.src" :alt="glassImage.alt" @click="changeImage(glassImage)" :class="{ selected: currentImage?.src === glassImage.src }"/>
@@ -80,7 +113,13 @@ const getFocusFlexStyle = (hexValue) => {
         <TheSpinner></TheSpinner>
     </div>
     <div class="textContentContainer">
-        <h4>{{ glass.price }}</h4>
+      <div>
+        <div class="flexFlex">
+          <div class="saleBadge" v-if="glass.on_sale"><p class="smallText">Tilbud</p></div>
+          <h4>{{ glass.price }}</h4>
+        </div>
+        <p v-if="glass.on_sale" class="smallText">Førpris: {{ glass.regular_price }}</p>
+      </div>
         <a href="#" class="focusFlexGroup">
             <div class="focusFlexColor" :style="getFocusFlexStyle(glass.attributes.focusflexgruppe?.Hexkode)"></div>
             <h6>FOCUS FLEX GRUPPE</h6>
@@ -108,11 +147,18 @@ const getFocusFlexStyle = (hexValue) => {
 
 <style scoped>
 
+.flexFlex{
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .productSection{
   margin: 0 160px;
   margin-top: 4rem;
   display: grid;
   grid-template-columns: 60% 40%;
+  gap: 1rem;
 }
 
 .productSection h1 {
@@ -122,6 +168,10 @@ const getFocusFlexStyle = (hexValue) => {
 .breadcrumbs{
   display: flex;
   gap: 0.5rem;
+}
+
+.breadcrumbs ol {
+    padding-inline-start: 0;
 }
 
 .breadcrumbs a, .breadcrumbs li{
@@ -136,6 +186,15 @@ const getFocusFlexStyle = (hexValue) => {
 
 
 /* PICTURES */
+.fa-up-right-and-down-left-from-center{
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    font-size: 2rem;
+    color: rgba(128, 128, 128, 0.649);
+    transition: transform 0.3s ease, color 0.3s ease ;
+}
+
 .smallImageholder {
   display: flex;
   flex-wrap: wrap;
@@ -150,6 +209,66 @@ const getFocusFlexStyle = (hexValue) => {
   height: 600px;
   object-fit: contain;
 }
+
+.bigImage{
+    position: relative;
+    cursor: pointer;
+}
+
+.bigImage:hover .fa-up-right-and-down-left-from-center{
+    animation: FocusBounce 2s infinite linear;
+    color: var(--FocusOrange);
+}
+
+@keyframes FocusBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.lightbox-content img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.close-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
 
 .smallImage {
   width: 150px;
@@ -179,6 +298,37 @@ const getFocusFlexStyle = (hexValue) => {
 
 
 /* TEXT AREA */
+
+.saleBadge {
+  background-color: var(--YellowSun);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.saleBadge p{
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--Black);
+}
+
+.discountBadge{
+  position: absolute;
+  right: 100px;
+  top: 20px;
+  border-radius: 50%;
+  background-color: var(--YellowSun);
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+}
+
+.discountBadge p {
+  font-size: 1.5rem;
+  padding: 1rem;
+  font-family: var(--PoppinsFont);
+  font-weight: bold;
+  text-transform: uppercase;
+}
 
 .textContentContainer{
   display: flex;
@@ -221,7 +371,7 @@ const getFocusFlexStyle = (hexValue) => {
 .radioGroup input[type="radio"] {
   /* Ændrer farven og størrelse på radioknappen */
   accent-color: var(--FocusOrange);
-  transform: scale(2);
+  transform: scale(1.5);
 }
 
 .smallText a{

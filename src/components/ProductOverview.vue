@@ -12,6 +12,8 @@ const selectedBrands = ref([]);
 const selectedGlassForm = ref([]);
 const selectedGlassType = ref([]);
 const selectedFocusFlexGroups = ref([]);
+const selectedAge = ref([]);
+const selectedGender = ref([]);
 const minPrice = ref(0);
 const maxPrice = ref(5000);
 const filteredResults = ref([]);
@@ -48,7 +50,7 @@ const glassformOptions = computed(() => {
   return Array.from(glassforms).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
 });
 
-// Glasform Muligheder
+// Glastype Muligheder
 const glassTypeOptions = computed(() => {
   const glassTypes = new Set();
   glassStore.glasses.forEach((product) => {
@@ -58,7 +60,7 @@ const glassTypeOptions = computed(() => {
   return Array.from(glassTypes).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
 });
 
-// Glasform Muligheder
+// Focusflex gruppe Muligheder
 const focusFlexOptions = computed(() => {
   const flexGroups = new Set();
   glassStore.glasses.forEach((product) => {
@@ -68,26 +70,25 @@ const focusFlexOptions = computed(() => {
   return Array.from(flexGroups).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
 });
 
+// Alder muligheder
+const glassAgeOptions = computed(() => {
+  const glassAges = new Set();
+  glassStore.glasses.forEach((product) => {
+    const glassAgeArray = product.attributes.alder?.split(", ") || [];
+    glassAgeArray.forEach((glassAge) => glassAges.add(glassAge));
+  });
+  return Array.from(glassAges).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+});
 
-
-
-// Funktion der håndterer både farver og billeder baseret på Hexkode valuen fra dataen. Dette anvendes til focusflex farven.
-const getFocusFlexStyle = (hexValue) => {
-  if (!hexValue) return { backgroundColor: '#FFFFFF' };
-
-  if (hexValue === 'guld') {
-    return { backgroundImage: `url(${goldenImage})`, backgroundSize: 'cover' };
-  }
-
-  if (hexValue.startsWith("sølv")) {
-    return { backgroundImage: `url(${silverImage})`, backgroundSize: 'cover' };
-  }
-
-  // Default stil
-  return {
-    backgroundColor: hexValue || '#CCCCCC',
-  };
-};
+// Køns muligheder
+const glassGenderOptions = computed(() => {
+  const glassGenders = new Set();
+  glassStore.glasses.forEach((product) => {
+    const glassGenderArray = product.attributes.køn?.split(", ") || [];
+    glassGenderArray.forEach((glassGender) => glassGenders.add(glassGender));
+  });
+  return Array.from(glassGenders).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+});
 
 
 // ColorFilter
@@ -95,13 +96,6 @@ const colorFilter = (glass) => {
   return (
     selectedColors.value.length === 0 ||
     selectedColors.value.some((color) => glass.attributes.farver.includes(color))
-  );
-};
-
-const focusFlexGroupsFilter = (glass) => {
-  return (
-    selectedFocusFlexGroups.value.length === 0 ||
-    selectedFocusFlexGroups.value.some((Hexkode) => glass.attributes.focusflexgruppe.Hexkode.includes(Hexkode))
   );
 };
 
@@ -113,7 +107,7 @@ const brandFilter = (glass) => {
   );
 };
 
-// BrandFilter
+// FormFilter
 const glassformFilter = (glass) => {
   return (
     selectedGlassForm.value.length === 0 ||
@@ -129,6 +123,31 @@ const glassTypeFilter = (glass) => {
   );
 };
 
+// FocusflexFilter
+const focusFlexGroupsFilter = (glass) => {
+  return (
+    selectedFocusFlexGroups.value.length === 0 ||
+    selectedFocusFlexGroups.value.some((Hexkode) => glass.attributes.focusflexgruppe.Hexkode.includes(Hexkode))
+  );
+};
+
+// AlderFilter
+const glassAgeFilter = (glass) => {
+  return (
+    selectedAge.value.length === 0 ||
+    selectedAge.value.some((alder) => glass.attributes.alder.includes(alder))
+  );
+};
+
+// KønsFilter
+const glassGenderFilter = (glass) => {
+  return (
+    selectedGender.value.length === 0 ||
+    selectedGender.value.some((køn) => glass.attributes.køn.includes(køn))
+  );
+};
+
+
 // PriceFilter
 const priceFilter = (glass) => {
   const price = parseFloat(glass.price.replace('.', '').replace(',', '.'));
@@ -139,7 +158,7 @@ const priceFilter = (glass) => {
 const applyFilters = () => {
   console.log('Kører applyFilters...');
   filteredResults.value = glassStore.glasses.filter(
-    (glass) => colorFilter(glass) && priceFilter(glass) && brandFilter(glass) && glassformFilter(glass) && glassTypeFilter(glass) && focusFlexGroupsFilter(glass)
+    (glass) => colorFilter(glass) && priceFilter(glass) && brandFilter(glass) && glassformFilter(glass) && glassTypeFilter(glass) && focusFlexGroupsFilter(glass) && glassAgeFilter(glass) && glassGenderFilter(glass)
   );
 
   filterApplied.value = true;
@@ -172,6 +191,8 @@ const resetFilters = () => {
   selectedGlassForm.value = [];
   selectedGlassType.value = [];
   selectedFocusFlexGroups.value = [];
+  selectedAge.value = [];
+  selectedGender.value = [];
   minPrice.value = 0;
   maxPrice.value = 5000;
   filteredResults.value = [];
@@ -183,21 +204,23 @@ const resetFilters = () => {
 };
 
 
-const TheFocusFlexClass = (Hexkode) => {
-  if (!Hexkode) return 'default-color';
+// Funktion der håndterer både farver og billeder baseret på Hexkode valuen fra dataen. Dette anvendes til focusflex farven.
+const getFocusFlexStyle = (hexValue) => {
+  if (!hexValue) return { backgroundColor: '#FFFFFF' };
 
-  if (Hexkode === 'guld') {
-    return 'focus-flex-gold checkbox';
+  if (hexValue === 'guld') {
+    return { backgroundImage: `url(${goldenImage})`, backgroundSize: 'cover' };
   }
 
-  if (Hexkode.startsWith("sølv")) {
-    return 'focus-flex-silver checkbox';
+  if (hexValue.startsWith("sølv")) {
+    return { backgroundImage: `url(${silverImage})`, backgroundSize: 'cover' };
   }
 
-  // Default klasse
-  return 'focus-flex-default checkbox';
+  // Default stil
+  return {
+    backgroundColor: hexValue || '#CCCCCC',
+  };
 };
-
 </script>
 
 <template>
@@ -212,6 +235,27 @@ const TheFocusFlexClass = (Hexkode) => {
 
   <div v-if="!glassStore.isLoading" class="webshop">
     <div class="filter">
+
+      <div>
+        <h4 class="filterheading">Vælg køn <i class="fa-solid fa-venus-mars"></i></h4>
+        <div class="filter-group filterCheckBoxContainer">
+          <div v-for="(gender, index) in glassGenderOptions" :key="index" class="color-checkbox">
+            <input class="checkbox" type="checkbox" :id="'gender-' + index" v-model="selectedGender" :value="gender" />
+            <label :for="'gender-' + index">{{ gender }}</label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="filterheading">Vælg Alder <i class="fa-solid fa-person-breastfeeding"></i></h4>
+        <div class="filter-group filterCheckBoxContainer">
+          <div v-for="(alder, index) in glassAgeOptions" :key="index" class="color-checkbox">
+            <input class="checkbox" type="checkbox" :id="'age-' + index" v-model="selectedAge" :value="alder" />
+            <label :for="'age-' + index">{{ alder }}</label>
+          </div>
+        </div>
+      </div>
+
       <div>
         <h4 class="filterheading">Vælg Stelfarve <i class="fa-solid fa-palette"></i></h4>
         <div class="filter-group filterCheckBoxContainer">
@@ -223,21 +267,21 @@ const TheFocusFlexClass = (Hexkode) => {
       </div>
 
       <div>
-        <h4 class="filterheading">Vælg Form <i class="fa-solid fa-shapes"></i></h4>
-        <div class="filter-group brandBoxContainer">
-          <div v-for="(form, index) in glassformOptions" :key="index" class="color-checkbox">
-            <input class="checkbox" type="checkbox" :id="'form-' + index" v-model="selectedGlassForm" :value="form" />
-            <label :for="'form-' + index">{{ form }}</label>
-          </div>
-        </div>
-      </div>
-
-      <div>
         <h4 class="filterheading">Vælg Brilletype <i class="fa-solid fa-glasses"></i></h4>
         <div class="filter-group brandBoxContainer">
           <div v-for="(type, index) in glassTypeOptions" :key="index" class="color-checkbox">
             <input class="checkbox" type="checkbox" :id="'type-' + index" v-model="selectedGlassType" :value="type" />
             <label :for="'type-' + index">{{ type }}</label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="filterheading">Vælg Form <i class="fa-solid fa-shapes"></i></h4>
+        <div class="filter-group brandBoxContainer">
+          <div v-for="(form, index) in glassformOptions" :key="index" class="color-checkbox">
+            <input class="checkbox" type="checkbox" :id="'form-' + index" v-model="selectedGlassForm" :value="form" />
+            <label :for="'form-' + index">{{ form }}</label>
           </div>
         </div>
       </div>
@@ -256,7 +300,7 @@ const TheFocusFlexClass = (Hexkode) => {
         <h4 class="filterheading">Vælg Focus Flex Gruppe <i class="fa-solid fa-layer-group"></i></h4>
         <div class="filter-group filterCheckBoxContainer">
           <div v-for="(Hexkode, index) in focusFlexOptions" :key="index" class="color-checkbox">
-            <input :class="TheFocusFlexClass(Hexkode)" type="checkbox" :id="'hexcode-' + index" v-model="selectedFocusFlexGroups" :value="Hexkode" />
+            <input class="checkbox" type="checkbox" :id="'hexcode-' + index" v-model="selectedFocusFlexGroups" :value="Hexkode" />
             <label :for="'hexcode-' + index"> <div
             class="focusFlexColorSquare"
             :style="getFocusFlexStyle(Hexkode)"
@@ -284,32 +328,34 @@ const TheFocusFlexClass = (Hexkode) => {
 
       <div class="flexFlex">
         <TheBtn class="customButton customButtonRotate" label="Anvend Filtre" :onClick="applyFilters"><span>Anvend Filtre</span> <i class="fa-solid fa-rotate-right"></i></TheBtn>
-        <TheBtn class="customButton customButtonWiggle" label="Reset Filtre" :onClick="applyFilters"><span>Reset Filtre</span> <i class="fa-solid fa-trash"></i></TheBtn>
+        <TheBtn class="customButton customButtonWiggle" label="Reset Filtre" :onClick="resetFilters"><span>Reset Filtre</span> <i class="fa-solid fa-trash"></i></TheBtn>
       </div>
     </div>
 
     <section class="glassesGrid">
-      <h4 style="grid-column: 1 / -1;" v-if="filterApplied && filteredResults.length === 0">
-        Der kunne desværre ikke findes nogen briller, der matchede din søgning.
-      </h4>
-      <router-link class="productCard" v-for="glass in glassesToDisplay" :key="glass.id" :to="{ name: 'ProductDetails', params: { id: glass.id } }" >
-        <div class="alignBox">
-          <div class="imageholder">
-            <img :src="glass.images[0].src" :alt="glass.images[0].alt || 'Glass image'" />
-          </div>
-          <h6>{{ glass.name }}</h6>
-          <p class="smallText">{{ glass.attributes.brand }}</p>
-          <p class="price" v-html="glass.price"></p>
-          <div class="flexFlex">
-            <p class="smallestText">Focus Flex Gr.</p>
-            <div
-              class="focusFlexColor"
-              :style="getFocusFlexStyle(glass.attributes.focusflexgruppe?.Hexkode)"
-            ></div>
-          </div>
-        </div>
-      </router-link>
-    </section>
+  <h4 style="grid-column: 1 / -1;" v-if="filterApplied && filteredResults.length === 0">
+    Der kunne desværre ikke findes nogen briller, der matchede din søgning.
+  </h4>
+  <router-link class="productCard" v-for="glass in glassesToDisplay" :key="glass.id" :to="{ name: 'ProductDetails', params: { id: glass.id } }">
+    <div class="alignBox">
+      <div class="imageholder">
+        <div class="saleBadge" v-if="glass.on_sale"><p class="saleText">Tilbud</p></div>
+        <img :src="glass.images[0].src" :alt="glass.images[0].alt || 'Glass image'" />
+      </div>
+      <h6>{{ glass.name }}</h6>
+      <p class="smallText">{{ glass.attributes.brand }}</p>
+      <p class="price" v-html="glass.price"></p>
+      <div class="flexFlex">
+        <p class="smallestText">Focus Flex Gr.</p>
+        <div
+          class="focusFlexColor"
+          :style="getFocusFlexStyle(glass.attributes.focusflexgruppe?.Hexkode)"
+        ></div>
+      </div>
+    </div>
+  </router-link>
+</section>
+
   </div>
 </template>
 
@@ -412,6 +458,23 @@ img {
 .imageholder{
 display: flex;
 justify-content: center;
+position: relative;
+}
+
+.saleBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--YellowSun);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.saleText{
+  color: var(--Black);
+  font-size: 0.9rem;
+  font-weight: bold;
+  font-family: var(--WixFont);
 }
 
 .filterheading{

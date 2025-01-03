@@ -59,7 +59,7 @@ const handleClick = () => {
   text-decoration: none;
 }
 
-.button i {
-  margin-right: 8px; /* Afstand mellem ikonet og tekst */
+.button i, .theButton i {
+  margin-right: 8px;
 }
 </style>
