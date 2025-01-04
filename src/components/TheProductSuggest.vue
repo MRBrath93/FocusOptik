@@ -7,6 +7,10 @@ import silverImage from '../assets/img/silver.jpg';
 import { useRouter } from 'vue-router'; // Importerer router for navigation
 import TheBtn from './TheBtn.vue';
 
+const props = defineProps({
+  title: String,
+});
+
 const glassStore = useGlassesStore();
 const route = useRoute();
 const router = useRouter(); // Bruges til at navigere
@@ -56,8 +60,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="related-glasses">
+
+  <section class="suggested-glasses">
+    <h5>{{ title }}</h5>
     <!-- Gennemgå de relaterede briller og vis dem -->
+     <div class="related-glasses">
     <router-link
       v-for="relatedGlass in relatedGlasses"
       :key="relatedGlass.id"
@@ -79,15 +86,23 @@ onMounted(() => {
         ></div>
       </div>
     </router-link>
+    <div class="btnContainer">
+      <TheBtn class="customButton customButtonPoint" label="Se alle briller" link="/index.html"><span>se alle briller</span> <i class="fa-solid fa-arrow-right"></i></TheBtn>
+    </div>
+  </div>
   </section>
 </template>
 
 <style scoped>
+
+.suggested-glasses{
+  margin: var(--VerticalSectionSpace) var(--pageMarginDesktop);
+}
+
 .related-glasses {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 kolonner */
   gap: 1rem;
-  margin: var(--VerticalSectionSpace) var(--pageMarginDesktop);
   padding: 1rem;
   box-shadow: 0 4px 8px hsla(0, 0%, 60%, 0.25), 0 6px 20px rgba(153, 153, 153, 0.25);
 }
@@ -98,7 +113,7 @@ onMounted(() => {
   color: var(--Black);
   border-radius: 12px;
   width: 250px;
-  height: 300px;
+  height: auto;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   margin: 0 auto;
 }
@@ -124,7 +139,7 @@ onMounted(() => {
 
 img {
   height: 130px;
-  max-width: 200px;
+  width: 100%;
   object-fit: contain;
 }
 
@@ -132,6 +147,7 @@ img {
 display: flex;
 justify-content: center;
 position: relative;
+width: 100%;
 }
 
 .saleBadge {
@@ -157,16 +173,64 @@ position: relative;
   align-items: center;
 }
 
+.btnContainer{
+  grid-column: 4/5;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.customButton:hover{
+  text-decoration: none;
+}
+
+.customButton:hover span{
+  text-decoration: underline;
+}
+
+.customButton:active span{
+  text-decoration: none;
+}
+
+.customButton i {
+  transition: transform 0.5s ease;
+}
+
+@keyframes PointRight {
+  0%, 100% {
+    transform: translateX(0px) scale(1.1);
+  }
+  25% {
+    transform: translateX(-2px) scale(1.1);
+  }
+  50% {
+    transform: translateX(2px) scale(1.1);
+  }
+  75% {
+    transform: translateX(-2px) scale(1.1);
+  }
+}
+
+.customButtonPoint:hover i {
+  animation: PointRight 2s infinite linear;
+}
+
 
 
 @media screen and (max-width: 1600px) {
   .productCard {
-    width: 210px;
+    width: 200px;
+}
+
+img {
+  height: 80px;
 }
 }
 
 @media screen and (max-width: 1200px) {
-
+  .productCard {
+    width: 150px;
+}
 
 }
 

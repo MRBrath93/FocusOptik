@@ -4,6 +4,7 @@ import ProductDetails from '@/views/ProductDetails.vue';
 import ProductMenOverview from '@/views/ProductMenOverview.vue';
 import ProductWomenOverview from '@/views/ProductWomenOverview.vue';
 import ProductChildOverview from '@/views/ProductChildOverview.vue';
+import Somerandom from '@/views/Somerandom.vue';
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     path: '/boernebriller.html',
     name: 'ProductChildOverview',
     component: ProductChildOverview, // Oversigtsside
+  },
+  {
+    path: '/inspiration.html',
+    name: 'MyInspirationsite',
+    component: Somerandom,
   },
   {
     path: '/product/:id', // Dynamisk rute for produktside
