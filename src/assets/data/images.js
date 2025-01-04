@@ -43,18 +43,23 @@ export const cartoonGlasses = [
 ];
 
 
-import background1 from '@/assets/img/COLOURBOX60838750.png';
-import background2 from '@/assets/img/COLOURBOX60863638.png';
+import OldLady from '@/assets/img/OldWomenStore500x333.jpg';
+import LittleGirl from '@/assets/img/LittleGirlPainting500x333.jpg';
+import ManInMirror from '@/assets/img/ManInTheMirror500x264.jpg';
 
 
-export const backgrounds = [
+export const TheGlassesTrailCardsImages = [
     {
-        alt_text: 'Tre billeder af naturkatastrofer',
-        image: background1,
+        alt_text: 'Ældre dame i en brillebutik',
+        image: OldLady,
     },
     {
-        alt_text: 'En skovbrand forårsaget af global opvarmning',
-        image: background2,
+        alt_text: 'En lille pige som sidder og maler en tegning',
+        image: LittleGirl,
+    },
+    {
+        alt_text: 'En mandlig kunde som afprøver brilelr imens han ser sig i spejlet',
+        image: ManInMirror,
     },
 ];
 

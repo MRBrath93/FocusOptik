@@ -1,10 +1,26 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, toRef } from 'vue';
 import { useGlassesStore } from "../stores/glasses";
 import goldenImage from '../assets/img/golden.webp';
 import silverImage from '../assets/img/silver.jpg';
 import TheSpinner from './TheSpinner.vue';
 import TheBtn from './TheBtn.vue';
+import TheGlassesTrailCards from './TheGlassesTrailCards.vue';
+
+// Props
+const props = defineProps({
+  initialSelectedGender: {
+    type: Array, // Sørg for, at det er en Array
+    required: false,
+    default: () => []
+  },
+
+  initialSelectedAge: {
+    type: Array, // Sørg for, at det er en Array
+    required: false,
+    default: () => []
+  }
+});
 
 const glassStore = useGlassesStore();
 const selectedColors = ref([]);
@@ -12,12 +28,18 @@ const selectedBrands = ref([]);
 const selectedGlassForm = ref([]);
 const selectedGlassType = ref([]);
 const selectedFocusFlexGroups = ref([]);
-const selectedAge = ref([]);
-const selectedGender = ref([]);
+const selectedAge = ref(props.initialSelectedAge);
+const selectedGender = ref(props.initialSelectedGender);// Initialize med værdi fra prop
 const minPrice = ref(0);
 const maxPrice = ref(5000);
 const filteredResults = ref([]);
-const allGlasses = computed(() => glassStore.glasses);
+const sortCriteria = ref('');
+const allGlasses = computed(() => {
+  return glassStore.glasses.sort((a, b) => {
+    // Sørg for, at sorteringen er case-insensitiv (f.eks. "brille" og "Brille" behandles ens)
+    return a.name.localeCompare(b.name, 'da', { sensitivity: 'base' });
+  });
+});
 const filterApplied = ref(false);
 
 // Farve muligheder
@@ -154,12 +176,26 @@ const priceFilter = (glass) => {
   return price >= minPrice.value && price <= maxPrice.value;
 };
 
-// Anvend alle filtre
 const applyFilters = () => {
   console.log('Kører applyFilters...');
+
+  // Filtrere glassene baseret på alle dine filtre
   filteredResults.value = glassStore.glasses.filter(
-    (glass) => colorFilter(glass) && priceFilter(glass) && brandFilter(glass) && glassformFilter(glass) && glassTypeFilter(glass) && focusFlexGroupsFilter(glass) && glassAgeFilter(glass) && glassGenderFilter(glass)
+    (glass) => 
+      colorFilter(glass) &&
+      priceFilter(glass) &&
+      brandFilter(glass) &&
+      glassformFilter(glass) &&
+      glassTypeFilter(glass) &&
+      focusFlexGroupsFilter(glass) &&
+      glassAgeFilter(glass) &&
+      glassGenderFilter(glass)
   );
+
+  // Sortér de filtrerede resultater alfabetisk (f.eks. efter brand)
+  filteredResults.value = filteredResults.value.sort((a, b) => {
+    return a.name.localeCompare(b.name, 'da', { sensitivity: 'base' });
+  });
 
   filterApplied.value = true;
   console.log('Filtreringsresultater:', filteredResults.value);
@@ -169,6 +205,27 @@ const applyFilters = () => {
     top: 0,
     behavior: 'smooth', // Gør scrollen glidende
   });
+};
+
+
+const applySorting = () => {
+  if (sortCriteria.value === 'Navn faldende') {
+    filteredResults.value = filteredResults.value.sort((a, b) => {
+      return a.name.localeCompare(b.name, 'da', { sensitivity: 'base' });
+    });
+  } else if (sortCriteria.value === 'Navn stigende') {
+    filteredResults.value = filteredResults.value.sort((a, b) => {
+      return b.name.localeCompare(a.name, 'da', { sensitivity: 'base' });
+    });
+  } else if (sortCriteria.value === 'Pris stigende') {
+    filteredResults.value = filteredResults.value.sort((a, b) => {
+      return parseFloat(a.price.replace('.', '').replace(',', '.')) - parseFloat(b.price.replace('.', '').replace(',', '.'));
+    });
+  } else if (sortCriteria.value === 'Pris faldende') {
+    filteredResults.value = filteredResults.value.sort((a, b) => {
+      return parseFloat(b.price.replace('.', '').replace(',', '.')) - parseFloat(a.price.replace('.', '').replace(',', '.'));
+    });
+  }
 };
 
 
@@ -221,9 +278,14 @@ const getFocusFlexStyle = (hexValue) => {
     backgroundColor: hexValue || '#CCCCCC',
   };
 };
+
+
+applyFilters();
 </script>
 
 <template>
+
+  <div class="flexContainer">
     <nav>
         <ol class="breadcrumbs">
             <li><a class="smallText" href="/forside.html">Forside</a></li>
@@ -232,7 +294,18 @@ const getFocusFlexStyle = (hexValue) => {
         </ol>
     </nav>
 
-    <h1>Vores briller</h1>
+
+    <div class="sort-container">
+    <!-- Dropdown menu -->
+    <select v-model="sortCriteria" @change="applySorting" class="sort-dropdown">
+      <option value="" selected disabled>Sorter</option>
+      <option value="Navn faldende">Sortér efter navn (A-Z)</option>
+      <option value="Navn stigende">Sortér efter navn (Z-A)</option>
+      <option value="Pris stigende">Sortér efter pris (stigende)</option>
+      <option value="Pris faldende">Sortér efter pris (faldende)</option>
+    </select>
+  </div>
+  </div>
 
   <TheSpinner v-if="glassStore.isLoading || filterApplied.value && filteredResults.value.length === 0" />
 
@@ -334,7 +407,7 @@ const getFocusFlexStyle = (hexValue) => {
       </div>
     </div>
 
-    <section class="glassesGrid">
+  <section class="glassesGrid">
   <h4 style="grid-column: 1 / -1;" v-if="filterApplied && filteredResults.length === 0">
     Der kunne desværre ikke findes nogen briller, der matchede din søgning.
   </h4>
@@ -350,27 +423,42 @@ const getFocusFlexStyle = (hexValue) => {
       <p class="price" v-html="glass.price"></p>
       <div class="flexFlex">
         <p class="smallestText">Focus Flex Gr.</p>
-        <div
-          class="focusFlexColor"
-          :style="getFocusFlexStyle(glass.attributes.focusflexgruppe?.Hexkode)"
-        ></div>
+        <div class="focusFlexColor" :style="getFocusFlexStyle(glass.attributes.focusflexgruppe?.Hexkode)"></div>
       </div>
     </div>
   </router-link>
-</section>
-
+  </section>
   </div>
+  <TheGlassesTrailCards></TheGlassesTrailCards>
 </template>
 
 <style scoped>
-h1{
-  text-align: center;
+
+
+.flexContainer{
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem var(--pageMarginDesktop);
 }
+
+/* Dropdown menu styling */
+.sort-dropdown {
+  width: max-content;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--FocusOrange);
+  color: var(--SnowWhite);
+  font-family: var(--PoppinsFont);
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+
+
 .breadcrumbs{
   display: flex;
   gap: 0.5rem;
   grid-column: 1/2;
-  margin-left: var(--pageMarginDesktop);
 }
 
 ol {
@@ -397,7 +485,6 @@ ol {
     display: grid;
     grid-template-columns: 0.6fr 2fr;
     gap: 2rem;
-    margin-top: var(--VerticalSectionSpace);
     min-height: 100vh;
 }
 

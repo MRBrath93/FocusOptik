@@ -1,12 +1,30 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import ProductOverview from '@/views/ProductOverview.vue';
+import ProductAllGlassesOverview from '@/views/ProductAllGlassesOverview.vue';
 import ProductDetails from '@/views/ProductDetails.vue';
+import ProductMenOverview from '@/views/ProductMenOverview.vue';
+import ProductWomenOverview from '@/views/ProductWomenOverview.vue';
+import ProductChildOverview from '@/views/ProductChildOverview.vue';
 
 const routes = [
   {
     path: '/index.html',
     name: 'ProductOverview',
-    component: ProductOverview, // Oversigtsside
+    component: ProductAllGlassesOverview, // Oversigtsside
+  },
+  {
+    path: '/herrebriller.html',
+    name: 'ProductMenOverview',
+    component: ProductMenOverview, // Oversigtsside
+  },
+  {
+    path: '/damebriller.html',
+    name: 'ProductWomenOverview',
+    component: ProductWomenOverview, // Oversigtsside
+  },
+  {
+    path: '/boernebriller.html',
+    name: 'ProductChildOverview',
+    component: ProductChildOverview, // Oversigtsside
   },
   {
     path: '/product/:id', // Dynamisk rute for produktside
