@@ -1,17 +1,31 @@
 <script setup>
-import { cartoonGlasses } from '@/assets/data/images';
+import { computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useGlassesStore } from '@/stores/glasses';
 import TheBtn from './TheBtn.vue';
+const glassStore = useGlassesStore();
+const icons = ['fa-solid fa-glasses', 'fa-solid fa-book-open-reader', 'fa-solid fa-hammer' , 'fa-solid fa-sun'];
+
+const glassTypeOptions = computed(() => {
+  const glassTypes = new Set();
+  glassStore.glasses.forEach((product) => {
+    const glassTypeArray = product.attributes.type?.split(", ") || [];
+    glassTypeArray.forEach((glassType) => glassTypes.add(glassType));
+  });
+  return Array.from(glassTypes).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+});
 
 const router = useRouter();  // Initialiser router
 
 // Funktion til at navigere og sende initialSelectedGlassForm som prop så jeg kan få vist alle de briller som har den givende form.
-function navigateToProductOverview(glassform) {
+function navigateToProductOverview(Hexkode) {
   router.push({
-    name: 'ProductFormOverview',  // Navnet på den rute, der håndterer visningen
-    params: { initialSelectedGlassForm: glassform.label }  // Send label som route parameter
+    name: 'ProductFocusFlexOverview',  // Navnet på den rute, der håndterer visningen
+    params: { initialSelectedFocusFlexGroup: Hexkode }  // Send label som route parameter
   });
 }
+
+
 </script>
 
 <template>
@@ -19,13 +33,12 @@ function navigateToProductOverview(glassform) {
     <h5>Shop efter glasform</h5>
     <div class="shapeLinks">
       <div 
-        v-for="glassform in cartoonGlasses" 
-        :key="glassform.id" 
+      v-for="(glassType, index) in glassTypeOptions" :key="index" 
         class="productCard"
-        @click="navigateToProductOverview(glassform)"
+        @click="navigateToProductOverview(Hexkode)"
       >
-        <img :src="glassform.image" :alt="glassform.alt_text">
-        <h6>{{ glassform.label }}</h6>
+      <i :class="icons[index]"></i>
+        <h6>{{ glassType }}</h6>
       </div>
     </div>
     <div class="btnHolder">
@@ -36,12 +49,22 @@ function navigateToProductOverview(glassform) {
 
 <style scoped>
 
+.shapeLinks>div>i{
+    color: var(--Peach);
+    font-size: 3rem;
+}
+
 .btnHolder{
     width: 95%;
     display: flex;
     justify-content: flex-end;
 }
 
+.farve{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
 .shapeLinks {
   width: 100%;
   display: flex;
@@ -65,7 +88,7 @@ function navigateToProductOverview(glassform) {
   align-items: center;
   justify-content: space-between;
   border-radius: 12px;
-  height: 120px;
+  height: auto;
   padding: 1rem;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -77,7 +100,7 @@ function navigateToProductOverview(glassform) {
 }
 
 img {
-  width: 90px;
+  width: 140px;
 }
 
 .customButton:hover{

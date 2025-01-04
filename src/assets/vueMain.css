@@ -297,6 +297,8 @@ li {
 }
 
 
+
+
 @media screen and (max-width: 1600px) {
 
   .dropdown>.nav-link,
@@ -363,6 +365,8 @@ li {
     margin: 0;
   }
 }
+
+
 
 
 /* ================================================

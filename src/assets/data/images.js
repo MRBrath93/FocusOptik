@@ -1,4 +1,3 @@
-import img1 from '@/assets/img/COLOURBOX56794364-2.jpg';
 import img2 from '@/assets/img/COLOURBOX56794364-3.jpg';
 import img3 from '@/assets/img/COLOURBOX56794364-4.jpg';
 import img4 from '@/assets/img/COLOURBOX56794364-5.jpg';
@@ -10,34 +9,37 @@ import img8 from '@/assets/img/COLOURBOX56794364-10.jpg';
 export const cartoonGlasses = [
     {
         alt_text: 'Sjove tegnede briller',
-        image: img1,
-    },
-    {
-        alt_text: 'Sjove tegnede briller',
+        label: 'Rektangulær',
         image: img2,
     },
     {
         alt_text: 'Sjove tegnede briller',
+        label: 'Runde',
         image: img3,
     },
     {
         alt_text: 'Sjove tegnede briller',
+        label: 'Katteøjne',
         image: img4,
     },
     {
         alt_text: 'Sjove tegnede briller',
+        label: 'Ovale',
         image: img5,
     },
     {
         alt_text: 'Sjove tegnede briller',
+        label: 'Pilot',
         image: img6,
     },
     {
         alt_text: 'Sjove tegnede briller',
+        label: 'Oversized',
         image: img7,
     },
     {
         alt_text: 'Sjove tegnede briller',
+        label: 'Wayfare',
         image: img8,
     },
 ];

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, toRef } from 'vue';
+import { ref, computed } from 'vue';
 import { useGlassesStore } from "../stores/glasses";
 import goldenImage from '../assets/img/golden.webp';
 import silverImage from '../assets/img/silver.jpg';
@@ -20,14 +20,25 @@ const props = defineProps({
     required: false,
     default: () => []
   }
+  ,
+  initialSelectedGlassForm: {
+    type: Array, // Sørg for, at det er en Array
+    required: false,
+    default: () => []
+  },
+  initialSelectedFocusFlexGroup: {
+    type: Array, // Sørg for, at det er en Array
+    required: false,
+    default: () => []
+  }
 });
 
 const glassStore = useGlassesStore();
 const selectedColors = ref([]);
 const selectedBrands = ref([]);
-const selectedGlassForm = ref([]);
+const selectedGlassForm = ref(props.initialSelectedGlassForm);
 const selectedGlassType = ref([]);
-const selectedFocusFlexGroups = ref([]);
+const selectedFocusFlexGroups = ref(props.initialSelectedFocusFlexGroup);
 const selectedAge = ref(props.initialSelectedAge);
 const selectedGender = ref(props.initialSelectedGender);// Initialize med værdi fra prop
 const minPrice = ref(0);
@@ -41,6 +52,7 @@ const allGlasses = computed(() => {
   });
 });
 const filterApplied = ref(false);
+
 
 // Farve muligheder
 const colorOptions = computed(() => {

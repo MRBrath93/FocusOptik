@@ -4,7 +4,9 @@ import ProductDetails from '@/views/ProductDetails.vue';
 import ProductMenOverview from '@/views/ProductMenOverview.vue';
 import ProductWomenOverview from '@/views/ProductWomenOverview.vue';
 import ProductChildOverview from '@/views/ProductChildOverview.vue';
-import Somerandom from '@/views/Somerandom.vue';
+import InspirationsSite from '@/views/InspirationsSite.vue';
+import ProductFormOverview from '@/views/ProductFormOverview.vue';
+import ProductFlexGroupOverview from '@/views/ProductFlexGroupOverview.vue';
 
 const routes = [
   {
@@ -30,7 +32,19 @@ const routes = [
   {
     path: '/inspiration.html',
     name: 'MyInspirationsite',
-    component: Somerandom,
+    component: InspirationsSite,
+  },
+  {
+    path: '/ProductFormOverview/:initialSelectedGlassForm',
+    name: 'ProductFormOverview',
+    component: ProductFormOverview,
+    props: true,  // Dette gør, at ruteparametre bliver sendt som props til komponenten
+  },
+  {
+    path: '/ProductFocusFlexOverview/:initialSelectedFocusFlexGroup',
+    name: 'ProductFocusFlexOverview',
+    component: ProductFlexGroupOverview,
+    props: true,  // Dette gør, at ruteparametre bliver sendt som props til komponenten
   },
   {
     path: '/product/:id', // Dynamisk rute for produktside
