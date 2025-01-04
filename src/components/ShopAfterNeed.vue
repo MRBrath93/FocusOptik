@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router';
 import { useGlassesStore } from '@/stores/glasses';
 import TheBtn from './TheBtn.vue';
 const glassStore = useGlassesStore();
+const router = useRouter();
 const icons = ['fa-solid fa-glasses', 'fa-solid fa-book-open-reader', 'fa-solid fa-hammer' , 'fa-solid fa-sun'];
 
 const glassTypeOptions = computed(() => {
@@ -12,16 +13,15 @@ const glassTypeOptions = computed(() => {
     const glassTypeArray = product.attributes.type?.split(", ") || [];
     glassTypeArray.forEach((glassType) => glassTypes.add(glassType));
   });
-  return Array.from(glassTypes).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+  return Array.from(glassTypes).sort((a, b) => a.localeCompare(b));
 });
 
-const router = useRouter();  // Initialiser router
 
-// Funktion til at navigere og sende initialSelectedGlassForm som prop så jeg kan få vist alle de briller som har den givende form.
-function navigateToProductOverview(Hexkode) {
+// Funktion til at navigere og sende initialSelectedGlassType som prop så jeg kan få vist alle de briller som har den givende type.
+function navigateToProductOverview(glassType) {
   router.push({
-    name: 'ProductFocusFlexOverview',  // Navnet på den rute, der håndterer visningen
-    params: { initialSelectedFocusFlexGroup: Hexkode }  // Send label som route parameter
+    name: 'ProductTypeOverview',
+    params: { initialSelectedGlassType: glassType }
   });
 }
 
@@ -30,12 +30,12 @@ function navigateToProductOverview(Hexkode) {
 
 <template>
   <div class="indexBox">
-    <h5>Shop efter glasform</h5>
+    <h5>Shop efter behov</h5>
     <div class="shapeLinks">
       <div 
       v-for="(glassType, index) in glassTypeOptions" :key="index" 
         class="productCard"
-        @click="navigateToProductOverview(Hexkode)"
+        @click="navigateToProductOverview(glassType)"
       >
       <i :class="icons[index]"></i>
         <h6>{{ glassType }}</h6>

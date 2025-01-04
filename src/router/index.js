@@ -7,27 +7,28 @@ import ProductChildOverview from '@/views/ProductChildOverview.vue';
 import InspirationsSite from '@/views/InspirationsSite.vue';
 import ProductFormOverview from '@/views/ProductFormOverview.vue';
 import ProductFlexGroupOverview from '@/views/ProductFlexGroupOverview.vue';
+import ProductTypeOverview from '@/views/ProductTypeOverview.vue';
 
 const routes = [
   {
     path: '/index.html',
     name: 'ProductOverview',
-    component: ProductAllGlassesOverview, // Oversigtsside
+    component: ProductAllGlassesOverview,
   },
   {
     path: '/herrebriller.html',
     name: 'ProductMenOverview',
-    component: ProductMenOverview, // Oversigtsside
+    component: ProductMenOverview,
   },
   {
     path: '/damebriller.html',
     name: 'ProductWomenOverview',
-    component: ProductWomenOverview, // Oversigtsside
+    component: ProductWomenOverview,
   },
   {
     path: '/boernebriller.html',
     name: 'ProductChildOverview',
-    component: ProductChildOverview, // Oversigtsside
+    component: ProductChildOverview,
   },
   {
     path: '/inspiration.html',
@@ -38,19 +39,27 @@ const routes = [
     path: '/ProductFormOverview/:initialSelectedGlassForm',
     name: 'ProductFormOverview',
     component: ProductFormOverview,
-    props: true,  // Dette gør, at ruteparametre bliver sendt som props til komponenten
+    // Dette gør, at ruteparametre bliver sendt som props til komponenten
+    props: true,
   },
   {
     path: '/ProductFocusFlexOverview/:initialSelectedFocusFlexGroup',
     name: 'ProductFocusFlexOverview',
     component: ProductFlexGroupOverview,
-    props: true,  // Dette gør, at ruteparametre bliver sendt som props til komponenten
+    props: true,
   },
   {
-    path: '/product/:id', // Dynamisk rute for produktside
+    path: '/ProductTypeOverview/:initialSelectedGlassType',
+    name: 'ProductTypeOverview',
+    component: ProductTypeOverview,
+    props: true,
+  },
+  {
+    // Dynamisk rute for produktside
+    path: '/product/:id',
     name: 'ProductDetails',
     component: ProductDetails,
-    props: true, // Tillader passing af route-parametre som props
+    props: true,
   },
 ];
 

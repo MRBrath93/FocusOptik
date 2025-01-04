@@ -3,13 +3,13 @@ import { cartoonGlasses } from '@/assets/data/images';
 import { useRouter } from 'vue-router';
 import TheBtn from './TheBtn.vue';
 
-const router = useRouter();  // Initialiser router
+const router = useRouter(); 
 
-// Funktion til at navigere og sende initialSelectedGlassForm som prop så jeg kan få vist alle de briller som har den givende form.
+// Funktion til at navigere til produktoversigten og sende 'initialSelectedGlassForm' som prop, så jeg kan få vist alle de briller, der har den givne form i produktoversigten.
 function navigateToProductOverview(glassform) {
   router.push({
-    name: 'ProductFormOverview',  // Navnet på den rute, der håndterer visningen
-    params: { initialSelectedGlassForm: glassform.label }  // Send label som route parameter
+    name: 'ProductFormOverview',
+    params: { initialSelectedGlassForm: glassform.label }
   });
 }
 </script>
@@ -29,7 +29,7 @@ function navigateToProductOverview(glassform) {
       </div>
     </div>
     <div class="btnHolder">
-        <TheBtn class="customButton customButtonPoint" label="Se alle briller" link="/index.html"><span>se alle briller</span> <i class="fa-solid fa-arrow-right"></i></TheBtn>
+        <TheBtn class="customButton customButtonPoint" label="Se alle briller"  link="/index.html"><span>se alle briller</span> <i class="fa-solid fa-arrow-right"></i></TheBtn>
     </div>
   </div>
 </template>

@@ -6,56 +6,73 @@ import goldenImage from '../assets/img/golden.webp';
 import silverImage from '../assets/img/silver.jpg';
 import TheBtn from './TheBtn.vue';
 const glassStore = useGlassesStore();
+const router = useRouter(); 
+
+// Arrays til dataopbevaring. Bør laves mere logisk hvis tiden er til det.
 const colors = ['Gul', 'Grøn', 'Rød', 'Blå', 'Sølv', 'Guld', 'Sort' ]
 const enkeltstyrke = [400, 800, 1200, 1600, 2000, 2500, 3000 ]
 const flerstyrke = [900, 1300, 1700, 2100, 2500, 3000, 3500 ]
 
-// Focusflex gruppe Muligheder
+
+// Computed property til at generere focusflexfarver baseret på brillerne
 const focusFlexOptions = computed(() => {
+     // Opretter et nyt Set, et set fjerner automatisk dubletter. Dette sikre at vi kun tilføjer farven én gang.
   const flexGroups = new Set();
+   // Går gennem alle briller i glassStore 
   glassStore.glasses.forEach((product) => {
+    // Henter hexkoderne fra produktets attributter, som anvender split til at indsætte et kommasepareret for hver. Hvis der af en grund ikke findes farver så indsættes et tomt array.
     const flexGroupArray = product.attributes.focusflexgruppe?.Hexkode.split(", ") || [];
+    // Tilføjer hver farve til Set'et. Set'et fjerner som nævnt tidligere automatisk dubletter.
     flexGroupArray.forEach((hexkode) => flexGroups.add(hexkode));
   });
 
-  // Opret en ønsket rækkefølge for farverne
+  // Opret en ønsket rækkefølge for farverne. For at grupperne står i den rigtig rækkefølge.
   const preferredOrder = ['#FFE602', '#11B509', '#EE0B0B', '#0945B5', 'sølv', 'guld', '#0B0B0B'];
 
-  // Opret et objekt, der bruges til at finde rækkefølgen af hver farve
+  // Opret et objekt(map), der bruges til at finde rækkefølgen af hver farve
   const orderMap = new Map(preferredOrder.map((color, index) => [color, index]));
 
   // Sorter farverne baseret på den ønskede rækkefølge
   return Array.from(flexGroups).sort((a, b) => {
-    const orderA = orderMap.has(a) ? orderMap.get(a) : Infinity;  // Brug Infinity for farver, der ikke er i rækkefølgen
+    const orderA = orderMap.has(a) ? orderMap.get(a) : Infinity; 
     const orderB = orderMap.has(b) ? orderMap.get(b) : Infinity;
     return orderA - orderB;
   });
 });
 
-const router = useRouter();  // Initialiser router
 
-// Funktion til at navigere og sende initialSelectedGlassForm som prop så jeg kan få vist alle de briller som har den givende form.
+// Funktion til at navigere til produktoversigten og sende 'initialSelectedFocusFlexGroup' som prop, så jeg kan få vist alle de briller, der har den givne farvekode(focusflexgruppe) i produktoversigten.
 function navigateToProductOverview(Hexkode) {
+  // Brug routerens 'push' metode til at navigere til en bestemt rute i applikationen
   router.push({
-    name: 'ProductFocusFlexOverview',  // Navnet på den rute, der håndterer visningen
-    params: { initialSelectedFocusFlexGroup: Hexkode }  // Send label som route parameter
+    // Navnet på den rute, der håndterer visningen af produktoversigten
+    name: 'ProductFocusFlexOverview',
+
+    // Send 'initialSelectedFocusFlexGroup' som en parameter i URL'en. Hexkode repræsenterer den valgte farve (f.eks. en hex-farvekode som '#FF5733')
+    params: { initialSelectedFocusFlexGroup: Hexkode }
   });
 }
 
+
+// Funktion der håndterer både farver og billeder baseret på Hexkode valuen fra dataen. Dette anvendes til focusflex farven som skal indsættes som CSS style. Dette er gjort fordi man ikke kan få en seøv eller guld farve som hewkode..
 const getFocusFlexStyle = (hexValue) => {
+  // Hvis der ikke er nogen hex-værdi, returner en standardbaggrundsfarve (hvid)
   if (!hexValue) return { backgroundColor: '#FFFFFF' };
 
+  // Hvis hex-værdien er 'guld', anvendes et billede af guld som baggrund
   if (hexValue === 'guld') {
     return { backgroundImage: `url(${goldenImage})`, backgroundSize: 'cover' };
   }
 
-  if (hexValue.startsWith("sølv")) {
+  // Hvis hex-værdien er 'sølv', anvendes et billede af sølv som baggrund
+  if (hexValue === "sølv") {
     return { backgroundImage: `url(${silverImage})`, backgroundSize: 'cover' };
   }
 
-  // Default stil
+  // Hvis ingen af de tidligere betingelser er opfyldt, returneres en baggrundsfarve baseret på hex-værdien
+  // Hvis hexValue er falsk eller ikke er en gyldig farvekode, anvendes standardfarven '#CCCCCC'
   return {
-    backgroundColor: hexValue || '#CCCCCC',
+    backgroundColor: hexValue || '#FFFFFF',
   };
 };
 
@@ -64,14 +81,11 @@ const getFocusFlexStyle = (hexValue) => {
 
 <template>
   <div class="indexBox">
-    <h5>Shop efter glasform</h5>
+    <h5>Shop efter Focus Flex pris</h5>
     <div class="shapeLinks">
-      <div 
-      v-for="(Hexkode, index) in focusFlexOptions" :key="index" 
-        class="productCard"
-        @click="navigateToProductOverview(Hexkode)"
-      >
-      <div class="farve" :style="getFocusFlexStyle(Hexkode)"></div>
+        <!-- Skaber en div for hver focusflexfarve der findes og sender hexkoden med navigate funktionen. Når man klikker på den bliver det anvendt. -->
+      <div v-for="(Hexkode, index) in focusFlexOptions" :key="index" class="productCard" @click="navigateToProductOverview(Hexkode)">
+        <div class="farve" :style="getFocusFlexStyle(Hexkode)"></div>
         <h6>{{ colors[index] }}</h6>
         <p>Enkeltstyrke {{ enkeltstyrke[index] }},- </p>
         <p>Flerstyrke {{ flerstyrke[index] }},- </p>

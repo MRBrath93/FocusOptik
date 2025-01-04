@@ -2,7 +2,7 @@
 import ProductOverview from '@/components/ProductOverview.vue';
 
 const props = defineProps({
-  initialSelectedGlassForm: {
+    initialSelectedGlassType: {
     type: [String, Array],
     required: true,
   },
@@ -12,7 +12,8 @@ const props = defineProps({
 <template>
   <section>
     <div class="heroPic"></div>
-    <ProductOverview :initialSelectedGlassForm="[props.initialSelectedGlassForm]"></ProductOverview>
+        <!-- Sender props til productoverview -->
+    <ProductOverview :initialSelectedGlassType="[props.initialSelectedGlassType]"></ProductOverview>
   </section>
 </template>
 

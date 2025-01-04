@@ -8,55 +8,53 @@ import silverImage from '../assets/img/silver.jpg';
 import TheBtn from '@/components/TheBtn.vue';
 const glassStore = useGlassesStore();
 const selectedOption = ref('enkeltstyrke');
+const currentImage = ref(null);
+const isLightboxOpen = ref(false);
 
 const route = useRoute();
-// Henter brilledetaljer baseret på ID fra URL'en
-const glass = computed(() => glassStore.glasses.find(g => g.id === parseInt(route.params.id)));
 
-// Reaktiv variabel til det store billede
-const currentImage = ref(null);
+// Computed property til at finde en specifik brille baseret på ruten's parameter 'id'. 
+const glass = computed(() => 
+  // Find den brille i glassStore.glasses, hvis 'id' matcher 'id' parameteren i ruten og anvend dens data.
+  glassStore.glasses.find(g => g.id === parseInt(route.params.id))
+);
 
-// Brug en watch på glass for at opdatere currentImage, når glass ændres
+
+// Brug en watch på glass for at opdatere currentImage, når glass ændres. Behøves fordi det store billede ikke ændre sig hvis man tilgår et nyt produkt.
 watchEffect(() => {
   if (glass.value) {
-    currentImage.value = glass.value.images[0]; // Sæt det første billede som standard
+    currentImage.value = glass.value.images[0];
   }
 });
 
 
 // Funktion til at ændre det store billede
 function changeImage(image) {
-  currentImage.value = image; // Opdater currentImage
+  currentImage.value = image;
 }
 
 
+// Funktion der håndterer både farver og billeder baseret på Hexkode valuen fra dataen. Dette anvendes til focusflex farven som skal indsættes som CSS style. Dette er gjort fordi man ikke kan få en seøv eller guld farve som hewkode..
 const getFocusFlexStyle = (hexValue) => {
-  if (!hexValue) return { backgroundColor: '#FFFFF' };
+  // Hvis der ikke er nogen hex-værdi, returner en standardbaggrundsfarve (hvid)
+  if (!hexValue) return { backgroundColor: '#FFFFFF' };
 
+  // Hvis hex-værdien er 'guld', anvendes et billede af guld som baggrund
   if (hexValue === 'guld') {
-    return {
-      backgroundImage: `url(${goldenImage})`,
-      backgroundSize: 'cover',
-      backgroundColor: ''
-    };
+    return { backgroundImage: `url(${goldenImage})`, backgroundSize: 'cover' };
   }
 
-  if (hexValue.startsWith("sølv")) {
-    return {
-      backgroundImage: `url(${silverImage})`,
-      backgroundSize: 'cover',
-      backgroundColor: ''
-    };
+  // Hvis hex-værdien er 'sølv', anvendes et billede af sølv som baggrund
+  if (hexValue === "sølv") {
+    return { backgroundImage: `url(${silverImage})`, backgroundSize: 'cover' };
   }
 
+  // Hvis ingen af de tidligere betingelser er opfyldt, returneres en baggrundsfarve baseret på hex-værdien
+  // Hvis hexValue er falsk eller ikke er en gyldig farvekode, anvendes standardfarven '#CCCCCC'
   return {
-    backgroundColor: hexValue,
-    backgroundImage: ''
+    backgroundColor: hexValue || '#FFFFFF',
   };
 };
-
-// Reaktiv variabel til at styre lightbox
-const isLightboxOpen = ref(false);
 
 // Funktion til at åbne lightbox
 function openLightbox() {
@@ -68,17 +66,25 @@ function closeLightbox() {
   isLightboxOpen.value = false;
 }
 
+// Beregner rabatprocenten, hvis der er en regelmæssig pris og en nuværende pris for brillerne.
 const discountPercentage = computed(() => {
+  // Tjekker, om der er en brille, og om både 'regular_price' og 'price' eksisterer
   if (glass.value && glass.value.regular_price && glass.value.price) {
+    // Konverterer de to prisstrenge ('regular_price' og 'price') til flydende tal. dvs. at formatereing bliver lavet om.
     const regularPrice = parseFloat(glass.value.regular_price);
     const currentPrice = parseFloat(glass.value.price);
 
+    // Tjekker, at den regelmæssige pris er større end 0 for at undgå division med 0. (sikkerhedsløsning - kan slettes når alle briller har priser på plads)
     if (regularPrice > 0) {
+      // Beregner rabatprocenten: (regelpris - nuværende pris) / regelpris * 100. Dette giver procentdelen af rabatten i forhold til den oprindelige pris
       return ((regularPrice - currentPrice) / regularPrice) * 100;
     }
   }
+  
+  // Hvis betingelserne ikke er opfyldt (f.eks. manglende priser), returneres 0 som rabatprocent
   return 0;
 });
+
 </script>
 
 <template>

@@ -3,7 +3,7 @@ import ProductOverview from '@/components/ProductOverview.vue';
 
 const props = defineProps({
     initialSelectedFocusFlexGroup: {
-    type: String,
+    type: [String, Array],
     required: true,
   },
 });

@@ -3,9 +3,13 @@ import { useGlassesStore } from "../stores/glasses";
 import { computed } from "vue";
 import { useRoute } from 'vue-router';
 const glassStore = useGlassesStore();
-
 const route = useRoute();
-const glass = computed(() => glassStore.glasses.find(g => g.id === parseInt(route.params.id)));
+
+// Computed property til at finde en specifik brille baseret på ruten's parameter 'id'. 
+const glass = computed(() => 
+  // Find den brille i glassStore.glasses, hvis 'id' matcher 'id' parameteren i ruten og anvend dens data.
+  glassStore.glasses.find(g => g.id === parseInt(route.params.id))
+);
 </script>
 
 <template>
@@ -79,12 +83,12 @@ const glass = computed(() => glassStore.glasses.find(g => g.id === parseInt(rout
 }
 
 .detailRow {
-  display: contents; /* Sørg for at bruge grid direkte i detailsBox */
+  display: contents;
 }
 
 .fatFont {
   font-weight: bold;
-  white-space: nowrap; /* Forhindrer labels i at bryde linjer */
+  white-space: nowrap;
 }
 
 .detailsBox p {
@@ -99,9 +103,6 @@ const glass = computed(() => glassStore.glasses.find(g => g.id === parseInt(rout
   gap: 2rem;
   grid-auto-rows: max-content;
 }
-
-
-
 
 .specifications h5, #finanses h5{
   padding: 0.5rem 1.5rem;

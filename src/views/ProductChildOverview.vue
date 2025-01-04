@@ -5,6 +5,7 @@ import ProductOverview from '@/components/ProductOverview.vue';
 
 <template>
   <section>
+        <!-- Sender props til productoverview -->
     <ProductOverview :initialSelectedAge="['Børn']"></ProductOverview>
   </section>
 </template>

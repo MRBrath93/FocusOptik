@@ -48,6 +48,7 @@ export const cartoonGlasses = [
 import OldLady from '@/assets/img/OldWomenStore500x333.jpg';
 import LittleGirl from '@/assets/img/LittleGirlPainting500x333.jpg';
 import ManInMirror from '@/assets/img/ManInTheMirror500x264.jpg';
+import ManInTheMirror1293x300 from '@/assets/img/ManInTheMirror1278x300.jpg';
 
 
 export const TheGlassesTrailCardsImages = [
@@ -60,9 +61,37 @@ export const TheGlassesTrailCardsImages = [
         image: LittleGirl,
     },
     {
-        alt_text: 'En mandlig kunde som afprøver brilelr imens han ser sig i spejlet',
+        alt_text: 'En mandlig kunde som afprøver briller imens han ser sig i spejlet',
         image: ManInMirror,
+    },
+    {
+        alt_text: 'En mandlig kunde som afprøver briller imens han ser sig i spejlet',
+        image: ManInTheMirror1293x300,
     },
 ];
 
+import StatueWithGlasses1800 from '@/assets/img/StatueWithGlasses1800x862.jpg';
+import StatueWithGlasses1000 from '@/assets/img/StatueWithGlasses1000x700.jpg';
+import TwoGlassesOnTwoColor from '@/assets/img/TwoGlassesOnTwoColor.jpg';
+import TwoGlassesOnTwoColor1432 from '@/assets/img/TwoGlassesOnTwoColor1432x1500.jpg';
 
+
+export const CommercialImages = [
+    {
+        alt_text: 'En statue med briller på',
+        image: StatueWithGlasses1800,
+    },
+    {
+        alt_text: 'En statue med briller på',
+        image: StatueWithGlasses1000,
+    },
+    {
+        alt_text: 'To par briller der ligger på en farvet baggrund',
+        image: TwoGlassesOnTwoColor,
+    },
+    {
+        alt_text: 'To par briller der ligger på en farvet baggrund',
+        image: TwoGlassesOnTwoColor1432,
+    },
+
+];

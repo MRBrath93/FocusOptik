@@ -2,29 +2,33 @@
 import { ref, onMounted } from 'vue';
 import { cartoonGlasses } from '@/assets/data/images';
 
-const currentImage = ref(cartoonGlasses[0].image); // Gem kun stien til billedet
+// Gemmer stien til det første billede i en reaktiv variabel
+const currentImage = ref(cartoonGlasses[0].image);
+// Variabel til at holde styr på det nuværende billedindeks
 let currentIndex = 0;
 
-// Skift billedet med jævne mellemrum
+// Funktion til at ændre billedet med jævne mellemrum
 const changeImage = () => {
-  currentIndex = (currentIndex + 1) % cartoonGlasses.length; // Brug cartoonGlasses.length i stedet for images.length
-  currentImage.value = cartoonGlasses[currentIndex].image; // Opdater kun stien til billedet
+  // Øger currentIndex og bruger modulus for at looppe tilbage til første billede, når slutningen er nået.
+  currentIndex = (currentIndex + 1) % cartoonGlasses.length;
+  // Opdaterer den reaktive variabel med det næste billedes url
+  currentImage.value = cartoonGlasses[currentIndex].image;
 };
 
-// Start animationen når komponenten er mounted
+// Start animationen/min funktion der skifter billeder, når komponenten er mountet (komponenten er blevet tilføjet til DOM'en)
 onMounted(() => {
-  setInterval(changeImage, 100); // Skifter billede hvert 100ms
+  // Kører changeImage-funktionen hvert 100 millisekund (for at opdatere billedet hurtigt)
+  setInterval(changeImage, 100);
 });
 </script>
 
 <template>
   <div class="spinner-wrapper">
-    <!-- Spinner (Cirklen og billedet) -->
     <div class="spinner-container">
+      <!-- Spinner-cirklen (Den roterende effekt) -->
       <div class="spinner-circle"></div>
       <img :src="currentImage" alt="Spinner Image" class="image-spinner" />
     </div>
-    <!-- Teksten under spinneren -->
     <p class="loading-text">Produkterne hentes på lageret...</p>
   </div>
 </template>

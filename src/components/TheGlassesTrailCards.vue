@@ -1,6 +1,5 @@
 <script setup>
 import { TheGlassesTrailCardsImages } from '@/assets/data/images';
-console.log(TheGlassesTrailCardsImages);
 </script>
 
 <template>

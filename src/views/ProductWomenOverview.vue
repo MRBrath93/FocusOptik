@@ -5,6 +5,7 @@ import ProductOverview from '@/components/ProductOverview.vue';
 
 <template>
   <section>
+    <!-- Sender props til productoverview -->
     <ProductOverview :initialSelectedGender="['Dame', 'Unisex']"></ProductOverview>
   </section>
 </template>

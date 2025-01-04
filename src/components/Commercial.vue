@@ -1,20 +1,22 @@
 <script setup>
 import TheBtn from './TheBtn.vue';
-
+// Definere props
 const props = defineProps({
   title: String,
   textContent: String,
   imageUrl: String,
+  label: String,
+  link: String
 });
-
 </script>
 
 <template>
   <article class="commercial" :style="{ backgroundImage: `url(${imageUrl})`}">
     <div class="container">
-        <h5>{{ title }}</h5>
+        <h4>{{ title }}</h4>
         <p>{{ textContent }}</p>
-        <TheBtn class="customButton customButtonPoint" label="Se alle brands" link="#"><span>Se alle brands</span> <i class="fa-solid fa-arrow-right"></i></TheBtn>
+        <!-- Indsætter de props som er sendt med komponentet og sender det videre til theBtn komponenten -->
+        <TheBtn class="customButton customButtonPoint" :label="label" :link="link"><span>{{ label }}</span> <i class="fa-solid fa-arrow-right"></i></TheBtn>
     </div>
   </article>
 </template>
@@ -22,9 +24,9 @@ const props = defineProps({
 <style scoped>
 .commercial {
   height: 300px;
-  background-size: cover;
+  background-size:cover;
   background-position: center;
-  background-repeat: 'no-repeat';
+  background-repeat: no-repeat;
   margin: 2rem var(--pageMarginDesktop);
 }
 
@@ -33,13 +35,12 @@ const props = defineProps({
 }
 
 .container{
-    height: 100%;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around ;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around ;
 }
-
 
 .customButton:hover{
   text-decoration: none;

@@ -7,7 +7,8 @@ const props = defineProps({
 
 const handleClick = () => {
   if (props.onClick) {
-    props.onClick();  // Kald den funktion, der er sendt som prop
+    // Kald den funktion, der er sendt som prop
+    props.onClick(); 
   }
 };
 </script>
@@ -18,22 +19,24 @@ const handleClick = () => {
     class="button"
     @click="handleClick"
   >
+  <!-- Plads til indhold via slot -->
     <slot>
       {{ label }}
-    </slot> <!-- Plads til indhold via slot -->
+    </slot>
   </button>
   <a v-else :href="link" class="button">
+    <!-- Plads til indhold via slot -->
     <slot>
       {{ label }}
-    </slot> <!-- Plads til indhold via slot -->
+    </slot>
   </a>
 </template>
 
 <style scoped>
 .theButton, .button {
-  display: inline-flex; /* Juster til inline-flex for at placere ikon og tekst på samme linje */
+  display: inline-flex;
   gap: 0.3rem;
-  align-items: center; /* Sørg for at tekst og ikon er centreret vertikalt */
+  align-items: center;
   font-family: var(--PoppinsFont);
   padding: 5px 10px;
   width: fit-content;

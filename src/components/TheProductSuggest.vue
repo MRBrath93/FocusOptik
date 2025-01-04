@@ -4,7 +4,7 @@ import { computed, onMounted } from "vue";
 import { useRoute } from 'vue-router';
 import goldenImage from '../assets/img/golden.webp';
 import silverImage from '../assets/img/silver.jpg';
-import { useRouter } from 'vue-router'; // Importerer router for navigation
+import { useRouter } from 'vue-router';
 import TheBtn from './TheBtn.vue';
 
 const props = defineProps({
@@ -13,48 +13,48 @@ const props = defineProps({
 
 const glassStore = useGlassesStore();
 const route = useRoute();
-const router = useRouter(); // Bruges til at navigere
+const router = useRouter();
 
 const glass = computed(() => glassStore.glasses.find(g => g.id === parseInt(route.params.id)));
 
-// Find de relaterede briller
+// Finder de relaterede briller baseret på upsell IDs
 const relatedGlasses = computed(() => {
+  // Hvis der ikke er nogen upsell_ids, returneres en tom liste (ingen relaterede briller)
   if (!glass.value?.upsell_ids) return [];
   
-  // Find fulde glasobjekter baseret på upsell_ids
-  return glass.value.upsell_ids.map(id => glassStore.glasses.find(g => g.id === id)).filter(Boolean);
+  // Mapper over upsell_ids, finder de tilsvarende briller i glassStore, og filtrerer bort de falske værdier
+  return glass.value.upsell_ids
+  // Find brillerne i glassStore baseret på upsell_id
+    .map(id => glassStore.glasses.find(g => g.id === id))
 });
-console.log(relatedGlasses.value);
 
+
+// Funktion der håndterer både farver og billeder baseret på Hexkode valuen fra dataen. Dette anvendes til focusflex farven som skal indsættes som CSS style. Dette er gjort fordi man ikke kan få en seøv eller guld farve som hewkode..
 const getFocusFlexStyle = (hexValue) => {
-  if (!hexValue) return { backgroundColor: '#FFFFF' };
+  // Hvis der ikke er nogen hex-værdi, returner en standardbaggrundsfarve (hvid)
+  if (!hexValue) return { backgroundColor: '#FFFFFF' };
 
+  // Hvis hex-værdien er 'guld', anvendes et billede af guld som baggrund
   if (hexValue === 'guld') {
-    return {
-      backgroundImage: `url(${goldenImage})`,
-      backgroundSize: 'cover',
-      backgroundColor: ''
-    };
+    return { backgroundImage: `url(${goldenImage})`, backgroundSize: 'cover' };
   }
 
-  if (hexValue.startsWith("sølv")) {
-    return {
-      backgroundImage: `url(${silverImage})`,
-      backgroundSize: 'cover',
-      backgroundColor: ''
-    };
+  // Hvis hex-værdien er 'sølv', anvendes et billede af sølv som baggrund
+  if (hexValue === "sølv") {
+    return { backgroundImage: `url(${silverImage})`, backgroundSize: 'cover' };
   }
 
+  // Hvis ingen af de tidligere betingelser er opfyldt, returneres en baggrundsfarve baseret på hex-værdien
+  // Hvis hexValue er falsk eller ikke er en gyldig farvekode, anvendes standardfarven '#CCCCCC'
   return {
-    backgroundColor: hexValue,
-    backgroundImage: ''
+    backgroundColor: hexValue || '#FFFFFF',
   };
 };
 
 // Scroll til toppen ved navigation
 onMounted(() => {
   router.afterEach(() => {
-    window.scrollTo(0, 0); // Scroll til toppen af siden
+    window.scrollTo(0, 0);
   });
 });
 </script>
@@ -62,9 +62,9 @@ onMounted(() => {
 <template>
 
   <section class="suggested-glasses">
-    <h5>{{ title }}</h5>
-    <!-- Gennemgå de relaterede briller og vis dem -->
+    <h4>{{ title }}</h4>
      <div class="related-glasses">
+      <!-- Gennemgå de relaterede briller og vis dem -->
     <router-link
       v-for="relatedGlass in relatedGlasses"
       :key="relatedGlass.id"
@@ -101,7 +101,7 @@ onMounted(() => {
 
 .related-glasses {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 kolonner */
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   padding: 1rem;
   box-shadow: 0 4px 8px hsla(0, 0%, 60%, 0.25), 0 6px 20px rgba(153, 153, 153, 0.25);

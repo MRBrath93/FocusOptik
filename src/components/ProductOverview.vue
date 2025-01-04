@@ -1,135 +1,161 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch  } from 'vue';
 import { useGlassesStore } from "../stores/glasses";
+import { useRoute } from 'vue-router';
 import goldenImage from '../assets/img/golden.webp';
 import silverImage from '../assets/img/silver.jpg';
 import TheSpinner from './TheSpinner.vue';
 import TheBtn from './TheBtn.vue';
 import TheGlassesTrailCards from './TheGlassesTrailCards.vue';
 
-// Props
+// Props - Der defineres de indkommende værdier (props) til komponenten, som gør det muligt at modtage og bruge data fra andre komponenter
 const props = defineProps({
   initialSelectedGender: {
-    type: Array, // Sørg for, at det er en Array
+    type: Array,
     required: false,
     default: () => []
   },
 
   initialSelectedAge: {
-    type: Array, // Sørg for, at det er en Array
+    type: Array,
     required: false,
     default: () => []
-  }
-  ,
+  },
   initialSelectedGlassForm: {
-    type: Array, // Sørg for, at det er en Array
+    type: Array,
     required: false,
     default: () => []
   },
   initialSelectedFocusFlexGroup: {
-    type: Array, // Sørg for, at det er en Array
+    type: Array,
+    required: false,
+    default: () => []
+  },
+  initialSelectedGlassType: {
+    type: Array,
     required: false,
     default: () => []
   }
 });
 
+// Brug af Vue Router til at få adgang til den aktuelle rute
+const route = useRoute();
+// Brug af en state management store (Pinia) til at få adgang til glas-dataen
 const glassStore = useGlassesStore();
+
+// Reaktive variabler til at holde styr på valgte filtre
 const selectedColors = ref([]);
 const selectedBrands = ref([]);
 const selectedGlassForm = ref(props.initialSelectedGlassForm);
-const selectedGlassType = ref([]);
+const selectedGlassType = ref(props.initialSelectedGlassType);
 const selectedFocusFlexGroups = ref(props.initialSelectedFocusFlexGroup);
 const selectedAge = ref(props.initialSelectedAge);
-const selectedGender = ref(props.initialSelectedGender);// Initialize med værdi fra prop
+const selectedGender = ref(props.initialSelectedGender);
 const minPrice = ref(0);
 const maxPrice = ref(5000);
 const filteredResults = ref([]);
+const filterApplied = ref(false);
+// Variabel til at holde den nuværende sorteringskriterie
 const sortCriteria = ref('');
+
+// Computed property for at hente og sortere alle briller fra state management store. Computed reagere selv på ændringer.
 const allGlasses = computed(() => {
   return glassStore.glasses.sort((a, b) => {
     // Sørg for, at sorteringen er case-insensitiv (f.eks. "brille" og "Brille" behandles ens)
     return a.name.localeCompare(b.name, 'da', { sensitivity: 'base' });
   });
 });
-const filterApplied = ref(false);
 
-
-// Farve muligheder
+// Computed property til at generere farvevalg baseret på brillerne
 const colorOptions = computed(() => {
+  // Opretter et nyt Set, et set fjerner automatisk dubletter. Dette sikre at vi kun tilføjer farven én gang.
   const colors = new Set();
+  // Går gennem alle briller i glassStore 
   glassStore.glasses.forEach((product) => {
+    // Henter farverne fra produktets attributter, som anvender split til at indsætte et kommasepareret for hver.Hvis der af en grund ikke findes farver så indsættes et tomt array.
     const colorArray = product.attributes.farver?.split(", ") || [];
-    colorArray.forEach((color) => colors.add(color));
+    // Går gennem de farver, der er opnået fra produktet
+    colorArray.forEach((color) => {
+      // Tilføjer hver farve til Set'et. Set'et fjerner som nævnt tidligere automatisk dubletter.
+      colors.add(color);
+    });
   });
-  return Array.from(colors).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+  // Konverterer Set'et til et array og sorterer farverne alfabetisk
+  return Array.from(colors).sort((a, b) => a.localeCompare(b));
 });
 
-// Brand Muligheder
+// Brand Muligheder (Se ovenstående = linje 70 for forklaring af kode)
 const brandOptions = computed(() => {
   const brands = new Set();
   glassStore.glasses.forEach((product) => {
     const brandArray = product.attributes.brand?.split(", ") || [];
     brandArray.forEach((brand) => brands.add(brand));
   });
-  return Array.from(brands).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+  return Array.from(brands).sort((a, b) => a.localeCompare(b));
 });
 
-// Glasform Muligheder
+// Glasform Muligheder (Se ovenstående = linje 70 for forklaring af kode)
 const glassformOptions = computed(() => {
   const glassforms = new Set();
   glassStore.glasses.forEach((product) => {
     const glassformArray = product.attributes.glasform?.split(", ") || [];
     glassformArray.forEach((glassform) => glassforms.add(glassform));
   });
-  return Array.from(glassforms).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+  return Array.from(glassforms).sort((a, b) => a.localeCompare(b)); 
 });
 
-// Glastype Muligheder
+// Glastype Muligheder (Se ovenstående = linje 70 for forklaring af kode)
 const glassTypeOptions = computed(() => {
   const glassTypes = new Set();
   glassStore.glasses.forEach((product) => {
     const glassTypeArray = product.attributes.type?.split(", ") || [];
     glassTypeArray.forEach((glassType) => glassTypes.add(glassType));
   });
-  return Array.from(glassTypes).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+  return Array.from(glassTypes).sort((a, b) => a.localeCompare(b));
 });
 
-// Focusflex gruppe Muligheder
+// Focusflex gruppe Muligheder (Se ovenstående = linje 70 for forklaring af kode)
 const focusFlexOptions = computed(() => {
   const flexGroups = new Set();
   glassStore.glasses.forEach((product) => {
     const flexGroupArray = product.attributes.focusflexgruppe?.Hexkode.split(", ") || [];
     flexGroupArray.forEach((hexkode) => flexGroups.add(hexkode));
   });
-  return Array.from(flexGroups).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+  return Array.from(flexGroups).sort((a, b) => a.localeCompare(b));
 });
 
-// Alder muligheder
+// Alder muligheder (Se ovenstående = linje 70 for forklaring af kode)
 const glassAgeOptions = computed(() => {
   const glassAges = new Set();
   glassStore.glasses.forEach((product) => {
     const glassAgeArray = product.attributes.alder?.split(", ") || [];
     glassAgeArray.forEach((glassAge) => glassAges.add(glassAge));
   });
-  return Array.from(glassAges).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+  return Array.from(glassAges).sort((a, b) => a.localeCompare(b));
 });
 
-// Køns muligheder
+// Køns muligheder (Se ovenstående = linje 70 for forklaring af kode)
 const glassGenderOptions = computed(() => {
   const glassGenders = new Set();
   glassStore.glasses.forEach((product) => {
     const glassGenderArray = product.attributes.køn?.split(", ") || [];
     glassGenderArray.forEach((glassGender) => glassGenders.add(glassGender));
   });
-  return Array.from(glassGenders).sort((a, b) => a.localeCompare(b)); // Sorterer alfabetisk
+  return Array.from(glassGenders).sort((a, b) => a.localeCompare(b));
 });
 
 
 // ColorFilter
 const colorFilter = (glass) => {
+  // Tjekker, om der ikke er nogen farver valgt, eller om brillen (glass) har en farve, der matcher en af de valgte farver
   return (
-    selectedColors.value.length === 0 ||
-    selectedColors.value.some((color) => glass.attributes.farver.includes(color))
+    // Hvis ingen farver er valgt, returneres true, hvilket betyder, at alle produkter vises
+    selectedColors.value.length === 0 || 
+    // Hvis der er valgte farver, tjekker vi, om mindst én af de valgte farver findes i produktets farver
+    selectedColors.value.some((color) => 
+      // Tjekker, om farven (color) findes i brillens (glass) farver.
+      glass.attributes.farver.includes(color)
+    )
   );
 };
 
@@ -188,12 +214,16 @@ const priceFilter = (glass) => {
   return price >= minPrice.value && price <= maxPrice.value;
 };
 
-const applyFilters = () => {
-  console.log('Kører applyFilters...');
 
-  // Filtrere glassene baseret på alle dine filtre
+// Funktion der anvender alle filtre på brillerne og opdaterer filtreringsresultaterne
+const applyFilters = () => {
+
+// Filtrerer brillerne baseret på de valgte filtre og gemmer de filtrerede resultater
   filteredResults.value = glassStore.glasses.filter(
     (glass) => 
+    // Her anvendes flere filtre. Hvert filter tjekker en betingelse, 
+    // og hvis alle betingelser er opfyldt, bliver brillen medtaget i de filtrerede resultater.
+    // colorfilter - Hvis der er valgte farver, tjekkes om brillen har en af disse farver. Dette gøres med alle filter.
       colorFilter(glass) &&
       priceFilter(glass) &&
       brandFilter(glass) &&
@@ -204,33 +234,45 @@ const applyFilters = () => {
       glassGenderFilter(glass)
   );
 
-  // Sortér de filtrerede resultater alfabetisk (f.eks. efter brand)
+ // Når filtreringen er gennemført, sorteres de filtrerede resultater alfabetisk efter brillenavnet
   filteredResults.value = filteredResults.value.sort((a, b) => {
+    // 'localeCompare' sammenligner to strenge (brillenavne) og sorterer dem alfabetisk.
+    // Parametrene 'da' og { sensitivity: 'base' } sikrer, at sorteringen følger dansk sprogindstilling og ikke tager hensyn til store og små bogstaver.
     return a.name.localeCompare(b.name, 'da', { sensitivity: 'base' });
   });
 
+  // Når filtreringen og sorteringen er udført, sættes filterApplied til 'true'.
+  // Det indikerer, at filtreringen er blevet anvendt, og andre funktioner kan bruge denne værdi til at vise, at der er anvendt et filter.
   filterApplied.value = true;
-  console.log('Filtreringsresultater:', filteredResults.value);
 
-  // Scroll til toppen af siden
+  // For at give brugeren en bedre oplevelse ruller vi automatisk til toppen af siden så de kan se at siden opdateres. De ser så straks de filtrerede resultater øverst på skærmen.
   window.scrollTo({
     top: 0,
-    behavior: 'smooth', // Gør scrollen glidende
+    // Gør scrollen glidende
+    behavior: 'smooth',
   });
 };
 
-
+// Funktion der anvender den valgte sorteringskriterie på de filtrerede resultater.
 const applySorting = () => {
+  // Tjekker om sorteringskriteriet er 'Navn faldende', hvis dette er true så iværksættes handlingen, ellers går den videre til næste if statement. 
   if (sortCriteria.value === 'Navn faldende') {
+    // Hvis ja, sorteres de filtrerede resultater efter navn i faldende rækkefølge
     filteredResults.value = filteredResults.value.sort((a, b) => {
+      // 'localeCompare' bruges til at sammenligne navne, og 'da' sikrer dansk sprogindstilling
+      // Sorteringen er i faldende rækkefølge, så a.name sammenlignes med b.name
       return a.name.localeCompare(b.name, 'da', { sensitivity: 'base' });
     });
   } else if (sortCriteria.value === 'Navn stigende') {
     filteredResults.value = filteredResults.value.sort((a, b) => {
       return b.name.localeCompare(a.name, 'da', { sensitivity: 'base' });
     });
+      // Tjekker om sorteringskriteriet er 'Pris stigende'
   } else if (sortCriteria.value === 'Pris stigende') {
+    // Hvis ja, sorteres de filtrerede resultater efter pris i stigende rækkefølge
     filteredResults.value = filteredResults.value.sort((a, b) => {
+       // Her konverteres prisstrengene til tal ved at fjerne punktummer og erstatte kommaer med punktum. Dette gøre fordi vores priser er sat op som dansk/europæisk standart, for at kunne sammenligne må dette laves om. det samme gælder standarten for adskillese af decimaler.
+      // Derefter sammenlignes priserne for at sortere i stigende rækkefølge
       return parseFloat(a.price.replace('.', '').replace(',', '.')) - parseFloat(b.price.replace('.', '').replace(',', '.'));
     });
   } else if (sortCriteria.value === 'Pris faldende') {
@@ -241,17 +283,23 @@ const applySorting = () => {
 };
 
 
-
-// Computed for at returnere filtrerede briller eller alle briller, hvis der ikke er anvendt filtre
+// Samler hvilke briller der skal vises alt efter om der er anvendt filtre. 
 const glassesToDisplay = computed(() => {
+  // Tjekker om der er blevet anvendt et filter, og om der ikke er nogen filtrerede resultater
+  // Hvis der er filtrering, men ingen resultater, vis ingen briller (tom array)
   if (filterApplied.value && filteredResults.value.length === 0) {
-    return []; // Hvis der er filtrering, men ingen resultater, vis ingen billeder
-  } else if (filterApplied.value) {
-    return filteredResults.value; // Hvis der er filtrering, vis kun filtrerede briller
-  } else {
-    return allGlasses.value; // Hvis der ikke er filtrering, vis alle briller
+    return []; 
+  } 
+  // Hvis filter er anvendt og der er filtrerede resultater, vis kun de filtrerede briller
+  else if (filterApplied.value) {
+    return filteredResults.value;
+  } 
+  // Hvis der ikke er anvendt nogen filter, vis alle briller i original liste
+  else {
+    return allGlasses.value;
   }
 });
+
 
 // Funktion til at nulstille filtre
 const resetFilters = () => {
@@ -268,31 +316,43 @@ const resetFilters = () => {
   filterApplied.value = false;
   window.scrollTo({
     top: 0,
-    behavior: 'smooth', // Gør scrollen glidende
+    behavior: 'smooth',
   });
 };
 
 
-// Funktion der håndterer både farver og billeder baseret på Hexkode valuen fra dataen. Dette anvendes til focusflex farven.
+// Funktion der håndterer både farver og billeder baseret på Hexkode valuen fra dataen. Dette anvendes til focusflex farven som skal indsættes som CSS style. Dette er gjort fordi man ikke kan få en seøv eller guld farve som hewkode..
 const getFocusFlexStyle = (hexValue) => {
+  // Hvis der ikke er nogen hex-værdi, returner en standardbaggrundsfarve (hvid)
   if (!hexValue) return { backgroundColor: '#FFFFFF' };
 
+  // Hvis hex-værdien er 'guld', anvendes et billede af guld som baggrund
   if (hexValue === 'guld') {
     return { backgroundImage: `url(${goldenImage})`, backgroundSize: 'cover' };
   }
 
-  if (hexValue.startsWith("sølv")) {
+  // Hvis hex-værdien er 'sølv', anvendes et billede af sølv som baggrund
+  if (hexValue === "sølv") {
     return { backgroundImage: `url(${silverImage})`, backgroundSize: 'cover' };
   }
 
-  // Default stil
+  // Hvis ingen af de tidligere betingelser er opfyldt, returneres en baggrundsfarve baseret på hex-værdien
+  // Hvis hexValue er falsk eller ikke er en gyldig farvekode, anvendes standardfarven '#CCCCCC'
   return {
-    backgroundColor: hexValue || '#CCCCCC',
+    backgroundColor: hexValue || '#FFFFFF',
   };
 };
 
 
-applyFilters();
+watch(route, (newRoute) => {
+  // Tjekker, om den nye rute (newRoute) har et navn, der matcher en af de ønskede ruter
+  if (newRoute.name === 'ProductFormOverview' || newRoute.name === 'ProductFocusFlexOverview' || newRoute.name === 'ProductTypeOverview' || newRoute.name === 'ProductMenOverview' || newRoute.name === 'ProductWomenOverview' || newRoute.name === 'ProductChildOverview') {
+    // Hvis den nye rute er én af de ønskede, så kaldes applyFilters funktionen. Denne anvendes for at anvende filtre fra inspirations.html.
+    applyFilters();
+  }
+  // Denne linje betyder, at funktionen skal køres med det samme, når watch bliver sat op, selv før route ændres.
+}, { immediate: true });
+
 </script>
 
 <template>
@@ -308,7 +368,7 @@ applyFilters();
 
 
     <div class="sort-container">
-    <!-- Dropdown menu -->
+      <!-- Når der ændres i select så skal applySorting funktionen anvendes -->
     <select v-model="sortCriteria" @change="applySorting" class="sort-dropdown">
       <option value="" selected disabled>Sorter</option>
       <option value="Navn faldende">Sortér efter navn (A-Z)</option>
@@ -319,10 +379,13 @@ applyFilters();
   </div>
   </div>
 
-  <TheSpinner v-if="glassStore.isLoading || filterApplied.value && filteredResults.value.length === 0" />
+  <!-- Er is.loading = true så skal spinneren vises  -->
+  <TheSpinner v-if="glassStore.isLoading"></TheSpinner>
 
+  <!-- Er is.loading = false så skal webshoppen vises  -->
   <div v-if="!glassStore.isLoading" class="webshop">
     <div class="filter">
+      <!-- Indlæser alle muligheder for køn som kan filtres i. Der tages alle former for køn som brillerne indeholder og opretter en label samt check box til hver køns-mulighed  -->
       <div>
         <h4 class="filterheading">Vælg køn <i class="fa-solid fa-venus-mars"></i></h4>
         <div class="filter-group filterCheckBoxContainer">
@@ -332,7 +395,7 @@ applyFilters();
           </div>
         </div>
       </div>
-
+<!-- Indlæser alle muligheder for alder som kan filtres i. Der tages alle former for aldre som brillerne indeholder og opretter en label samt check box til hver alder-mulighed  -->
       <div>
         <h4 class="filterheading">Vælg Alder <i class="fa-solid fa-person-breastfeeding"></i></h4>
         <div class="filter-group filterCheckBoxContainer">
@@ -382,7 +445,7 @@ applyFilters();
           </div>
         </div>
       </div>
-
+      <!-- getfocusFlexstyle anvendes til at hive farve eller billede ned som baggrund. -->
       <div>
         <h4 class="filterheading">Vælg Focus Flex Gruppe <i class="fa-solid fa-layer-group"></i></h4>
         <div class="filter-group filterCheckBoxContainer">
@@ -420,10 +483,11 @@ applyFilters();
     </div>
 
   <section class="glassesGrid">
+    <!-- Vises kun hvis der ikke findes nogle resultater ud fra filtreringen når den er anvendt. -->
   <h4 style="grid-column: 1 / -1;" v-if="filterApplied && filteredResults.length === 0">
     Der kunne desværre ikke findes nogen briller, der matchede din søgning.
   </h4>
-  
+  <!-- Genererer det antal produktcards som som er i glassestoDisplay. Hver produkt/brille bliver genereret med title, billede osv. -->
   <router-link class="productCard" v-for="glass in glassesToDisplay" :key="glass.id" :to="{ name: 'ProductDetails', params: { id: glass.id } }">
     <div class="alignBox">
       <div class="imageholder">
@@ -441,9 +505,9 @@ applyFilters();
   </router-link>
   </section>
   </div>
-  <TheGlassesTrailCards></TheGlassesTrailCards>
+  <!-- Vises kun hvis is.loading = false -->
+  <TheGlassesTrailCards v-if="!glassStore.isLoading"></TheGlassesTrailCards>
 </template>
-
 <style scoped>
 
 
@@ -453,7 +517,6 @@ applyFilters();
   margin: 2rem var(--pageMarginDesktop);
 }
 
-/* Dropdown menu styling */
 .sort-dropdown {
   width: max-content;
   font-size: 16px;
@@ -465,7 +528,6 @@ applyFilters();
   cursor: pointer;
   transition: box-shadow 0.3s;
 }
-
 
 .breadcrumbs{
   display: flex;
@@ -548,13 +610,6 @@ display: flex;
   width: 15px;
 }
 
-.focusFlexColorSquare{
-  border-radius: 12px;
-  height: 20px;
-  width: 20px;
-}
-
-
 .smallestText{
   font-size: 0.7rem;
   font-weight: 200;
@@ -589,13 +644,13 @@ position: relative;
   font-family: var(--WixFont);
 }
 
+
+
+/* FILTRERING */
+
 .filterheading{
   font-size: 16px;
 }
-
-
-
-
 
 .filter {
   padding: 1rem;
@@ -615,10 +670,16 @@ position: relative;
   margin-bottom: 0.5rem;
 }
 
+.focusFlexColorSquare{
+  border-radius: 12px;
+  height: 20px;
+  width: 20px;
+}
+
 .color-checkbox {
-  display: flex; /* Gør containeren til flexbox */
-  align-items: center; /* Sørger for at elementerne er justeret vertikalt */
-  gap: 10px; /* Tilføjer lidt mellemrum mellem checkbox og farveprik */
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .filterCheckBoxContainer{
@@ -693,10 +754,6 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
 }
 
-
-
-
-
 .checkbox {
   display: none;
 }
@@ -729,6 +786,9 @@ label{
   background-color: var(--FocusOrange);
   border-color: rgb(206, 110, 0);
 }
+
+
+/* KNAPPER */
 
 .customButton:hover{
   text-decoration: none;
