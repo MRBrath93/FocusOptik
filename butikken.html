@@ -137,34 +137,57 @@
         <p>Du finder os inde i Kvickly.</p>
       </article>
       <aside class="imageContainer">
-        <div>
+        <div class="galleryItemContainer">
           <img class="galleryItem" src="/public/assets/img/butikken_1_700x467.jpg"
             alt="Focus Optik butikken med fokus på afprøvningsbord og kassen" loading="lazy">
-         <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
-          </div>
-        <div>
+          <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
+        </div>
+        <div  class="galleryItemContainer">
           <img class="galleryItem" src="/public/assets/img/butikken_2_700x934.jpg"
             alt="Focus Optik butikken med fokus på en af de mange udstillingsvægge med brillestel" loading="lazy">
-         <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
-          </div>
-        <div>
+          <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
+        </div>
+        <div class="galleryItemContainer">
           <img class="galleryItem" src="/public/assets/img/butikken_3_700x467.jpg"
             alt="Focus Optik butikken med fokus på en udstillingsvæg med orange baggrund" loading="lazy">
-         <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
-          </div>
-        <div>
+          <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
+        </div>
+        <div class="galleryItemContainer">
           <img class="galleryItem" src="/public/assets/img/butikken_4_700x698.jpg"
             alt="Focus Optik butikken med fokus på indgangen og vinduesudstilling" loading="lazy">
-        <!-- KILDE: Focus_Optik. 29. maj 2021. Instagram. [online] accessed 29.12.24, URL:https://www.instagram.com/p/CPdCRiBBcWM/ -->
+          <!-- KILDE: Focus_Optik. 29. maj 2021. Instagram. [online] accessed 29.12.24, URL:https://www.instagram.com/p/CPdCRiBBcWM/ -->
         </div>
-        <div>
+        <div  class="galleryItemContainer">
           <img class="galleryItem" src="/public/assets/img/butikken_5_600x640.jpg"
             alt="Focus Optik med fokus på en udstillingsvæg med et brillestel og solbriller" loading="lazy">
         </div>
-        <a href=""><i class="iconStylingOrange fa-solid fa-chevron-left"></i></a>
+        <a href=""><i class="iconStylingOrange fa-solid fa-chevron-left" id="previousBtn" onclick="plusSlides(-1)"></i></a>
         <!-- KILDE: FontAwesome. chevron-left [online] accessed 01.01.25 URL: https://fontawesome.com/v6/icons/chevron-left?f=classic&s=solid -->
-        <a href=""><i class="iconStylingOrange fa-solid fa-chevron-right"></i></a>
+        <a href=""><i class="iconStylingOrange fa-solid fa-chevron-right" id="nextBtn" onclick="plusSlides(1)"></i></a>
         <!-- KILDE: FontAwesome. chevron-right [online] accessed 01.01.25 URL: https://fontawesome.com/icons/chevron-right?f=classic&s=solid&pc=%23fb6201&sc=%23fb6201 -->
+
+        <div class="galleryRow">
+          <div>
+            <img class="galleryItemSmall" src="/public/assets/img/butikken_1_700x467.jpg"
+            alt="Focus Optik butikken med fokus på afprøvningsbord og kassen" loading="lazy" onclick="currentSlide(1)">
+          </div>
+          <div>
+            <img class="galleryItemSmall"  src="/public/assets/img/butikken_2_700x934.jpg"
+            alt="Focus Optik butikken med fokus på en af de mange udstillingsvægge med brillestel" loading="lazy" onclick="currentSlide(2)">
+          </div>
+          <div>
+            <img class="galleryItemSmall" src="/public/assets/img/butikken_3_700x467.jpg"
+            alt="Focus Optik butikken med fokus på en udstillingsvæg med orange baggrund" loading="lazy" onclick="currentSlide(3)">
+          </div>
+          <div>
+            <img class="galleryItemSmall" src="/public/assets/img/butikken_4_700x698.jpg"
+            alt="Focus Optik butikken med fokus på indgangen og vinduesudstilling" loading="lazy" onclick="currentSlide(4)">
+          </div>
+          <div>
+            <img class="galleryItemSmall" src="/public/assets/img/butikken_5_600x640.jpg"
+            alt="Focus Optik med fokus på en udstillingsvæg med et brillestel og solbriller" loading="lazy" onclick="currentSlide(5)">
+          </div>
+        </div>
 
       </aside>
     </section>
@@ -187,7 +210,7 @@
       <div>
         <img class="sideImg" src="/public/assets/img/forventning_ 707x472 .jpg"
           alt="samtale mellem kunde og medarbejder i Focus Optik butikken" loading="lazy">
-          <!-- KILDE: Arne Trautmann, billede: #32615236. Colourbox.dk  [online] accessed 29.12.24, URL:https://www.colourbox.dk/billede/dame-oejne-afsats-billede-32615236 -->
+        <!-- KILDE: Arne Trautmann, billede: #32615236. Colourbox.dk  [online] accessed 29.12.24, URL:https://www.colourbox.dk/billede/dame-oejne-afsats-billede-32615236 -->
       </div>
     </section>
     <section class="sectionSpace">
@@ -293,8 +316,8 @@
         </div>
       </article>
     </section>
-    <article class="cardHelp sectionSpace">
-      <img class="imgStyling cardImg"  src="/public/assets/img/butikkenCard_1594x563.jpg"
+    <article class="centerContainer sectionSpace">
+      <img class="imgStyling cardImg" src="/public/assets/img/butikkenCard_1594x563.jpg"
         alt="kvinde der smiler og kigger ned på to brillestel hun holder i sine hænder" loading="lazy" />
       <!-- KILDE: Peopleimages.com, billede: #61642955 [online] accessed 29.12.24, URL:https://www.colourbox.dk/billede/optiker-briller-kvinde-billede-61642955 -->
       <div class="cardRightText">
@@ -316,7 +339,9 @@
   <footer>
     <section class="footerContainer">
       <div class="footerColumn footerDesktop">
-        <a href="/briller.html"><h3>Briller</h3></a>
+        <a href="/briller.html">
+          <h3>Briller</h3>
+        </a>
         <a href="/omBriller.html">Om Briller</a>
         <a href="/index.html">Alle Briller</a>
         <a href="/index.html">Herrebriller</a>
@@ -324,23 +349,31 @@
         <a href="/index.html">Børnebriller</a>
       </div>
       <div class="footerColumn footerDesktop">
-        <a href="#"><h3>Kontaktlinser</h3></a>
+        <a href="#">
+          <h3>Kontaktlinser</h3>
+        </a>
         <a href="#">Tilbehør til Kontaktlinser</a>
         <a href="#">Køb Kontaktlinser</a>
       </div>
       <div class="footerColumn footerDesktop">
-        <a href="/syn&sundhed.html"><h3>Syn & Sundhed</h3></a>
+        <a href="/syn&sundhed.html">
+          <h3>Syn & Sundhed</h3>
+        </a>
         <a href="/oejensundhed.html">Øjensundhed</a>
         <a href="/videnOmBriller&Linser.html">Viden om Brille- og Synsstyrker</a>
         <a href="/synstest&Afproevning.html">Synstest & Brilleafprøvning</a>
       </div>
       <div class="footerColumn footerDesktop">
-        <a href="/omFocusOptik.html"><h3>Om Focus Optik</h3></a>
+        <a href="/omFocusOptik.html">
+          <h3>Om Focus Optik</h3>
+        </a>
         <a href="/voresTeam.html">Vores Team</a>
         <a href="/butikken.html">Butikken</a>
       </div>
       <div class="footerColumn footerDesktop">
-        <a href="/focusFlex.html"><h3>Focus Flex</h3></a>
+        <a href="/focusFlex.html">
+          <h3>Focus Flex</h3>
+        </a>
         <a href="#">Focus Flex Events</a>
         <a href="#">Priser</a>
       </div>
@@ -364,11 +397,12 @@
           <!-- KILDE: Font-Awesome. Envelope [online] accessed: 01.01.25. URL: https://fontawesome.com/v6/icons/envelope?f=classic&s=regular -->
           <p>butik@focusoptik.dk</p>
         </div>
-          <p>CVR: 25503023</p>
+        <p>CVR: 25503023</p>
       </div>
     </section>
     <div class="footerRow">
-      <a href="https://www.facebook.com/focusoptik.focusflex"><i class="iconStylingGreyLarge fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.facebook.com/focusoptik.focusflex"><i
+          class="iconStylingGreyLarge fa-brands fa-facebook-f"></i></a>
       <!-- KILDE: Font-Awesome. Facebook-F [online] accessed: 03.01.25. URL: https://fontawesome.com/icons/facebook-f?f=brands&s=solid -->
       <a href="https://www.instagram.com/focus_optik/"><i class="iconStylingGreyLarge fa-brands fa-instagram"></i></a>
       <!-- KILDE: Font-Awesome. instagram [online] accessed: 03.01.25. URL: https://fontawesome.com/icons/instagram?f=brands&s=solid -->

@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// ACCORDIONS - FAQ
+// ACCORDIONS - FAQ - BUTIKKEN.HTML
 
 document.querySelectorAll('.accordionHeader').forEach(button => {
     button.addEventListener('click', () => {
@@ -60,7 +60,34 @@ document.querySelectorAll('.accordionHeader').forEach(button => {
     });
 });
 
-// INTERN NAVIGATION - SYNSTEST OG VRILLEAFPRØVNING 
+// IMAGE SLIDER - BUTIKKEN.HTML
+
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Funktion til at skifte slide
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+// Funktion til at vise den aktuelle slide
+function showSlides(n) {
+    let i; // Variabel til at gennemgå alle galleryItemContainer elementer
+
+    let galleryItemContainer = document.querySelectorAll('.imageContainer .galleryItemContainer');
+    if (n > galleryItemContainer.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = galleryItemContainer.length }
+    for (i = 0; i < galleryItemContainer.length; i++) {
+        galleryItemContainer[i].style.display = 'none';
+    }
+    galleryItemContainer[slideIndex - 1].style.display = 'unset';
+}
+
+
+
+
+// INTERN NAVIGATION - SYNSTEST OG BRILLEAFPRØVNING 
+// OBS CONSOL - API KALDER PÅ ALLE SIDERNE?
 
 // Funktion til at fjerne "active" klassen fra alle navLinkEl. Dette gøres indledningsvist for at sikre, at kun den aktive sektion har "active" klassen.
 const removeActiveClass = () => {
@@ -102,15 +129,15 @@ locationEl.forEach((el) => {
 const dotPosition = () => {
     const scrollPosition = window.scrollY; // Variabel med den aktuelle scroll-position
     const dot = document.getElementById('dot'); // Variabel med dot-elementet i DOM
-  
+
     // Beregning af positionen for dot
     const newPosition = scrollPosition * 0.065; // Variabel med den nye position for dot. Den udregnes ved at tage scrollPosition og gange med 0.065.
     // Det er nødvendigt at gange med 0.065 for at dotten's hastighed passer til scroll. Værdien er fundet ved funktionel test og justering i inspect-tool.
     // dot's position opdateres i DOM ved at ændre style.top attributten til den nye position
     dot.style.top = `${newPosition}px`;
-  };
-  // Eventlistener der lytter efter scroll-begivenheder og kalder dotPosition funktionen
-  window.addEventListener('scroll', dotPosition);
+};
+// Eventlistener der lytter efter scroll-begivenheder og kalder dotPosition funktionen
+window.addEventListener('scroll', dotPosition);
 
 //   INSPIRATIONSKILDE: Window: scrollY property. 2025. Mozilla Corporations [online] accessed 04.01.25. URL: https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
 //   INSPIRATIONSKILDE: ScrollSmoother to reduce scroll speed. 28.09.23. GSAP [online] accessed 04.01.25. URL: https://gsap.com/community/forums/topic/38487-scrollsmoother-to-reduce-scroll-speed/

@@ -62,8 +62,8 @@
 
   --pageMarginDesktop: 10rem;
   --pageMarginTablet: 5rem;
-  --pageMarginMobile: 1rem:
-    /* Angiv vairabler så som farver, størrelser på margin, padding osv. */
+  --pageMarginMobile: 2.5rem;
+  /* Angiv vairabler så som farver, størrelser på margin, padding osv. */
 }
 
 
@@ -297,6 +297,20 @@ li {
     }
   }
 
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.2);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
 }
 
 /* ================================================
@@ -317,6 +331,50 @@ li {
 
 .sectionSpace {
   margin-bottom: var(--VerticalSectionSpace);
+}
+
+/* Hero section  */
+
+.heroImg {
+  width: 100%;
+  max-height: 18rem;
+  object-fit: cover;
+}
+
+.headerContainer {
+  position: relative;
+}
+
+.headerContainer h1 {
+  position: absolute;
+  top: 45%;
+  margin-left: var(--pageMarginDesktop);
+  max-width: 65vw;
+}
+
+/* Breadcrumbs */
+
+.breadcrumbs {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: var(--Black);
+}
+
+/* Bottom Card styling */
+.centerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: var(--VerticalSectionSpace);
+  margin-top: 2rem;
+  position: relative;
 }
 
 
@@ -424,7 +482,7 @@ footer .footerRow a i:hover {
    ================================================ */
 .navCardContainerGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
   margin-top: 4rem;
   margin-bottom: var(--VerticalSectionSpace);
@@ -443,19 +501,24 @@ footer .footerRow a i:hover {
   /* flex-direction: column;
   flex-wrap: wrap; */
   gap: 2rem;
-  max-height: 40rem;
+  /* max-height: 40rem; */
   margin-bottom: var(--VerticalSectionSpace);
-}  
+}
 
 .imgEye {
   max-width: 40vw;
+}
+
+.imgEyeTwo {
+  /* max-height: 100%; */
+  max-width: 100%;
+  object-fit: cover;
 }
 
 .eyeText {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  margin-top: 2rem;
 }
 
 .greyContainer {
@@ -480,8 +543,8 @@ footer .footerRow a i:hover {
   gap: 1rem;
   position: absolute;
   top: 20%;
-  left: 10%;
-  width: 35vw;
+  left: 20%;
+  max-width: 35vw;
 }
 
 .textStyling {
@@ -520,8 +583,6 @@ footer .footerRow a i:hover {
   margin-top: 3rem;
 }
 
-
-
 .internNav:hover {
   color: var(--FocusOrange);
   text-decoration: underline;
@@ -553,8 +614,6 @@ footer .footerRow a i:hover {
   text-decoration: none;
   color: var(--Black);
 }
-
-
 
 #internLinks:nth-child(2) {
   padding-top: 2rem;
@@ -686,37 +745,6 @@ footer .footerRow a i:hover {
    OM FOCUS OPTIK
    ================================================ */
 
-/* Hero section  */
-
-.heroImg {
-  width: 100%;
-  max-height: 18rem;
-  object-fit: cover;
-}
-
-.headerContainer {
-  position: relative;
-}
-
-.headerContainer h1 {
-  position: absolute;
-  top: 45%;
-  left: 5%;
-}
-
-/* Breadcrumbs */
-
-.breadcrumbs {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-}
-
-.breadcrumbs a {
-  text-decoration: none;
-  color: var(--Black);
-}
 
 /* NavCard section */
 
@@ -794,7 +822,6 @@ footer .footerRow a i:hover {
 }
 
 .valuesHeader {
-  text-align: center;
   display: flex;
   justify-content: center;
 }
@@ -871,20 +898,60 @@ footer .footerRow a i:hover {
   margin-bottom: var(--VerticalSectionSpace);
 }
 
-.imageContainer {}
-
-.galleryItem {
-  /* width: 100%; */
-  cursor: pointer;
+.imageContainer {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
 }
 
+.galleryItemContainer {
+  display: none;
+}
 
+.galleryItem {
+  width: 40vw;
+  object-fit: cover;
+}
+
+.galleryItemSmall:hover {
+  opacity: 1;
+}
+
+#previousBtn,
+#nextBtn {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  animation: pulse 1s infinite;
+}
+
+#previousBtn {
+  left: 5px;
+}
+
+#nextBtn {
+  right: 5px;
+}
+
+.galleryRow {
+  display: flex;
+  gap: 0.5rem;
+  width: 40vw;
+  max-height: 6.5rem;
+  overflow: hidden;
+}
+
+.galleryItemSmall {
+  object-fit: cover;
+  opacity: 0.6;
+  width: 9rem;
+}
 
 .iconStylingOrange {
   color: var(--FocusOrange);
   font-size: 3rem;
-  stroke: var(--FocusOrange);
-  stroke-width: 2px;
+  border: var(--FocusOrange);
+  border-width: 2px;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
@@ -892,8 +959,8 @@ footer .footerRow a i:hover {
 .iconStylingBlack {
   color: var(--Black);
   font-size: 3rem;
-  stroke: var(--FocusOrange);
-  stroke-width: 2px;
+  border: var(--FocusOrange);
+  border-width: 2px;
   padding: 0.5rem;
 }
 
@@ -943,19 +1010,10 @@ footer .footerRow a i:hover {
   text-decoration: none;
 }
 
-
-
-
 .sideImg {
   width: 100%;
   object-fit: cover;
 }
-
-.cardHelp {
-  position: relative;
-}
-
-
 
 .cardRightText {
   display: flex;
@@ -1017,92 +1075,77 @@ footer .footerRow a i:hover {
 }
 
 
-
-
-
-
-
 /* ================================================
    FOCUS FLEX
    ================================================ */
 
-   .focusFlexList {
-    margin-top: 1rem;
-    margin-bottom: var(--VerticalSectionSpace);
-   }
+.focusFlexList {
+  margin-top: 1rem;
+  margin-bottom: var(--VerticalSectionSpace);
+}
 
-   .focusFlexList li {
-    list-style-type: disc;
-    font-family: var(--WixFont);
-    font-weight: 400;
-    font-size: 1.125rem;
-    line-height: 1.5;
-    margin-left: 1rem;
-   }
+.focusFlexList li {
+  list-style-type: disc;
+  font-family: var(--WixFont);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  margin-left: 1rem;
+}
 
-   .lightWeight {
-    font-weight: 300;
-   }
+.lightWeight {
+  font-weight: 300;
+}
 
-    .focusFlexGroup {
-      background-color: var(--Grey);
-      border-radius: 5px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      padding: 2rem 4rem;
-   }
+.focusFlexGroup {
+  background-color: var(--Grey);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+}
 
-   .priceContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 4rem;
-    margin-top: 2rem;
-    margin-bottom: var(--VerticalSectionSpace);
-   }
+.priceContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: var(--VerticalSectionSpace);
+}
 
-   .focusFlexPrice {
-    padding-top: 2rem;
-   }
+.focusFlexPrice {
+  padding-top: 2rem;
+}
 
-   .priceGroup {
-    background-color: var(--Grey);
-    border-radius: 5px;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-  }
+.priceGroup {
+  background-color: var(--Grey);
+  border-radius: 5px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
 
-   .priceGroupRowContainer {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-  
-  }
+.priceGroupRowContainer {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
 
-   .priceGroupFlexContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-   }
+.priceGroupFlexContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-   .colorGroup {
-    font-weight: 700;
-   }
+.colorGroup {
+  font-weight: 700;
+}
 
-   .centerContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: var(--VerticalSectionSpace);
-    margin-top: 2rem;
-   }
-
-   .focusFlexColumn {
-    padding: 2rem 6rem;
-   }
+.focusFlexColumn {
+  padding: 2rem 6rem;
+}
 
 /* ================================================
   MEDIA QUERIES
@@ -1160,6 +1203,33 @@ footer .footerRow a i:hover {
     height: fit-content;
   }
 
+  /* OBS DENNE PASSER TIL ØJENSUNDHED. Hvad med resten?  */
+  .cardLeftText {
+    top: 10%;
+    left: 5%;
+  }
+
+  .imgVidenOm {
+    height: fit-content;
+  }
+
+  .focusFlexGroup {
+    gap: 0.5rem;
+    max-width: 60vw;
+  }
+
+  .priceContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .priceGroupRowContainer {
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    max-height: 90vh;
+  }
+
 }
 
 @media screen and (max-width: 1000px) {
@@ -1171,6 +1241,7 @@ footer .footerRow a i:hover {
   .headerContainer h1 {
     max-width: 60vw;
     top: 15%;
+    margin-left: var(--pageMarginTablet);
   }
 
   .headerContainer img {
@@ -1178,9 +1249,16 @@ footer .footerRow a i:hover {
   }
 
   .cardLeftText {
-    top: 10%;
-    left: 5%;
-    width: 50vw;
+    top: 5%;
+    left: 10%;
+    max-width: 47vw;
+    gap: 0.5rem;
+  }
+
+  .cardLeftTextVidenOm {
+    top: 5%;
+    left: 10%;
+    max-width: 40vw;
   }
 
   .cardMiddleText {
@@ -1190,6 +1268,13 @@ footer .footerRow a i:hover {
     left: 40%;
   }
 
+  .valuesContainer {
+    margin-top: 2rem;
+  }
+
+  .focusFlexColumn {
+    padding: 2rem;
+  }
 
 }
 
@@ -1199,10 +1284,28 @@ footer .footerRow a i:hover {
     margin-bottom: 2rem;
   }
 
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .heroImg {
+    display: none;
+  }
+
+  .headerContainer h1 {
+    position: unset;
+    margin-left: var(--pageMarginMobile);
+    font-size: 1.8rem;
+  }
+
   .cardImg {
     width: 100%;
     height: 20rem;
     object-position: right;
+  }
+
+  .cardImgOjensundhed {
+    object-position: 60%;
   }
 
   .cardImgLeft {
@@ -1211,12 +1314,8 @@ footer .footerRow a i:hover {
 
   .cardLeftText {
     top: 10%;
-    left: 5%;
-    width: 35%;
-  }
-
-  .cardBtn {
-    margin: 0;
+    left: 3%;
+    gap: 0;
   }
 
   .imgEye {
@@ -1227,8 +1326,65 @@ footer .footerRow a i:hover {
     display: none;
   }
 
+  .twoColumnSection {
+    flex-direction: column;
+    gap: 1rem;
+  }
 
+  .textStyling {
+    max-width: 100%;
+  }
+
+  .cardLeftTextVidenOm {
+    gap: 0.5rem;
+    background-color: rgb(175, 191, 185);
+    position: unset;
+    padding: 3rem;
+    max-width: 90%;
+    border-radius: 5px;
+  }
+
+  .cardImgVidenOm {
+    display: none;
+  }
+
+  .valueImg {
+    height: 150px;
+  }
+
+  .valuesItem {
+    padding-bottom: 0;
+    width: 60vw;
+    text-align: center;
+  }
+
+  .navCardContainer {
+    flex-direction: column;
+  }
+
+  .navCard img {
+    height: 200px;
+  }
+
+  #cardTextFlex {
+    max-width: fit-content;
+  }
 }
+
+@media screen and (max-width: 700px) {
+  #cardImgFlex {
+    display: none;
+  }
+
+  #cardTextFlex {
+    background-color: rgb(175, 191, 185);
+    padding: 3rem;
+    border-radius: 5px;
+    position: unset;
+  }
+}
+
+
 
 @media screen and (max-width: 500px) {
 
@@ -1236,6 +1392,11 @@ footer .footerRow a i:hover {
   main {
     margin-left: var(--pageMarginMobile);
     margin-right: var(--pageMarginMobile);
+  }
+
+  .breadcrumbs {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .footerContainer {
@@ -1261,4 +1422,43 @@ footer .footerRow a i:hover {
     max-width: 65%;
   }
 
+  .cardLeftText {
+    left: 15%;
+    gap: 0.5rem;
+  }
+
+  .imgArticle {
+    display: none;
+  }
+
+  .twoColumnSection {
+    gap: 0;
+  }
+
+  .textStyling {
+    max-width: 100%;
+    margin-bottom: 0;
+  }
+
+  .valueImg {
+    display: none;
+  }
+
+  .valuesContainer {
+    justify-items: center;
+  }
+
+  .focusFlexGroup {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+
+
+}
+
+@media screen and (max-width: 380px) {
+  .centerContainer {
+    display: none;
+  }
 }
