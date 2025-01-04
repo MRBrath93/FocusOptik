@@ -502,8 +502,6 @@ footer .footerRow a i:hover {
 
 
 
-
-
 .internNav:hover {
   color: var(--FocusOrange);
   text-decoration: underline;
@@ -652,6 +650,12 @@ footer .footerRow a i:hover {
 
 #img5 {
   grid-area: img5;
+}
+
+.articleFlexbox {
+  display: flex;
+  gap: 4rem;
+  margin-bottom: var(--VerticalSectionSpace);
 }
 
 

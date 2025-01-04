@@ -4,7 +4,8 @@ let accordion = document.querySelectorAll('.accordionHeader');
 let accordionIcon = document.querySelectorAll('.accordionIcon');
 // let accordionContent = document.querySelectorAll('.accordionContent');
 
-
+const navLinkEl = document.querySelectorAll('.internNav');
+const locationEl = document.querySelectorAll('.location');
 
 
 // FUNCTIONS
@@ -61,9 +62,6 @@ document.querySelectorAll('.accordionHeader').forEach(button => {
 
 // INTERN NAVIGATION - SYNSTEST OG VRILLEAFPRØVNING 
 
-const navLinkEl = document.querySelectorAll('.internNav');
-const locationEl = document.querySelectorAll('.location');
-
 // Funktion til at fjerne "active" klassen fra alle navLinkEl. Dette gøres indledningsvist for at sikre, at kun den aktive sektion har "active" klassen.
 const removeActiveClass = () => {
     navLinkEl.forEach((link) => { // forEach metoden anvendes for at gennemgå alle navLinkEl elementer og evt. fjerne "active" klassen fra dem.
@@ -101,18 +99,18 @@ locationEl.forEach((el) => {
 
 
 // Funktion til at opdatere dot's position baseret på scroll
-const updateDotPosition = () => {
-    const scrollPosition = window.scrollY; // Få den aktuelle scroll-position
-    const dot = document.getElementById('dot'); // Find dot-elementet
+const dotPosition = () => {
+    const scrollPosition = window.scrollY; // Variabel med den aktuelle scroll-position
+    const dot = document.getElementById('dot'); // Variabel med dot-elementet i DOM
   
-    // Beregn den nye position for dot
-    const newPosition = scrollPosition * 0.065; // Juster denne værdi efter behov
-  
-    // Opdater dot's position
+    // Beregning af positionen for dot
+    const newPosition = scrollPosition * 0.065; // Variabel med den nye position for dot. Den udregnes ved at tage scrollPosition og gange med 0.065.
+    // Det er nødvendigt at gange med 0.065 for at dotten's hastighed passer til scroll. Værdien er fundet ved funktionel test og justering i inspect-tool.
+    // dot's position opdateres i DOM ved at ændre style.top attributten til den nye position
     dot.style.top = `${newPosition}px`;
   };
-  
-  // Lyt efter scroll-begivenheder
-  window.addEventListener('scroll', updateDotPosition);
+  // Eventlistener der lytter efter scroll-begivenheder og kalder dotPosition funktionen
+  window.addEventListener('scroll', dotPosition);
 
-//   INSPIRATIONSKILDE: Window: scrollY property. 2025. Mozilla Corporations [online] URL: https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
+//   INSPIRATIONSKILDE: Window: scrollY property. 2025. Mozilla Corporations [online] accessed 04.01.25. URL: https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
+//   INSPIRATIONSKILDE: ScrollSmoother to reduce scroll speed. 28.09.23. GSAP [online] accessed 04.01.25. URL: https://gsap.com/community/forums/topic/38487-scrollsmoother-to-reduce-scroll-speed/
