@@ -438,10 +438,34 @@ footer .footerRow a i:hover {
 /* ================================================
    OEJENSUNDHED
    ================================================ */
+.eyefunctionContainer {
+  display: flex;
+  /* flex-direction: column;
+  flex-wrap: wrap; */
+  gap: 2rem;
+  max-height: 40rem;
+  margin-bottom: var(--VerticalSectionSpace);
+}  
 
+.imgEye {
+  max-width: 40vw;
+}
 
+.eyeText {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-top: 2rem;
+}
 
-
+.greyContainer {
+  background-color: var(--Grey);
+  padding: 2rem;
+  border-radius: 5px;
+  display: flex;
+  gap: 2rem;
+  margin-bottom: var(--VerticalSectionSpace);
+}
 
 
 
