@@ -468,11 +468,6 @@ footer .footerRow a i:hover {
   max-width: 50%;
 }
 
-.imgWidth {
-  max-width: 100%;
-  object-fit: cover;
-}
-
 .introText {
   margin-bottom: 1.5rem;
 }
@@ -563,7 +558,6 @@ footer .footerRow a i:hover {
 }
 
 .imgArticle {
-  width: fit-content;
   max-width: 100%;
   height: 100%;
   object-fit: cover;
