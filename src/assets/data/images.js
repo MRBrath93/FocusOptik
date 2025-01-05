@@ -48,7 +48,10 @@ export const cartoonGlasses = [
 import OldLady from '@/assets/img/OldWomenStore500x333.jpg';
 import LittleGirl from '@/assets/img/LittleGirlPainting500x333.jpg';
 import ManInMirror from '@/assets/img/ManInTheMirror500x264.jpg';
-import ManInTheMirror1293x300 from '@/assets/img/ManInTheMirror1278x300.jpg';
+import ManInOnStreetHero from '@/assets/img/ManInTheMirror1278x300.jpg';
+import WomanNatureHero from '@/assets/img/WomanNatureDemure2.jpg';
+import WoodGlassHero from '@/assets/img/WoodGlassHero.jpg';
+import ChildHero from '@/assets/img/ChildHero.jpg';
 
 
 export const TheGlassesTrailCardsImages = [
@@ -66,7 +69,19 @@ export const TheGlassesTrailCardsImages = [
     },
     {
         alt_text: 'En mandlig kunde som afprøver briller imens han ser sig i spejlet',
-        image: ManInTheMirror1293x300,
+        image: ManInOnStreetHero,
+    },
+    {
+        alt_text: 'En kvinder der går i naturen med sine solbriller',
+        image: WomanNatureHero,
+    },
+    {
+        alt_text: 'Et par briller der ligger på en træklods',
+        image: WoodGlassHero,
+    },
+    {
+        alt_text: 'Et barn med røde briller',
+        image: ChildHero,
     },
 ];
 

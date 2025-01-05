@@ -1,6 +1,7 @@
 <script setup>
 import ProductOverview from '@/components/ProductOverview.vue';
-
+import { TheGlassesTrailCardsImages } from '@/assets/data/images';
+const imageUrl = TheGlassesTrailCardsImages[5].image;
 const props = defineProps({
     initialSelectedFocusFlexGroup: {
     type: [String, Array],
@@ -11,16 +12,16 @@ const props = defineProps({
 
 <template>
   <section>
-    <div class="heroPic"></div>
+    <div class="heroPic" :style="{ backgroundImage: `url(${imageUrl})`}"></div>
     <ProductOverview :initialSelectedFocusFlexGroup="[props.initialSelectedFocusFlexGroup]"></ProductOverview>
   </section>
 </template>
 
 <style scoped>
 .heroPic{
-  background-image: url("../../public/assets/img/TwoColorGlasses.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   height: 200px;
   margin-bottom: var(--VerticalSectionSpace);
 }

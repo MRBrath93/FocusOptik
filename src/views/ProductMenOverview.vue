@@ -15,7 +15,6 @@ const imageUrl = TheGlassesTrailCardsImages[3].image;
 
 <style scoped>
 .heroPic{
-  background-image: url("");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

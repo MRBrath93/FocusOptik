@@ -253,8 +253,29 @@ const applyFilters = () => {
   });
 };
 
+// Samler hvilke briller der skal vises alt efter om der er anvendt filtre. 
+const glassesToDisplay = computed(() => {
+  // Tjekker om der er blevet anvendt et filter, og om der ikke er nogen filtrerede resultater
+  // Hvis der er filtrering, men ingen resultater, vis ingen briller (tom array)
+  if (filterApplied.value && filteredResults.value.length === 0) {
+    return []; 
+  } 
+  // Hvis filter er anvendt og der er filtrerede resultater, vis kun de filtrerede briller
+  else if (filterApplied.value) {
+    return filteredResults.value;
+  } 
+  // Hvis der ikke er anvendt nogen filter, vis alle briller i original liste
+  else {
+    return allGlasses.value;
+  }
+});
+
+
 // Funktion der anvender den valgte sorteringskriterie på de filtrerede resultater.
 const applySorting = () => {
+
+  applyFilters();
+  
   // Tjekker om sorteringskriteriet er 'Navn faldende', hvis dette er true så iværksættes handlingen, ellers går den videre til næste if statement. 
   if (sortCriteria.value === 'Navn faldende') {
     // Hvis ja, sorteres de filtrerede resultater efter navn i faldende rækkefølge
@@ -281,24 +302,6 @@ const applySorting = () => {
     });
   }
 };
-
-
-// Samler hvilke briller der skal vises alt efter om der er anvendt filtre. 
-const glassesToDisplay = computed(() => {
-  // Tjekker om der er blevet anvendt et filter, og om der ikke er nogen filtrerede resultater
-  // Hvis der er filtrering, men ingen resultater, vis ingen briller (tom array)
-  if (filterApplied.value && filteredResults.value.length === 0) {
-    return []; 
-  } 
-  // Hvis filter er anvendt og der er filtrerede resultater, vis kun de filtrerede briller
-  else if (filterApplied.value) {
-    return filteredResults.value;
-  } 
-  // Hvis der ikke er anvendt nogen filter, vis alle briller i original liste
-  else {
-    return allGlasses.value;
-  }
-});
 
 
 // Funktion til at nulstille filtre
@@ -350,6 +353,7 @@ watch(route, (newRoute) => {
     // Hvis den nye rute er én af de ønskede, så kaldes applyFilters funktionen. Denne anvendes for at anvende filtre fra inspirations.html.
     applyFilters();
   }
+  
   // Denne linje betyder, at funktionen skal køres med det samme, når watch bliver sat op, selv før route ændres.
 }, { immediate: true });
 
