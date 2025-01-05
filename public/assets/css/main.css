@@ -562,7 +562,7 @@ footer .footerRow a i:hover {
 
 
 /* ================================================
-   SYNSTEST & AFPROEVNING
+   SYNSTEST & BRILLEAFPROEVNING
    ================================================ */
 
 .internNav {
@@ -638,6 +638,10 @@ footer .footerRow a i:hover {
   top: 20%;
   left: 45%;
   max-width: 40%;
+}
+
+.cardSynstest {
+  width: 60vw;
 }
 
 .imgArticle {
