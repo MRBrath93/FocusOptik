@@ -8,7 +8,8 @@
   <meta name="description" content="Om Focus Optik og butikken" />
   <meta name="keywords" content="Focus Optik, Om Focus Optik, Briller, Kontaktlinser, Butik, Udstilling" />
   <title>Focus Optik - Butikken</title>
-  <script type="module" src="./assets/js/main.js"></script>
+  <script type="module" src="./assets/js/main.js" defer></script>
+  <script type="module" src="./assets/js/butikken.js" defer></script>
   <link rel="stylesheet" href="./assets/css/main.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
@@ -66,7 +67,7 @@
         <a class="nav-link" href="./kontaktlinser.html">Kontaktlinser</a>
       </li>
       <li class="dropdown">
-        <a class="nav-link" href="./syn&sundhed.html">Syn & Sundhed
+        <a class="nav-link" href="./synOgSundhed.html">Syn & Sundhed
           <svg viewBox="0 0 448 512" class="plusIcon">
             <g>
               <g id="Layer_1">
@@ -81,10 +82,10 @@
             <a class="nav-link" href="./oejensundhed.html">Øjensundhed</a>
           </li>
           <li>
-            <a class="nav-link" href="./videnOmBriller&Linser.html">Viden om Brille- og Synsstyrker</a>
+            <a class="nav-link" href="./videnOmBrillerOgLinser.html">Viden om Brille- og Synsstyrker</a>
           </li>
           <li>
-            <a class="nav-link" href="./synstest&Afproevning.html">Synstest & Brilleafprøvning</a>
+            <a class="nav-link" href="./synstestOgBrilleafproevning.html">Synstest & Brilleafprøvning</a>
           </li>
         </ul>
       </li>
@@ -122,75 +123,91 @@
       <a href="/omFocusOptik.html">Om Focus Optik /</a>
       <a href="/butikken.html">Butikken</a>
     </aside>
-    <section class="twoColumnSection sectionSpace">
-      <article>
-        <p>Focus Optik har ligget på Loftbrovej nr. 17 i Nørresundby lige siden Lars Kristiansen etablerede butikken i
-          1989. Lige siden har vi bestræbet os på at levere høj service og lave produkter af høj kvalitet. Dette
-          betyder at vi gør os umage med alt, lige fra at skaffe de rigtige kvalitets brillestel/kontaktlinser til bedst
-          mulige priser, vores kunde håndtering, den tid vi bruger på synsprøver og på at finde den rigtige løsning til
-          dig.</p>
-        <p>Focus Optik har udviklet et abonnement, vi kalder Focus Flex. Med dette abonnement kan du få alle de
-          briller, du ønsker dig til den helt rigtige pris. Du kan f.eks. få et kvalitets stel med kvalitets
-          enkeltstyrke
-          glas til kun 400 kr. og der er selvfølgelig antirefleksbehandling og hærdning
-          med i prisen.</p>
-        <p>Du finder os inde i Kvickly.</p>
-      </article>
-      <aside class="imageContainer">
-        <div class="galleryItemContainer">
-          <img class="galleryItem" src="/public/assets/img/butikken_1_700x467.jpg"
-            alt="Focus Optik butikken med fokus på afprøvningsbord og kassen" loading="lazy">
-          <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
-        </div>
-        <div  class="galleryItemContainer">
-          <img class="galleryItem" src="/public/assets/img/butikken_2_700x934.jpg"
-            alt="Focus Optik butikken med fokus på en af de mange udstillingsvægge med brillestel" loading="lazy">
-          <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
-        </div>
-        <div class="galleryItemContainer">
-          <img class="galleryItem" src="/public/assets/img/butikken_3_700x467.jpg"
-            alt="Focus Optik butikken med fokus på en udstillingsvæg med orange baggrund" loading="lazy">
-          <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
-        </div>
-        <div class="galleryItemContainer">
-          <img class="galleryItem" src="/public/assets/img/butikken_4_700x698.jpg"
-            alt="Focus Optik butikken med fokus på indgangen og vinduesudstilling" loading="lazy">
-          <!-- KILDE: Focus_Optik. 29. maj 2021. Instagram. [online] accessed 29.12.24, URL:https://www.instagram.com/p/CPdCRiBBcWM/ -->
-        </div>
-        <div  class="galleryItemContainer">
-          <img class="galleryItem" src="/public/assets/img/butikken_5_600x640.jpg"
-            alt="Focus Optik med fokus på en udstillingsvæg med et brillestel og solbriller" loading="lazy">
-        </div>
-        <a href=""><i class="iconStylingOrange fa-solid fa-chevron-left" id="previousBtn" onclick="plusSlides(-1)"></i></a>
-        <!-- KILDE: FontAwesome. chevron-left [online] accessed 01.01.25 URL: https://fontawesome.com/v6/icons/chevron-left?f=classic&s=solid -->
-        <a href=""><i class="iconStylingOrange fa-solid fa-chevron-right" id="nextBtn" onclick="plusSlides(1)"></i></a>
-        <!-- KILDE: FontAwesome. chevron-right [online] accessed 01.01.25 URL: https://fontawesome.com/icons/chevron-right?f=classic&s=solid&pc=%23fb6201&sc=%23fb6201 -->
-
-        <div class="galleryRow">
-          <div>
-            <img class="galleryItemSmall" src="/public/assets/img/butikken_1_700x467.jpg"
-            alt="Focus Optik butikken med fokus på afprøvningsbord og kassen" loading="lazy" onclick="currentSlide(1)">
+    <div class="twoColumnSection">
+      <section class="columnContainer sectionSpace">
+        <article>
+          <p>Focus Optik har ligget på Loftbrovej nr. 17 i Nørresundby lige siden Lars Kristiansen etablerede butikken i
+            1989. Lige siden har vi bestræbet os på at levere høj service og lave produkter af høj kvalitet. Dette
+            betyder at vi gør os umage med alt, lige fra at skaffe de rigtige kvalitets brillestel/kontaktlinser til
+            bedst
+            mulige priser, vores kunde håndtering, den tid vi bruger på synsprøver og på at finde den rigtige løsning
+            til
+            dig.</p>
+          <p>Focus Optik har udviklet et abonnement, vi kalder Focus Flex. Med dette abonnement kan du få alle de
+            briller, du ønsker dig til den helt rigtige pris. Du kan f.eks. få et kvalitets stel med kvalitets
+            enkeltstyrke
+            glas til kun 400 kr. og der er selvfølgelig antirefleksbehandling og hærdning
+            med i prisen.</p>
+          <p>Du finder os inde i Kvickly.</p>
+        </article>
+        <article>
+          <h3>BUTIKKENS ÅBNINGSTIDER</h3>
+          <ul id="openingHours">
+            <li>Mandag: 9:00 - 17:30</li>
+            <li>Tirsdag: 9:00 - 17:30</li>
+            <li>Onsdag: 9:00 - 17:30</li>
+            <li>Torsdag: 9:00 - 17:30</li>
+            <li>Fredag: 9:00 - 18:30</li>
+            <li>Lørdag: 9:00 - 14:00</li>
+            <li>Søndag: Lukket</li>
+          </ul>
+        </article>
+      </section>
+      <section class="sectionSpace">
+        <aside class="imageContainer">
+          <div class="galleryItemContainer">
+            <img class="galleryItem" src="/public/assets/img/butikken_1_700x467.jpg"
+              alt="Focus Optik butikken med fokus på afprøvningsbord og kassen" loading="lazy">
+            <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
           </div>
-          <div>
-            <img class="galleryItemSmall"  src="/public/assets/img/butikken_2_700x934.jpg"
-            alt="Focus Optik butikken med fokus på en af de mange udstillingsvægge med brillestel" loading="lazy" onclick="currentSlide(2)">
+          <div class="galleryItemContainer">
+            <img class="galleryItem" src="/public/assets/img/butikken_2_700x934.jpg"
+              alt="Focus Optik butikken med fokus på en af de mange udstillingsvægge med brillestel" loading="lazy">
+            <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
           </div>
-          <div>
-            <img class="galleryItemSmall" src="/public/assets/img/butikken_3_700x467.jpg"
-            alt="Focus Optik butikken med fokus på en udstillingsvæg med orange baggrund" loading="lazy" onclick="currentSlide(3)">
+          <div class="galleryItemContainer">
+            <img class="galleryItem" src="/public/assets/img/butikken_3_700x467.jpg"
+              alt="Focus Optik butikken med fokus på en udstillingsvæg med orange baggrund" loading="lazy">
+            <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
           </div>
-          <div>
-            <img class="galleryItemSmall" src="/public/assets/img/butikken_4_700x698.jpg"
-            alt="Focus Optik butikken med fokus på indgangen og vinduesudstilling" loading="lazy" onclick="currentSlide(4)">
+          <div class="galleryItemContainer">
+            <img class="galleryItem" src="/public/assets/img/butikken_4_700x698.jpg"
+              alt="Focus Optik butikken med fokus på indgangen og vinduesudstilling" loading="lazy">
+            <!-- KILDE: Focus_Optik. 29. maj 2021. Instagram. [online] accessed 29.12.24, URL:https://www.instagram.com/p/CPdCRiBBcWM/ -->
           </div>
-          <div>
-            <img class="galleryItemSmall" src="/public/assets/img/butikken_5_600x640.jpg"
-            alt="Focus Optik med fokus på en udstillingsvæg med et brillestel og solbriller" loading="lazy" onclick="currentSlide(5)">
+          <div class="galleryItemContainer">
+            <img class="galleryItem" src="/public/assets/img/butikken_5_600x640.jpg"
+              alt="Focus Optik med fokus på en udstillingsvæg med et brillestel og solbriller" loading="lazy">
           </div>
-        </div>
-
-      </aside>
-    </section>
+          <a href="#" id="previousBtn"><i class="iconStylingOrange fa-solid fa-chevron-left"></i></a>
+          <!-- KILDE: FontAwesome. chevron-left [online] accessed 01.01.25 URL: https://fontawesome.com/v6/icons/chevron-left?f=classic&s=solid -->
+          <a href="#" id="nextBtn"><i class="iconStylingOrange fa-solid fa-chevron-right"></i></a>
+          <!-- KILDE: FontAwesome. chevron-right [online] accessed 01.01.25 URL: https://fontawesome.com/icons/chevron-right?f=classic&s=solid&pc=%23fb6201&sc=%23fb6201 -->
+          <div class="galleryRow">
+            <div>
+              <img class="galleryItemSmall" src="/public/assets/img/butikken_1_700x467.jpg"
+                alt="Focus Optik butikken med fokus på afprøvningsbord og kassen" loading="lazy" data-slide-number="1">
+            </div>
+            <div>
+              <img class="galleryItemSmall" src="/public/assets/img/butikken_2_700x934.jpg"
+                alt="Focus Optik butikken med fokus på en af de mange udstillingsvægge med brillestel" loading="lazy" data-slide-number="2">
+            </div>
+            <div>
+              <img class="galleryItemSmall" src="/public/assets/img/butikken_3_700x467.jpg"
+                alt="Focus Optik butikken med fokus på en udstillingsvæg med orange baggrund" loading="lazy" data-slide-number="3">
+            </div>
+            <div>
+              <img class="galleryItemSmall" src="/public/assets/img/butikken_4_700x698.jpg"
+                alt="Focus Optik butikken med fokus på indgangen og vinduesudstilling" loading="lazy" data-slide-number="4">
+            </div>
+            <div>
+              <img class="galleryItemSmall" src="/public/assets/img/butikken_5_600x640.jpg"
+                alt="Focus Optik med fokus på en udstillingsvæg med et brillestel og solbriller" loading="lazy" data-slide-number="5">
+            </div>
+          </div>
+        </aside>
+      </section>
+    </div>
     <section class="twoColumnSection sectionSpace">
       <div>
         <h2>Hvad kan du forvente ved et besøg hos Focus Optik</h2>
@@ -317,10 +334,10 @@
       </article>
     </section>
     <article class="centerContainer sectionSpace">
-      <img class="imgStyling cardImg" src="/public/assets/img/butikkenCard_1594x563.jpg"
+      <img class="imgStyling cardImg cardImgButikken" src="/public/assets/img/butikkenCard_1594x563.jpg"
         alt="kvinde der smiler og kigger ned på to brillestel hun holder i sine hænder" loading="lazy" />
       <!-- KILDE: Peopleimages.com, billede: #61642955 [online] accessed 29.12.24, URL:https://www.colourbox.dk/billede/optiker-briller-kvinde-billede-61642955 -->
-      <div class="cardRightText">
+      <div class="cardRightText cardTextButikken">
         <h4>Har du brug for hjælp?</h4>
         <p>Så kontakt os på:</p>
         <div class="centerText">
@@ -356,12 +373,12 @@
         <a href="#">Køb Kontaktlinser</a>
       </div>
       <div class="footerColumn footerDesktop">
-        <a href="/syn&sundhed.html">
+        <a href="/synOgSundhed.html">
           <h3>Syn & Sundhed</h3>
         </a>
         <a href="/oejensundhed.html">Øjensundhed</a>
-        <a href="/videnOmBriller&Linser.html">Viden om Brille- og Synsstyrker</a>
-        <a href="/synstest&Afproevning.html">Synstest & Brilleafprøvning</a>
+        <a href="/videnOmBrillerOgLinser.html">Viden om Brille- og Synsstyrker</a>
+        <a href="/synstestOgBrilleafproevning.html">Synstest & Brilleafprøvning</a>
       </div>
       <div class="footerColumn footerDesktop">
         <a href="/omFocusOptik.html">

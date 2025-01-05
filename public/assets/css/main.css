@@ -337,7 +337,7 @@ li {
 
 .heroImg {
   width: 100%;
-  max-height: 18rem;
+  max-height: 15rem;
   object-fit: cover;
 }
 
@@ -598,7 +598,7 @@ footer .footerRow a i:hover {
   gap: 1rem;
   position: sticky;
   left: 1.5rem;
-  top: 20%;
+  top: 375px;
 }
 
 #line {
@@ -898,6 +898,12 @@ footer .footerRow a i:hover {
   margin-bottom: var(--VerticalSectionSpace);
 }
 
+.columnContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .imageContainer {
   position: relative;
   max-width: 100%;
@@ -910,11 +916,8 @@ footer .footerRow a i:hover {
 
 .galleryItem {
   width: 40vw;
+  height: 40vh;
   object-fit: cover;
-}
-
-.galleryItemSmall:hover {
-  opacity: 1;
 }
 
 #previousBtn,
@@ -937,7 +940,7 @@ footer .footerRow a i:hover {
   display: flex;
   gap: 0.5rem;
   width: 40vw;
-  max-height: 6.5rem;
+  max-height: 6rem;
   overflow: hidden;
 }
 
@@ -945,6 +948,14 @@ footer .footerRow a i:hover {
   object-fit: cover;
   opacity: 0.6;
   width: 9rem;
+}
+
+.galleryItemSmall:hover {
+  opacity: 1;
+}
+
+.galleryItemSmallActive {
+  opacity: 1;
 }
 
 .iconStylingOrange {
@@ -1049,6 +1060,11 @@ footer .footerRow a i:hover {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
+.accordionHeaderActive {
+  background-color: var(--FocusOrange);
+  color: var(--SnowWhite);
+}
+
 .accordionHeader:hover {
   background-color: var(--FocusOrange);
   color: var(--SnowWhite);
@@ -1074,6 +1090,18 @@ footer .footerRow a i:hover {
   max-height: 500px;
 }
 
+#openingHours {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: var(--VerticalSectionSpace);
+}
+
+#openingHours li {
+  font-family: var(--WixFont);
+  font-weight: 400;
+  font-size: 1.125rem;
+}
 
 /* ================================================
    FOCUS FLEX
@@ -1230,6 +1258,11 @@ footer .footerRow a i:hover {
     max-height: 90vh;
   }
 
+  .cardRightText {
+    gap: 0;
+    top: 10%;
+  }
+
 }
 
 @media screen and (max-width: 1000px) {
@@ -1266,6 +1299,10 @@ footer .footerRow a i:hover {
     position: absolute;
     top: 5%;
     left: 40%;
+  }
+
+  .cardRightText {
+    left: 53%;
   }
 
   .valuesContainer {
@@ -1335,7 +1372,8 @@ footer .footerRow a i:hover {
     max-width: 100%;
   }
 
-  .cardLeftTextVidenOm {
+  .cardLeftTextVidenOm,
+  .cardTextButikken {
     gap: 0.5rem;
     background-color: rgb(175, 191, 185);
     position: unset;
@@ -1344,7 +1382,8 @@ footer .footerRow a i:hover {
     border-radius: 5px;
   }
 
-  .cardImgVidenOm {
+  .cardImgVidenOm,
+  .cardImgButikken {
     display: none;
   }
 
@@ -1452,8 +1491,6 @@ footer .footerRow a i:hover {
     padding: 1rem;
     max-width: 100%;
   }
-
-
 
 }
 
