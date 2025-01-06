@@ -323,7 +323,6 @@ li {
 }
 
 .cardImg {
-  /* width: 80vw; */
   width: 70vw;
   max-height: 20rem;
   object-fit: cover;
@@ -598,7 +597,7 @@ footer .footerRow a i:hover {
   gap: 1rem;
   position: sticky;
   left: 1.5rem;
-  top: 375px;
+  top: 230px;
 }
 
 #line {
@@ -623,25 +622,20 @@ footer .footerRow a i:hover {
   margin-left: 18rem;
 }
 
-.cardImgLeft {
-  width: 80vw;
-  max-height: 25rem;
-  object-fit: cover;
-  object-position: center;
-}
-
 .cardMiddleText {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   position: absolute;
-  top: 20%;
-  left: 45%;
-  max-width: 40%;
+  top: 12%;
+  left: 42%;
+  max-width: 50%;
 }
 
 .cardSynstest {
   width: 60vw;
+  max-height: 25rem;
+  object-fit: cover;
 }
 
 .imgArticle {
@@ -887,12 +881,6 @@ footer .footerRow a i:hover {
   font-weight: 600;
 }
 
-
-
-
-
-
-
 /* ================================================
    BUTIKKEN
    ================================================ */
@@ -989,24 +977,6 @@ footer .footerRow a i:hover {
   animation: arrowMoveRight 1s ease infinite;
 }
 
-
-/* NEDENSTÅENDE SLETTES INDEN MERCH */
-.theButton,
-.button {
-  /* display: inline-block; */
-  font-family: var(--PoppinsFont);
-  padding: 5px 10px;
-  width: fit-content;
-  color: white;
-  background-color: var(--FocusOrange);
-  border: 2px solid var(--FocusOrange);
-  text-align: center;
-  text-decoration: none;
-  border-radius: 12px;
-  text-transform: uppercase;
-  font-weight: 500;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
 
 /* *TILFØJELSE OBS MERCH */
 .theButton a {
@@ -1235,7 +1205,6 @@ footer .footerRow a i:hover {
     height: fit-content;
   }
 
-  /* OBS DENNE PASSER TIL ØJENSUNDHED. Hvad med resten?  */
   .cardLeftText {
     top: 10%;
     left: 5%;
@@ -1454,7 +1423,7 @@ footer .footerRow a i:hover {
     justify-content: flex-start;
   }
 
-  .cardImgLeft {
+  .cardSynstest {
     max-height: 100%;
     height: unset;
   }
