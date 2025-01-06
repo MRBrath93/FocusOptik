@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Forcus Optik</title>
     <script type="module" src="./assets/js/main.js" defer></script>
+    <script type="module" src="./src/vueMain.js" defer></script>
     <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="./src/assets/vueMain.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -106,6 +108,7 @@
       </div>
     </nav>
     <h1>Forside</h1>
+
     <section class="lillegrid"></section>
     <section class="grid">
       <div class="item1 left textCard">
@@ -117,44 +120,270 @@
       </div>
       <div class="item2 right textCard">
         <div>
-          <h2>Focus flex</h2>
+          <h3>Focus flex</h3>
           <p>Vi har verdens bedste brille ordning, hvis vi selv skal sige det. Den ordning kalder vi Focus Flex, og den giver dig mulighed for at få alle de briller du ønsker dig, og vi giver dig gode rabatter på stellet samt gratis glas.</p>
         </div>
       </div>
       <div class="item3 left textCard">
         <div>
-          <h2>Briller på under 1 time</h2>
+          <h3>Briller på under 1 time</h3>
           <p>Vi har eget værksted og glaslager, dette giver os mulighed for lave enkeltstyrke briller til dig på under 1 time. Vi har også et stort udvalg af linser på lager, hvilket betyder at du kan have linser med hjem allerede efter første kontaktlinse synsprøve. Der skal dog tages visse forbehold for styrker, da vi ikke kan have alle styrker på lager.</p>
         </div>
       </div>
       <div class="item4 right textCard">
         <div>
-          <h2>Få tjekket dit syn</h2>
+          <h3>Få tjekket dit syn</h3>
           <p>Vi er 3 kompetente autoriserede optikere, der ønsker at hjælpe dig på bedst mulig måde, så du får den rigtige brilleløsning, og vi tager os den tid der skal til, for at lave en grundig synsprøve og finde de rigtige brillestel og brilleglas.</p>
         </div>
       </div>
     </section>
+    <div id="app"></div>
+    <div class="commentsGrid">
+      <div>
+        <img src="./public/assets/img/OrangeMan.png" alt="Et lille ikon med en orange og sort person">
+         <!-- KILDE:  #10528086, Colourbox.com, billede:  #10528086 [online] accessed 29.12.24, URL:https://www.colourbox.com/vector/avatar-figure-in-green-vector-10528086 -->
+        <div class="comments">
+          <h6>„God og hurtig service“</h6>
+          <p>God service og vejledning, samt flinkt personale. Derude rigtig gode priser og lynhurtig leverance ved bestilte briller.</p>
+          <p>Kari-Maiken Eriksen</p>
+        </div>
+      </div>
+      <div>
+        <img src="./public/assets/img/OrangeMan.png" alt="Et lille ikon med en orange og sort person">
+         <!-- KILDE:  #10528086, Colourbox.com, billede:  #10528086 [online] accessed 29.12.24, URL:https://www.colourbox.com/vector/avatar-figure-in-green-vector-10528086 -->
+        <div class="comments">
+          <h6>„Gode priser på briller“</h6>
+          <p>Fantastisk service. Virkelige gode tilbud på briller. særligt igennem abonnements-ordningen "Focus Flex".</p>
+          <p>Mogens Klitgård</p>
+        </div>
+      </div>
+      <div>
+        <img src="./public/assets/img/OrangeMan.png" alt="Et lille ikon med en orange og sort person">
+         <!-- KILDE:  #10528086, Colourbox.com, billede:  #10528086 [online] accessed 29.12.24, URL:https://www.colourbox.com/vector/avatar-figure-in-green-vector-10528086 -->
+        <div class="comments">
+          <h6>„Professionel rådgivning“</h6>
+          <p>Jeg bookede synsprøve og fik yderst kompetent rådgivning af Focus Optik ifm. køb af nye briller... Super service!</p>
+          <p>Jette W. Hofmann</p>
+        </div>
+      </div>
+      <div>
+        <img src="./public/assets/img/OrangeMan.png" alt="Et lille ikon med en orange og sort person">
+         <!-- KILDE:  #10528086, Colourbox.com, billede:  #10528086 [online] accessed 29.12.24, URL:https://www.colourbox.com/vector/avatar-figure-in-green-vector-10528086 -->
+        <div class="comments">
+          <h6>„Flinke medarbejdere“</h6>
+          <p>Vi fik super god service af en flink medarbejder i forbindelse med min synsprøve. Stedet kan varmt anbefales.</p>
+          <p>Vagn Thomsen</p>
+        </div>
+      </div>
+    </div>
+    <section class="twoCardContainer">
+      <div class="infoCard">
+        <img src="/public/assets/img/TwoColorTwoGlasses.jpg" loading="lazy" alt="En kvinde der får foretaget en synsprøve af en optiker">
+        <div>
+          <h5>Gå ikke glip af vores nyheder og events</h5>
+          <p>Vil du være den første til at opdage vores nye varer og få eksklusiv information om vores spændende Focus Flex-events? Så tilmeld dig vores nyhedsbrev!</p>
+          <p>Vi ved, at din indbakke ikke skal fyldes med unødvendige mails. Derfor sender vi kun vores nyhedsbrev 2-3 gange om året, når vi virkelig har noget spændende at dele med dig.</p>
+          <form id="newsletterForm">
+            <div class="form-group">
+              <input type="text" id="name" name="name" required placeholder=" ">
+              <label for="name">Dit navn</label>
+            </div>
+          
+            <div class="form-group">
+              <input type="email" id="email" name="email" required placeholder=" ">
+              <label for="email">Din emailadresse</label>
+            </div>
+          
+            <button class="button" type="submit">Tilmeld Nyhedsbrev</button>
+          </form>
+          
+        </div>
+      </div>
+      <div class="infoCard">
+        <img src="/public/assets/img/synsstyrke_730x480.jpg" loading="lazy" alt="En kvinde der får foretaget en synsprøve af en optiker">
+        <div>
+          <h5>Hvornår har du sidst fået tjekket dit syn?</h5>
+          <p>Vores bruger vores øjne hver dag uden at sætte pris på det, men hvornår har du sidst givet dem den opmærksomhed, de fortjener?</p>
+          <p>Hvis det er mere end 2 år siden, kan det være tid til en synstest! Dit syn ændrer sig nemlig gradvist, og du lægger måske ikke mærke til det i en travl hverdag. Med et hurtigt tjek hos os sikrer du dig et klart syn og undgår unødige hovedpiner eller øjenbelastning.</p>
+          <p>Book din synstest i dag - vi står klar til at hjælpe dig og yder den service som du behøver! Bestil tid nu og giv dine øjne den omsorg, de fortjener.</p>
+          <a class="theButton customButtonPoint" href="#"><span>book tid</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+    </section>
+    <footer>
+      <section class="footerContainer">
+        <div class="footerColumn footerDesktop">
+          <a href="/briller.html">
+            <h3>Briller</h3>
+          </a>
+          <a href="/omBriller.html">Om Briller</a>
+          <a href="/index.html">Alle Briller</a>
+          <a href="/index.html">Herrebriller</a>
+          <a href="/index.html">Damebriller</a>
+          <a href="/index.html">Børnebriller</a>
+        </div>
+        <div class="footerColumn footerDesktop">
+          <a href="#">
+            <h3>Kontaktlinser</h3>
+          </a>
+          <a href="#">Tilbehør til Kontaktlinser</a>
+          <a href="#">Køb Kontaktlinser</a>
+        </div>
+        <div class="footerColumn footerDesktop">
+          <a href="/synOgSundhed.html">
+            <h3>Syn & Sundhed</h3>
+          </a>
+          <a href="/oejensundhed.html">Øjensundhed</a>
+          <a href="/videnOmBrillerOgLinser.html">Viden om Brille- og Synsstyrker</a>
+          <a href="/synstestOgBrilleafproevning.html">Synstest & Brilleafprøvning</a>
+        </div>
+        <div class="footerColumn footerDesktop">
+          <a href="/omFocusOptik.html">
+            <h3>Om Focus Optik</h3>
+          </a>
+          <a href="/voresTeam.html">Vores Team</a>
+          <a href="/butikken.html">Butikken</a>
+        </div>
+        <div class="footerColumn footerDesktop">
+          <a href="/focusFlex.html">
+            <h3>Focus Flex</h3>
+          </a>
+          <a href="#">Focus Flex Events</a>
+          <a href="#">Priser</a>
+        </div>
+        <div class="footerColumn">
+          <h3>Kontakt</h3>
+          <div class="centerIcon">
+            <i class="iconStylingGreySmall fa-solid fa-location-dot"></i>
+            <!-- KILDE: Font-Awesome. Location-dot [online] accessed: 03.01.25. URL: https://fontawesome.com/icons/location-dot?f=classic&s=solid -->
+            <div class="footerAdress">
+              <p>Loftbrovej 17</p>
+              <p>9400, Nørresundby</p>
+            </div>
+          </div>
+          <div class="centerText">
+            <i class="iconStylingGreySmall fa-solid fa-mobile-screen-button"></i>
+            <!-- KILDE: Font-Awesome. Mobile-screen-button [online] accessed: 01.01.25. URL: https://fontawesome.com/v6/icons/mobile-screen-button?f=classic&s=solid -->
+            <p>Tlf: 98 17 47 77</p>
+          </div>
+          <div class="centerText">
+            <i class="iconStylingGreySmall fa-regular fa-envelope"></i>
+            <!-- KILDE: Font-Awesome. Envelope [online] accessed: 01.01.25. URL: https://fontawesome.com/v6/icons/envelope?f=classic&s=regular -->
+            <p>butik@focusoptik.dk</p>
+          </div>
+          <p>CVR: 25503023</p>
+        </div>
+      </section>
+      <div class="footerRow">
+        <a href="https://www.facebook.com/focusoptik.focusflex"><i
+            class="iconStylingGreyLarge fa-brands fa-facebook-f"></i></a>
+        <!-- KILDE: Font-Awesome. Facebook-F [online] accessed: 03.01.25. URL: https://fontawesome.com/icons/facebook-f?f=brands&s=solid -->
+        <a href="https://www.instagram.com/focus_optik/"><i class="iconStylingGreyLarge fa-brands fa-instagram"></i></a>
+        <!-- KILDE: Font-Awesome. instagram [online] accessed: 03.01.25. URL: https://fontawesome.com/icons/instagram?f=brands&s=solid -->
+      </div>
+    </footer>
   </body>
 </html>
 
 <style>
+
+
+form {
+  width: 60%;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  padding-top: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input::placeholder {
+  color: transparent;
+}
+
+label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 16px;
+  color: #9f9f9f;
+  background-color: white;
+  padding: 0 5px;
+  transition: all 0.3s ease, background-color 0.3s ease;
+  pointer-events: none;
+  font-family: var(--WixFont);
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 12px;
+  font-size: 12px;
+  border-radius: 6px;
+  color: var(--SnowWhite);
+  background-color: var(--FocusOrange);
+}
+
+input:focus,
+input:not(:placeholder-shown) {
+  border-color: var(--FocusOrange);
+}
+
+
+
+.twoCardContainer{
+  display: flex;
+  gap: 1rem;
+  margin: var(--VerticalSectionSpace) var(--pageMarginDesktop);
+}
+
+.infoCard{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 4px 8px hsla(0, 0%, 60%, 0.25), 0 6px 20px rgba(153, 153, 153, 0.25);
+}
+
+.infoCard>div{
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.infoCard img{
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 0.50fr 0.25fr 0.25fr 1.25fr;
   grid-template-rows: 300px 200px 200px 300px;
-  height: 100vh;
+  height: 1000px;
   width: 100%;
-}
-
-.lillegrid {
-  height: 100vh;
 }
 
 .textCard {
   height: 100%;
   opacity: 0;
   transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  padding: 2rem 4rem;
 }
 
 
@@ -171,6 +400,7 @@
   border: 10px solid white;
   border-top: none;
   border-left: none;
+  padding: 2rem 4rem;
 }
 
 .grid h6{
@@ -186,8 +416,9 @@
   background-position: bottom;
   position: relative;
   z-index: 8;
+  padding: 2rem 4rem;
   padding-left: 350px;
-
+  padding-right: 4rem;
 }
 
 .item3 {
@@ -200,6 +431,7 @@
   display: flex;
   flex-direction: column;
   border-right: 10px solid white;
+  padding: 2rem 4rem;
 }
 
 .item4 {
@@ -213,6 +445,12 @@
   flex-direction: column;
   border-top: 10px solid white;
   border-left: 10px solid white;
+  padding: 2rem 4rem;
+}
+
+.item4 p {
+  width: 60%;
+  max-width: 75ch;
 }
 
 p{
@@ -278,6 +516,145 @@ p{
   opacity: 1; /* Bliver synlig, når den vises */
 }
 
+.commentsGrid{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  margin: var(--VerticalSectionSpace) var( --pageMarginDesktop);
+  gap: 1rem;
+}
+
+.commentsGrid>div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.commentsGrid img{
+  height: 80px;
+}
+
+.commentsGrid p {
+  max-width: 300px;
+}
+
+.commentsGrid h6{
+  text-align: center;
+}
+
+.comments{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.comments p:last-of-type {
+  font-weight: 500;
+}
+
+@media screen and (max-width: 1600px) {
+.item2{
+  padding-left: 35%;
+}
+}
+
+@media screen and (max-width: 1400px) {
+
+.commentsGrid{
+  grid-template-columns: repeat(2,1fr);
+  gap: 3rem 1rem;
+}
+
+.comments{
+  align-items: center;
+}
+
+.commentsGrid p {
+  max-width: unset;
+  text-align: center;
+}
+
+.item1{
+  grid-column: 1/-1;
+  border-right: none;
+}
+
+.item2{
+  grid-row: 2/4;
+  background-image: url(./public/assets/img/StatueWithGlasses1000x700.jpg);
+  padding-top: 5rem;
+}
+}
+
+@media screen and (max-width: 1200px) {
+.item3{
+  padding: 2rem;
+}
+}
+
+@media screen and (max-width: 1000px) {
+
+  .grid{
+    grid-template-rows: repeat(4,auto);
+    height: unset;
+    gap: 1rem;
+  }
+
+.item1{
+  grid-column: 1/-1;
+  grid-row: unset;
+  border: none;
+  padding: 1rem;
+  justify-content: center;
+
+}
+.item2{
+  grid-column: 1/-1;
+  grid-row: unset;
+  border: none;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: none;
+  background-color: var(--Peach);
+}
+.item3{
+  grid-column: 1/-1;
+  grid-row: unset;
+  border: none;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: none;
+  background-color: var(--ArmyGreen);
+  color: var(--SnowWhite);
+}
+.item4{
+  grid-column: 1/-1;
+  grid-row: unset;
+  border: none;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: none;
+  background-color: var(--Dust);
+}
+
+.item4 p {
+    width: unset;
+    max-width: 75ch;
+}
+}
+
+@media screen and (max-width: 600px) {
+  .commentsGrid{
+  grid-template-columns: 1fr;
+}
+}
+
 </style>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -287,7 +664,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const observer = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach(entry => {
-        console.log(entry.target); // Logge hvilket element bliver observeret
         if (entry.isIntersecting) {
           entry.target.classList.add("show"); // Tilføj klassen, når den er synlig
           observer.unobserve(entry.target); // Stop overvågning af elementet

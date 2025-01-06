@@ -153,6 +153,43 @@ main {
   margin-right: var(--pageMarginDesktop);
 }
 
+
+.theButton,
+.button {
+  display: inline-block;
+  font-family: var(--PoppinsFont);
+  padding: 5px 10px;
+  width: fit-content;
+  color: white;
+  background-color: var(--FocusOrange);
+  border: 2px solid var(--FocusOrange);
+  text-align: center;
+  text-decoration: none;
+  border-radius: 12px;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3 linear;
+}
+
+.theButton:hover,
+.button:hover {
+  text-decoration: underline;
+}
+
+.theButton:active,
+.button:active {
+  box-shadow: inset 0 -2px 7px rgba(0, 0, 0, 0.25), inset 0 4px 7px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+}
+
+.customButton i {
+  transition: transform 0.5s ease;
+}
+
+.customButtonPoint:hover i {
+  animation: PointRight 2s infinite linear;
+}
+
 /* ================================================
    NAVIGATION
    ================================================ */
@@ -285,6 +322,32 @@ li {
 
 
 @media (prefers-reduced-motion: no-preference) {
+
+
+  @keyframes PointRight {
+
+    0%,
+    100% {
+      transform: translateX(0px) scale(1.1);
+      opacity: 1;
+    }
+
+    25% {
+      transform: translateX(-2px) scale(1.1);
+      opacity: 0.25;
+    }
+
+    50% {
+      transform: translateX(2px) scale(1.1);
+      opacity: 1;
+    }
+
+    75% {
+      transform: translateX(-2px) scale(1.1);
+      opacity: 0.25;
+    }
+  }
+
 
 
   /* KEYFRAME ANIMATIONS - Slået fra ved anden indstilling - for accessability */
@@ -1213,6 +1276,16 @@ footer .footerRow a i:hover {
 
 .focusFlexColumn {
   padding: 2rem 6rem;
+}
+
+
+
+.inProgress {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 50vh;
 }
 
 /* ================================================
