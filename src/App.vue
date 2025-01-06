@@ -1,9 +1,16 @@
 <script setup>
-import Shop from './components/Shop.vue';
+// App-opsætning
 </script>
 
 <template>
-<shop></shop>
+  <div id="app">
+    <!-- Navigation -->
+    
+    <!-- Indhold -->
+
+      <!-- Router View viser det indhold, der matcher den aktuelle rute -->
+      <router-view />
+  </div>
 </template>
 
 <style scoped>

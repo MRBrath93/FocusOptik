@@ -39,6 +39,11 @@
 } */
 
 
+
+/* ================================================
+   GLOBAL STYLES
+   ================================================ */
+
 :root {
   --FocusOrange: #FF6200;
   --Peach: #FFC28C;
@@ -47,11 +52,14 @@
   --Dust: #D9C5A1;
   --SnowWhite: #ffffff;
   --Black: #060606;
+  --MouseGrey: #E6E3E3;
+  --YellowSun: #FFD24B;
 
   --PoppinsFont: "Poppins", serif;
   --WixFont: "Wix Madefor Text", serif;
 
-  --VerticalSectionSpace: 50px;
+  --VerticalSectionSpace: 3.125rem;
+  --pageMarginDesktop: 10rem;
 
   /* Angiv vairabler så som farver, størrelser på margin, padding osv. */
 }
@@ -64,6 +72,10 @@
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 p {
   font-family: var(--WixFont);
   /* 18px */
@@ -72,18 +84,23 @@ p {
   font-weight: 400;
 }
 
-a {
+a,
+button {
   /* 20px */
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
   font-family: var(--PoppinsFont);
+  text-decoration: none;
+  color: var(--Black);
 }
+
 
 h1 {
   /* 48px */
   font-size: 3rem;
   font-family: var(--PoppinsFont);
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 h2 {
@@ -91,6 +108,7 @@ h2 {
   font-size: 48px;
   font-family: var(--PoppinsFont);
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 h3 {
@@ -98,6 +116,7 @@ h3 {
   font-size: 2rem;
   font-family: var(--PoppinsFont);
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 h4 {
@@ -105,6 +124,7 @@ h4 {
   font-size: 1.5rem;
   font-family: var(--PoppinsFont);
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 h5 {
@@ -112,6 +132,7 @@ h5 {
   font-size: 1.25rem;
   font-family: var(--PoppinsFont);
   font-weight: 500;
+  text-transform: uppercase;
 }
 
 h6 {
@@ -119,9 +140,29 @@ h6 {
   font-size: 1.125rem;
   font-family: var(--PoppinsFont);
   font-weight: 500;
+  text-transform: uppercase;
 }
 
-.navbar{
+
+.smallText {
+  font-family: var(--WixFont);
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
+label {
+  font-size: 1.125rem;
+  font-family: var(--WixFont);
+  font-weight: 400;
+}
+
+
+
+/* ================================================
+   NAVIGATION
+   ================================================ */
+
+.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -130,7 +171,7 @@ h6 {
   z-index: 200;
 }
 
-.bookingNav{
+.bookingNav {
   background-color: var(--FocusOrange);
   text-decoration: none;
   color: var(--SnowWhite);
@@ -161,15 +202,16 @@ h6 {
   height: 100%;
 }
 
-.dropdown{
+.dropdown {
   height: 100%;
 }
 
-.dropdown>.nav-link, .nav-links>li>.nav-link{
+.dropdown>.nav-link,
+.nav-links>li>.nav-link {
   margin: 0 30px;
 }
 
-ul{
+ul {
   padding-inline-start: 0;
 }
 
@@ -193,24 +235,12 @@ ul{
 
 /* Når der hovers over dropdown, vises menuen med en glidende effekt */
 .dropdown:hover .dropdown-menu {
-  visibility: visible; 
+  visibility: visible;
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0s 0s;
 }
 
-
-.NavImageContainer{
-  width: 35%;
-  margin-left: 10%;
-}
-
-.dropdown-menu img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 6px;
-}
 
 .dropdown-menu .nav-link {
   padding: 0.5rem 1rem;
@@ -220,7 +250,8 @@ ul{
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.dropdown-menu .nav-link:hover, .nav-link:hover  {
+.dropdown-menu .nav-link:hover,
+.nav-link:hover {
   color: var(--FocusOrange);
 }
 
@@ -228,12 +259,12 @@ li {
   list-style-type: none;
 }
 
-.logo{
+.logo {
   height: 90%;
   margin-left: 1rem;
 }
 
-.plusIcon{
+.plusIcon {
   height: 1.125rem;
 }
 
@@ -247,6 +278,201 @@ li {
 
 /* Klasse der fjerner den lodrette linje */
 .line-hidden {
-  stroke-width: 0px; /* Skjul linjen ved at sætte stroke-width til 0 */
-  stroke: transparent; /* Gør linjen usynlig */
+  stroke-width: 0px;
+  /* Skjul linjen ved at sætte stroke-width til 0 */
+  stroke: transparent;
+  /* Gør linjen usynlig */
 }
+
+
+
+
+@media screen and (max-width: 1600px) {
+
+  .dropdown>.nav-link,
+  .nav-links>li>.nav-link {
+    margin: 0 5px;
+  }
+
+  .nav-link {
+    padding: 0.5rem;
+  }
+
+  .nav-links {
+    gap: 0;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+}
+
+@media screen and (max-width: 1200px) {
+
+  :root {
+    --pageMarginDesktop: 3rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+  }
+
+  h5 {
+    font-size: 1.25rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  a {
+    font-size: 1rem;
+  }
+
+  .plusIcon {
+    height: 1rem;
+  }
+
+  .dropdown>.nav-link,
+  .nav-links>li>.nav-link {
+    margin: 0;
+  }
+}
+
+
+
+
+/* ================================================
+   FORSIDE
+   ================================================ */
+
+
+
+
+
+
+
+
+
+/* ================================================
+   BRILLER
+   ================================================ */
+
+
+
+
+
+
+
+
+
+/* ================================================
+   OM BRILLER
+   ================================================ */
+
+
+
+
+
+
+
+
+/* ================================================
+   SYN & SUNDHED
+   ================================================ */
+
+
+
+
+
+
+
+
+/* ================================================
+   OEJENSUNDHED
+   ================================================ */
+
+
+
+
+
+
+
+
+/* ================================================
+   VIDEN OM BRILLER OG LINSER
+   ================================================ */
+
+
+
+
+
+
+
+/* ================================================
+   SYNSTEST & AFPROEVNING
+   ================================================ */
+
+
+
+
+
+
+
+
+/* ================================================
+   OM FOCUS OPTIK
+   ================================================ */
+
+
+
+
+
+
+
+
+
+/* ================================================
+   VORES TEAM
+   ================================================ */
+
+
+
+
+
+
+
+
+
+
+/* ================================================
+   BUTIKKEN
+   ================================================ */
+
+
+
+
+
+
+
+
+
+
+/* ================================================
+   FOCUS FLEX
+   ================================================ */
