@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Forcus Optik - Butikken</title>
-    <script type="module" src="./assets/js/main.js"></script>
-    <link rel="stylesheet" href="./assets/css/main.css" />
-  </head>
-  <body>
-    <nav class="navbar">
-      <a class="logo" href="./forside.html"
-        ><img
-          class="logo"
-          src="./assets/img/logo_80.png"
-          alt="Logo fra Focus Optik"
-      /></a>
-      <ul class="nav-links">
-        <!-- Forside link -->
-        <li><a class="nav-link" href="./forside.html">Forside</a></li>
-        <li class="dropdown">
-          <a class="nav-link" href="./briller.html">Briller 
-            <svg viewBox="0 0 448 512" class="plusIcon">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Om Focus Optik og butikken" />
+  <meta name="keywords" content="Focus Optik, Om Focus Optik, Briller, Kontaktlinser, Butik, Udstilling" />
+  <title>Focus Optik - Butikken</title>
+  <script type="module" src="./assets/js/main.js" defer></script>
+  <script type="module" src="./assets/js/butikken.js" defer></script>
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- KILDE:cdnjs. font-awesome. 2025. [online] accessed: 01.01.25. URL: https://cdnjs.com/libraries/font-awesome -->
+</head>
+
+<body>
+  <nav class="navbar">
+    <a class="logo" href="./forside.html"><img class="logo" src="./assets/img/logo_80.png"
+        alt="Logo fra Focus Optik" /></a>
+    <ul class="nav-links">
+      <!-- Forside link -->
+      <li><a class="nav-link" href="./forside.html">Forside</a></li>
+      <li class="dropdown">
+        <a class="nav-link" href="./briller.html">Briller
+          <svg viewBox="0 0 448 512" class="plusIcon">
             <g>
               <g id="Layer_1">
                 <line id="Lodret" class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
@@ -29,97 +34,397 @@
               </g>
             </g>
           </svg></a>
-          <ul class="dropdown-menu">
-            <li>
-              <ul>
-                <li>
-                  <a class="nav-link" href="./omBriller.html">Om Briller</a>
-                </li>
-                <li>
-                  <a class="nav-link" href="./index.html"
-                    >Alle Briller</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li>
-              <ul>
-                <li>
-                  <a class="nav-link" href="./index.html"
-                    >Herrebriller</a
-                  >
-                </li>
-                <li>
-                  <a class="nav-link" href="./index.html"
-                    >Damebriller</a
-                  >
-                </li>
-                <li>
-                  <a class="nav-link" href="./index.html"
-                    >Børnebriller</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="NavImageContainer">
-              <img
-                src="./assets/img/COLOURBOX60838750.png"
-                alt="Billede af briller"
-              />
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a class="nav-link" href="./kontaktlinser.html">Kontaktlinser</a>
-        </li>
-        <li class="dropdown">
-          <a class="nav-link" href="./syn&sundhed.html">Syn & Sundhed 
-            <svg viewBox="0 0 448 512" class="plusIcon">
-              <g>
-                <g id="Layer_1">
-                  <line id="Lodret" class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
-                  <line id="Vandret" class="cls-1" x1="66.8" y1="235.8" x2="381.2" y2="235.8" />
-                </g>
+        <ul class="dropdown-menu">
+          <li>
+            <ul>
+              <li>
+                <a class="nav-link" href="./omBriller.html">Om Briller</a>
+              </li>
+              <li>
+                <a class="nav-link" href="./index.html">Alle Briller</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li>
+                <a class="nav-link" href="./index.html">Herrebriller</a>
+              </li>
+              <li>
+                <a class="nav-link" href="./index.html">Damebriller</a>
+              </li>
+              <li>
+                <a class="nav-link" href="./index.html">Børnebriller</a>
+              </li>
+            </ul>
+          </li>
+          <li class="NavImageContainer">
+            <img src="./assets/img/COLOURBOX60838750.png" alt="Billede af briller" />
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="nav-link" href="./kontaktlinser.html">Kontaktlinser</a>
+      </li>
+      <li class="dropdown">
+        <a class="nav-link" href="./synOgSundhed.html">Syn & Sundhed
+          <svg viewBox="0 0 448 512" class="plusIcon">
+            <g>
+              <g id="Layer_1">
+                <line id="Lodret" class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
+                <line id="Vandret" class="cls-1" x1="66.8" y1="235.8" x2="381.2" y2="235.8" />
               </g>
-            </svg>
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="nav-link" href="./oejensundhed.html">Øjensundhed</a>
-            </li>
-            <li>
-              <a class="nav-link" href="./videnOmBriller&Linser.html"
-                >Viden om briller & linser</a
-              >
-            </li>
-            <li>
-              <a class="nav-link" href="./synstest&Afproevning.html"
-                >Synstest & Afprøvning</a
-              >
-            </li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a class="nav-link" href="./omFocusOptik.html">Om Focus Optik
-            <svg viewBox="0 0 448 512" class="plusIcon">
-              <g>
-                <g id="Layer_1">
-                  <line id="Lodret" class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
-                  <line id="Vandret" class="cls-1" x1="66.8" y1="235.8" x2="381.2" y2="235.8" />
-                </g>
+            </g>
+          </svg>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="nav-link" href="./oejensundhed.html">Øjensundhed</a>
+          </li>
+          <li>
+            <a class="nav-link" href="./videnOmBrillerOgLinser.html">Viden om Brille- og Synsstyrker</a>
+          </li>
+          <li>
+            <a class="nav-link" href="./synstestOgBrilleafproevning.html">Synstest & Brilleafprøvning</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="nav-link" href="./omFocusOptik.html">Om Focus Optik
+          <svg viewBox="0 0 448 512" class="plusIcon">
+            <g>
+              <g id="Layer_1">
+                <line id="Lodret" class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
+                <line id="Vandret" class="cls-1" x1="66.8" y1="235.8" x2="381.2" y2="235.8" />
               </g>
-            </svg>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="nav-link" href="./voresTeam.html">Vores Team</a></li>
-            <li><a class="nav-link" href="./butikken.html">Butikken</a></li>
+            </g>
+          </svg>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="./voresTeam.html">Vores Team</a></li>
+          <li><a class="nav-link" href="./butikken.html">Butikken</a></li>
+        </ul>
+      </li>
+      <li><a class="nav-link" href="./focusFlex.html">Focus Flex</a></li>
+    </ul>
+    <div class="bookingNav">
+      <a class="bookingNav" href="">BOOK TID</a>
+    </div>
+  </nav>
+  <header class="headerContainer">
+    <h1>BUTIKKEN</h1>
+    <img src="/public/assets/img/butikken_1920x320.jpg" class="heroImg"
+      alt="Billede af medarbejder og kunde i butikken Focus Optik til brilleafprøvning" />
+    <!-- KILDE: Peopleimages.com, billede: #61794097. Colourbox.dk  [online] accessed 29.12.24, URL:https://www.colourbox.dk/billede/butik-glas-kunde-billede-61794097 -->
+  </header>
+  <main>
+    <aside class="breadcrumbs">
+      <a href="/forside.html">Forside /</a>
+      <a href="/omFocusOptik.html">Om Focus Optik /</a>
+      <a href="/butikken.html">Butikken</a>
+    </aside>
+    <div class="twoColumnSection">
+      <section class="columnContainer sectionSpace">
+        <article>
+          <p>Focus Optik har ligget på Loftbrovej nr. 17 i Nørresundby lige siden Lars Kristiansen etablerede butikken i
+            1989. Lige siden har vi bestræbet os på at levere høj service og lave produkter af høj kvalitet. Dette
+            betyder at vi gør os umage med alt, lige fra at skaffe de rigtige kvalitets brillestel/kontaktlinser til
+            bedst
+            mulige priser, vores kunde håndtering, den tid vi bruger på synsprøver og på at finde den rigtige løsning
+            til
+            dig.</p>
+          <p>Focus Optik har udviklet et abonnement, vi kalder Focus Flex. Med dette abonnement kan du få alle de
+            briller, du ønsker dig til den helt rigtige pris. Du kan f.eks. få et kvalitets stel med kvalitets
+            enkeltstyrke
+            glas til kun 400 kr. og der er selvfølgelig antirefleksbehandling og hærdning
+            med i prisen.</p>
+          <p>Du finder os inde i Kvickly.</p>
+        </article>
+        <article>
+          <h3>BUTIKKENS ÅBNINGSTIDER</h3>
+          <ul id="openingHours">
+            <li>Mandag: 9:00 - 17:30</li>
+            <li>Tirsdag: 9:00 - 17:30</li>
+            <li>Onsdag: 9:00 - 17:30</li>
+            <li>Torsdag: 9:00 - 17:30</li>
+            <li>Fredag: 9:00 - 18:30</li>
+            <li>Lørdag: 9:00 - 14:00</li>
+            <li>Søndag: Lukket</li>
           </ul>
-        </li>
-        <li><a class="nav-link" href="./focusFlex.html">Focus Flex</a></li>
-      </ul>
-      <div class="bookingNav">
-        <a class="bookingNav" href="">BOOK TID</a>
+        </article>
+      </section>
+      <section class="sectionSpace">
+        <aside class="imageContainer">
+          <div class="galleryItemContainer">
+            <img class="galleryItem" src="/public/assets/img/butikken_1_700x467.jpg"
+              alt="Focus Optik butikken med fokus på afprøvningsbord og kassen" loading="lazy">
+            <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
+          </div>
+          <div class="galleryItemContainer">
+            <img class="galleryItem" src="/public/assets/img/butikken_2_700x934.jpg"
+              alt="Focus Optik butikken med fokus på en af de mange udstillingsvægge med brillestel" loading="lazy">
+            <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
+          </div>
+          <div class="galleryItemContainer">
+            <img class="galleryItem" src="/public/assets/img/butikken_3_700x467.jpg"
+              alt="Focus Optik butikken med fokus på en udstillingsvæg med orange baggrund" loading="lazy">
+            <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
+          </div>
+          <div class="galleryItemContainer">
+            <img class="galleryItem" src="/public/assets/img/butikken_4_700x698.jpg"
+              alt="Focus Optik butikken med fokus på indgangen og vinduesudstilling" loading="lazy">
+            <!-- KILDE: Focus_Optik. 29. maj 2021. Instagram. [online] accessed 29.12.24, URL:https://www.instagram.com/p/CPdCRiBBcWM/ -->
+          </div>
+          <div class="galleryItemContainer">
+            <img class="galleryItem" src="/public/assets/img/butikken_5_600x640.jpg"
+              alt="Focus Optik med fokus på en udstillingsvæg med et brillestel og solbriller" loading="lazy">
+          </div>
+          <a href="#" id="previousBtn"><i class="iconStylingOrange fa-solid fa-chevron-left"></i></a>
+          <!-- KILDE: FontAwesome. chevron-left [online] accessed 01.01.25 URL: https://fontawesome.com/v6/icons/chevron-left?f=classic&s=solid -->
+          <a href="#" id="nextBtn"><i class="iconStylingOrange fa-solid fa-chevron-right"></i></a>
+          <!-- KILDE: FontAwesome. chevron-right [online] accessed 01.01.25 URL: https://fontawesome.com/icons/chevron-right?f=classic&s=solid&pc=%23fb6201&sc=%23fb6201 -->
+          <div class="galleryRow">
+            <div>
+              <img class="galleryItemSmall" src="/public/assets/img/butikken_1_700x467.jpg"
+                alt="Focus Optik butikken med fokus på afprøvningsbord og kassen" loading="lazy" data-slide-number="1">
+            </div>
+            <div>
+              <img class="galleryItemSmall" src="/public/assets/img/butikken_2_700x934.jpg"
+                alt="Focus Optik butikken med fokus på en af de mange udstillingsvægge med brillestel" loading="lazy" data-slide-number="2">
+            </div>
+            <div>
+              <img class="galleryItemSmall" src="/public/assets/img/butikken_3_700x467.jpg"
+                alt="Focus Optik butikken med fokus på en udstillingsvæg med orange baggrund" loading="lazy" data-slide-number="3">
+            </div>
+            <div>
+              <img class="galleryItemSmall" src="/public/assets/img/butikken_4_700x698.jpg"
+                alt="Focus Optik butikken med fokus på indgangen og vinduesudstilling" loading="lazy" data-slide-number="4">
+            </div>
+            <div>
+              <img class="galleryItemSmall" src="/public/assets/img/butikken_5_600x640.jpg"
+                alt="Focus Optik med fokus på en udstillingsvæg med et brillestel og solbriller" loading="lazy" data-slide-number="5">
+            </div>
+          </div>
+        </aside>
+      </section>
+    </div>
+    <section class="twoColumnSection sectionSpace">
+      <div>
+        <h2>Hvad kan du forvente ved et besøg hos Focus Optik</h2>
+        <p>Vores dygtige personale står klar til at byde dig velkommen i vores hyggelige butik.
+          Fra det øjeblik du træder ind af døren, bliver du mødt med et smil og en afslappet atmosfære hvor dine behov
+          er
+          i centrum. Vi er der for at hjælpe dig, og tager os den tid, du har brug for. Alle vores optikere er
+          autoriserede optometrister og besidder en solid faglig viden. Du kan derfor være sikker på, at du er i gode
+          hænder hos os.
+          Du har mulighed for at få foretaget en grundig synsundersøgelse med moderne teknologi, hvor vi med faglig
+          ekspertise kan give dig en professionel behandling.
+          Mens du besøger os, har du også mulighed for at nyde en gratis kop kaffe eller te og blive inspireret fra de
+          mange brillestel vores butik rummer. Der er plads til både at kigge på egen hånd eller i samråd med
+          personalet.
+          Har du brug for autentisk, professionel og ærlig vejledning, hjælper vi også hellere end gerne.</p>
       </div>
-    </nav>
-  </body>
+      <div>
+        <img class="sideImg" src="/public/assets/img/forventning_ 707x472 .jpg"
+          alt="samtale mellem kunde og medarbejder i Focus Optik butikken" loading="lazy">
+        <!-- KILDE: Arne Trautmann, billede: #32615236. Colourbox.dk  [online] accessed 29.12.24, URL:https://www.colourbox.dk/billede/dame-oejne-afsats-billede-32615236 -->
+      </div>
+    </section>
+    <section class="sectionSpace">
+      <h2>FAQ</h2>
+      <article class="accordions">
+        <div>
+          <button class="accordionHeader">
+            <p>Laver I Synsprøver?</p><i class="accordionIcon fa-solid fa-plus"></i>
+          </button>
+          <!-- KILDE: Font awesome. plus. [online] accessed 01.01.25. URL: https://fontawesome.com/icons/plus?f=classic&s=solid -->
+          <div class="accordionContent">
+            Ja, vi er 3 autoriserede brille og kontaktlinse optikere, der er meget kompetente til at tage en grundig
+            synsprøve på dig.
+          </div>
+        </div>
+        <div>
+          <button class="accordionHeader">
+            <p>Hvad koster briller?</p><i class="accordionIcon fa-solid fa-plus"></i>
+          </button>
+          <div class="accordionContent">
+            Det kommer meget an på, hvilken briller du vil have, som guide kan du se på vores pris eksempler.
+          </div>
+        </div>
+        <div>
+          <button class="accordionHeader">
+            <p>Hvor længe skal jeg vente på mine briller?</p><i class="accordionIcon fa-solid fa-plus"></i>
+          </button>
+          <div class="accordionContent">
+            Det kommer helt an på, hvilke briller og hvilke brille glas du vælger. Men som udgangspunkt kan du regne med
+            1
+            time for standard enkeltstyrke briller, og ca en uge for flerstyrker briller. Der kan i sjældne tilfælde gå
+            længere tid ved specialglas, og hvis vi også skal skaffe stel hjem til dig.
+          </div>
+        </div>
+        <div>
+          <button class="accordionHeader">
+            <p>Hvordan virker Focus Flex Abonnement?</p><i class="accordionIcon fa-solid fa-plus"></i>
+          </button>
+          <div class="accordionContent">
+            Focus Flex er et abonnement, hvor du har mulighed for at få alle de briller du ønsker, til meget favorable
+            priser. Abonnementsprisen afhænger af hvilken prisgruppe du tilhører (classic, deluxe og premium).
+            Pris eksempel for enkeltstyrke brille: Brillestel. 1.488 kr.
+            Enkeltstyrke glas med antireflex behandling og hærdning 1.898 kr.
+            Kontant i alt 3.186 kr.Med Focus Flex abonnement til 125 kr om måneden, bliver prisen for brillen 400 kr. +
+            1500
+            kr.=1900 kr.. Du sparer ca 40%. Læs mere på siden “Focus Flex”.
+          </div>
+        </div>
+        <div>
+          <button class="accordionHeader">
+            <p>Hvorfor skal jeg have linse instruktion af jer, når jeg kender nogle, der selv
+              bruger linser?</p><i class="accordionIcon fa-solid fa-plus"></i>
+          </button>
+          <div class="accordionContent">
+            Når vi har givet dig prøve linser med hjem, så er det vores ansvar, at dine øjne ikke bliver beskadiget. Det
+            er
+            meget vigtigt, at du selv kan håndtere dine linser, da du ikke altid er i nærheden af nogen, der kan hjælpe
+            dig.
+          </div>
+        </div>
+        <div>
+          <button class="accordionHeader">
+            <p>Hvordan gør jeg mine briller rene?</p><i class="accordionIcon fa-solid fa-plus"></i>
+          </button>
+          <div class="accordionContent">
+            Når du køber briller hos Focus Optik får du selvfølgelig en mikrofiber pudseklud, og etui med. Vi anbefaler,
+            at
+            du bruger mikrofiber på en tør briller og brillerens med en bomuld viskestykke.
+            Når du pudser dine brilleglas skal du selvfølgelig være opmærksom på støv og sand, der kan ridse dine
+            briller.
+            Vi fraråder, at du bruger papirs servietter, køkkenrulle og lign., da disse kan lave ridser i dine
+            brilleglas.
+          </div>
+        </div>
+        <div>
+          <button class="accordionHeader">
+            <p>Hvor længe skal jeg vente på mine briller?</p><i class="accordionIcon fa-solid fa-plus"></i>
+          </button>
+          <div class="accordionContent">
+            Det kommer helt an på, hvilke briller og hvilke brille glas du vælger. Men som udgangspunkt kan du regne med
+            1
+            time for standard enkeltstyrke briller, og ca en uge for flerstyrker briller. Der kan i sjældne tilfælde gå
+            længere tid ved specialglas, og hvis vi også skal skaffe stel hjem til dig.
+          </div>
+        </div>
+        <div>
+          <button class="accordionHeader">
+            <p>Kan jeg møde op til en synstest uden tidsbestilling?</p><i class="accordionIcon fa-solid fa-plus"></i>
+          </button>
+          <div class="accordionContent">
+            Ja det kan du. Men vi anbefaler, at du booker en tid til synstesten via. vores online booking system. Dermed
+            sikrer vi, at der afsættes den nødvendige tid til dig, så vi kan tilbyde dig den bedste mulige oplevelse.
+          </div>
+        </div>
+        <div>
+          <button class="accordionHeader">
+            <p>Mine briller er gået i stykker. Hvad gør jeg?</p><i class="accordionIcon fa-solid fa-plus"></i>
+          </button>
+          <div class="accordionContent">
+            I butikken har vi eget værksted og kan i de fleste tilfælde hjælpe med reparationer. Kig ind i butikken med
+            brillerne, eller kontakt os pr. telefon.
+          </div>
+        </div>
+      </article>
+    </section>
+    <article class="centerContainer sectionSpace">
+      <img class="imgStyling cardImg cardImgButikken" src="/public/assets/img/butikkenCard_1594x563.jpg"
+        alt="kvinde der smiler og kigger ned på to brillestel hun holder i sine hænder" loading="lazy" />
+      <!-- KILDE: Peopleimages.com, billede: #61642955 [online] accessed 29.12.24, URL:https://www.colourbox.dk/billede/optiker-briller-kvinde-billede-61642955 -->
+      <div class="cardRightText cardTextButikken">
+        <h4>Har du brug for hjælp?</h4>
+        <p>Så kontakt os på:</p>
+        <div class="centerText">
+          <i class="iconStylingBlack fa-solid fa-mobile-screen-button"></i>
+          <p>Tlf: 98 17 47 77</p>
+          <!-- KILDE: Font-Awesome. Mobile-screen-button [online] accessed: 01.01.25. URL: https://fontawesome.com/v6/icons/mobile-screen-button?f=classic&s=solid -->
+        </div>
+        <div class="centerText">
+          <i class="iconStylingBlack fa-regular fa-envelope"></i>
+          <p>butik@focusoptik.dk</p>
+          <!-- KILDE: Font-Awesome. Envelope [online] accessed: 01.01.25. URL: https://fontawesome.com/v6/icons/envelope?f=classic&s=regular -->
+        </div>
+      </div>
+    </article>
+  </main>
+  <footer>
+    <section class="footerContainer">
+      <div class="footerColumn footerDesktop">
+        <a href="/briller.html">
+          <h3>Briller</h3>
+        </a>
+        <a href="/omBriller.html">Om Briller</a>
+        <a href="/index.html">Alle Briller</a>
+        <a href="/index.html">Herrebriller</a>
+        <a href="/index.html">Damebriller</a>
+        <a href="/index.html">Børnebriller</a>
+      </div>
+      <div class="footerColumn footerDesktop">
+        <a href="#">
+          <h3>Kontaktlinser</h3>
+        </a>
+        <a href="#">Tilbehør til Kontaktlinser</a>
+        <a href="#">Køb Kontaktlinser</a>
+      </div>
+      <div class="footerColumn footerDesktop">
+        <a href="/synOgSundhed.html">
+          <h3>Syn & Sundhed</h3>
+        </a>
+        <a href="/oejensundhed.html">Øjensundhed</a>
+        <a href="/videnOmBrillerOgLinser.html">Viden om Brille- og Synsstyrker</a>
+        <a href="/synstestOgBrilleafproevning.html">Synstest & Brilleafprøvning</a>
+      </div>
+      <div class="footerColumn footerDesktop">
+        <a href="/omFocusOptik.html">
+          <h3>Om Focus Optik</h3>
+        </a>
+        <a href="/voresTeam.html">Vores Team</a>
+        <a href="/butikken.html">Butikken</a>
+      </div>
+      <div class="footerColumn footerDesktop">
+        <a href="/focusFlex.html">
+          <h3>Focus Flex</h3>
+        </a>
+        <a href="#">Focus Flex Events</a>
+        <a href="#">Priser</a>
+      </div>
+      <div class="footerColumn">
+        <h3>Kontakt</h3>
+        <div class="centerIcon">
+          <i class="iconStylingGreySmall fa-solid fa-location-dot"></i>
+          <!-- KILDE: Font-Awesome. Location-dot [online] accessed: 03.01.25. URL: https://fontawesome.com/icons/location-dot?f=classic&s=solid -->
+          <div class="footerAdress">
+            <p>Loftbrovej 17</p>
+            <p>9400, Nørresundby</p>
+          </div>
+        </div>
+        <div class="centerText">
+          <i class="iconStylingGreySmall fa-solid fa-mobile-screen-button"></i>
+          <!-- KILDE: Font-Awesome. Mobile-screen-button [online] accessed: 01.01.25. URL: https://fontawesome.com/v6/icons/mobile-screen-button?f=classic&s=solid -->
+          <p>Tlf: 98 17 47 77</p>
+        </div>
+        <div class="centerText">
+          <i class="iconStylingGreySmall fa-regular fa-envelope"></i>
+          <!-- KILDE: Font-Awesome. Envelope [online] accessed: 01.01.25. URL: https://fontawesome.com/v6/icons/envelope?f=classic&s=regular -->
+          <p>butik@focusoptik.dk</p>
+        </div>
+        <p>CVR: 25503023</p>
+      </div>
+    </section>
+    <div class="footerRow">
+      <a href="https://www.facebook.com/focusoptik.focusflex"><i
+          class="iconStylingGreyLarge fa-brands fa-facebook-f"></i></a>
+      <!-- KILDE: Font-Awesome. Facebook-F [online] accessed: 03.01.25. URL: https://fontawesome.com/icons/facebook-f?f=brands&s=solid -->
+      <a href="https://www.instagram.com/focus_optik/"><i class="iconStylingGreyLarge fa-brands fa-instagram"></i></a>
+      <!-- KILDE: Font-Awesome. instagram [online] accessed: 03.01.25. URL: https://fontawesome.com/icons/instagram?f=brands&s=solid -->
+    </div>
+  </footer>
+</body>
+
 </html>

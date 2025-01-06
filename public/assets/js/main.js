@@ -1,6 +1,5 @@
 
-
-
+// FUNCTIONS
 document.addEventListener('DOMContentLoaded', function () {
     // Finder alle dropdowns
     const dropdowns = document.querySelectorAll('.dropdown');
