@@ -1773,7 +1773,6 @@ p {
   MEDIA QUERIES
    ================================================ */
 
-
 @media screen and (max-width: 1700px) {
   .videoSect {
     flex-direction: column;
@@ -1853,7 +1852,6 @@ p {
     padding-top: 5rem;
   }
 }
-
 
 @media screen and (max-width: 1200px) {
 
@@ -1964,7 +1962,6 @@ p {
     width: 100%;
   }
 }
-
 
 @media screen and (max-width: 1000px) {
 
@@ -2154,8 +2151,6 @@ p {
     width: 100%;
   }
 }
-
-
 
 @media screen and (max-width: 500px) {
 
