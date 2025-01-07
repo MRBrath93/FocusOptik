@@ -1921,6 +1921,14 @@ p {
 
 @media screen and (max-width: 1000px) {
 
+  .navbar {
+    display: none !important;
+  }
+
+  .Mobilnavbar {
+    display: flex;
+  }
+
   .twoCardContainer {
     flex-direction: column;
   }
