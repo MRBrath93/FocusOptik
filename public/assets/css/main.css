@@ -214,6 +214,10 @@ main {
   width: 120px;
 }
 
+.bookingNav:hover {
+  text-decoration: underline;
+}
+
 .nav-links {
   display: flex;
   gap: 0.5rem;
