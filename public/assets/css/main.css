@@ -1724,31 +1724,35 @@ p {
   border-radius: 50%;
 }
 
-#yellowColour { 
+#yellowColour {
   background-color: yellow;
   height: 34px;
   width: 34px;
   border-radius: 50%;
 }
-#greenColour { 
+
+#greenColour {
   background-color: green;
   height: 34px;
   width: 34px;
   border-radius: 50%;
 }
-#redColour { 
+
+#redColour {
   background-color: red;
   height: 34px;
   width: 34px;
   border-radius: 50%;
 }
-#blueColour { 
+
+#blueColour {
   background-color: blue;
   height: 34px;
   width: 34px;
   border-radius: 50%;
 }
-#blackColour { 
+
+#blackColour {
   background-color: black;
   height: 34px;
   width: 34px;
