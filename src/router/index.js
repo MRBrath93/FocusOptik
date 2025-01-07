@@ -17,7 +17,7 @@ const routes = [
     component: ProductAllGlassesOverview,
   },
   {
-    path: '/forside.html',
+    path: '/class/MMD-CSD-S23/10414032/MMD1/MMD3-FOCUS-OPTIK/forside.html',
     name: 'Forside',
     component: Forside
   },
