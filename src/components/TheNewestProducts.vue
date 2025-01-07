@@ -1,6 +1,6 @@
 <script setup>
 import { useGlassesStore } from "../stores/glasses";
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref, onUnmounted } from "vue";
 import { useRouter } from 'vue-router';
 import goldenImage from '../assets/img/golden.webp';
 import silverImage from '../assets/img/silver.jpg';
@@ -13,10 +13,28 @@ const props = defineProps({
 const glassStore = useGlassesStore();
 const router = useRouter();
 
-// Find de 4 nyeste briller
+// Reactive property to store window width
+const windowWidth = ref(window.innerWidth);
+
+// Update window width when the window is resized
+const updateWidth = () => {
+  windowWidth.value = window.innerWidth;
+};
+
+// Listen for window resize events
+onMounted(() => {
+  window.addEventListener('resize', updateWidth);
+});
+
+// Clean up event listener on component unmount
+onUnmounted(() => {
+  window.removeEventListener('resize', updateWidth);
+});
+
+// Computed property to get the latest glasses based on window width
 const latestGlasses = computed(() => {
-    // Tager de 4 nyeste og vender rækkefølgen så de står korrekt
-  return glassStore.glasses.slice(-4).reverse();
+  const glassesToShow = windowWidth.value < 900 ? 2 : 4;
+  return glassStore.glasses.slice(-glassesToShow).reverse();
 });
 
 
@@ -222,6 +240,27 @@ onMounted(() => {
       width: 150px;
   }
   
+  
+  }
+
+  @media screen and (max-width: 900px) {
+    .related-glasses{
+      grid-template-columns: repeat(2,1fr);
+    }
+  
+    .btnContainer{
+    grid-column: 2/3;
+  }
+  }
+
+  @media screen and (max-width: 500px) {
+    .related-glasses{
+      grid-template-columns: 1fr;
+    }
+  
+    .btnContainer{
+    grid-column: 1/2;
+  }
   }
   
   </style>
