@@ -89,6 +89,10 @@ import StatueWithGlasses1800 from '@/assets/img/StatueWithGlasses1800x862.jpg';
 import StatueWithGlasses1000 from '@/assets/img/StatueWithGlasses1000x700.jpg';
 import TwoGlassesOnTwoColor from '@/assets/img/TwoGlassesOnTwoColor.jpg';
 import TwoGlassesOnTwoColor1432 from '@/assets/img/TwoGlassesOnTwoColor1432x1500.jpg';
+import BoyReading from '@/assets/img/BoyReading.jpg';
+import BoyReadingSmall from '@/assets/img/BoyReadingSmall.jpg';
+import GreenBackground from '@/assets/img/GreenBack.jpg';
+import PeachBackground from '@/assets/img/PeachBack.jpg';
 
 
 export const CommercialImages = [
@@ -107,6 +111,22 @@ export const CommercialImages = [
     {
         alt_text: 'To par briller der ligger på en farvet baggrund',
         image: TwoGlassesOnTwoColor1432,
+    },
+    {
+        alt_text: 'En ung mand der læser i en bog',
+        image: BoyReading,
+    },
+    {
+        alt_text: 'En ung mand der læser i en bog',
+        image: BoyReadingSmall,
+    },
+    {
+        alt_text: 'En grøn background',
+        image: GreenBackground,
+    },
+    {
+        alt_text: 'En ferskenfarvet background',
+        image: PeachBackground,
     },
 
 ];

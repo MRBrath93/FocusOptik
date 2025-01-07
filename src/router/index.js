@@ -8,12 +8,18 @@ import InspirationsSite from '@/views/InspirationsSite.vue';
 import ProductFormOverview from '@/views/ProductFormOverview.vue';
 import ProductFlexGroupOverview from '@/views/ProductFlexGroupOverview.vue';
 import ProductTypeOverview from '@/views/ProductTypeOverview.vue';
+import Forside from '@/views/Forside.vue';
 
 const routes = [
   {
     path: '/index.html',
     name: 'ProductOverview',
     component: ProductAllGlassesOverview,
+  },
+  {
+    path: '/forside.html',
+    name: 'Forside',
+    component: Forside
   },
   {
     path: '/herrebriller.html',
