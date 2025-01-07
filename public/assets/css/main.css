@@ -572,6 +572,73 @@ footer .footerRow a i:hover {
    FORSIDE
    ================================================ */
 
+.heroRow {
+  display: flex;
+  align-items: center;
+  transition: transform 0.5s ease-in-out;
+  overflow: hidden;
+  max-height: 1000px;
+  gap: 1rem;
+  margin-top: 4rem;
+}
+
+.heroCardActive {
+  transform: scale(1.2);
+  padding-left: 25px;
+}
+
+.heroCard {
+  transition: transform 0.5s ease-in-out;
+
+}
+
+.heroCardPassive {
+  transform: scale(0.9);
+
+}
+
+.heroCardImg {
+  width: 800px;
+  height: 500px;
+  object-fit: cover;
+  position: relative;
+}
+
+.heroCardText {
+  position: absolute;
+  bottom: 5px;
+  color: var(--SnowWhite);
+}
+
+.heroCardActive {
+  transform: scale(1.1);
+  z-index: 10;
+  /* For at sikre, at det vises øverst */
+}
+
+.heroCardImgActive {
+  transform: scale(1.1);
+}
+
+.heroRowDots a.active {
+  background-color: var(--FocusOrange);
+}
+
+.heroRowDot {
+  background-color: #ffc29b;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.heroRowDots {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+  justify-content: center;
+}
 
 .lightbox {
   display: none;
