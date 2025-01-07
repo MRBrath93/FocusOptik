@@ -8,8 +8,9 @@
   <meta name="keywords" content="Focus Optik, Briller, Kontaktlinser, Butik, Udstilling" />
     <title>Forcus Optik - Børnebriller</title>
     <script type="module" src="./src/vueMain.js" defer></script>
-    <link rel="stylesheet" href="./src/assets/vueMain.css" />
-    <link rel="stylesheet" href="./assets/css/main.css" />
+  <script src="./assets/js/main.js" defer></script>
+  <link rel="stylesheet" href="./src/assets/vueMain.css" >
+  <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -102,6 +103,56 @@
       <a class="bookingNav" href="/book-tid.html">BOOK TID</a>
     </div>
   </nav>
+  <div class="Mobilnavbar">
+    <a class="Mobillogo" href="/forside.html">
+      <img
+        class="Mobillogo"
+        src="./assets/img/logo_80.png"
+        alt="Logo fra Focus Optik"
+      />
+    </a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  
+  <div class="sidebar">
+    <div class="flexNav">
+      <a class="Mobillogo" href="/forside.html">
+        <img
+          class="Mobillogo"
+          src="./assets/img/logo_80.png"
+          alt="Logo fra Focus Optik"
+        />
+      </a>
+      <div class="closeMark" onclick="toggleMenu()">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+    </div>
+    <ul>
+      <li><a href="/forside.html">Forside</a></li>
+      <li><a href="/briller.html">Briller</a></li>
+      <li><a href="/omBriller.html">Om Briller</a></li>
+      <li><a href="/inspiration.html">Inspiration</a></li>
+      <li><a href="/index.html">Alle Briller</a></li>
+      <li><a href="/herrebriller.html">Herrebriller</a></li>
+      <li><a href="/damebriller.html">Damebriller</a></li>
+      <li><a href="/boernebriller.html">Børnebriller</a></li>
+      <li><a href="/kontaktlinser.html">Kontaktlinser</a></li>
+      <li><a href="/synOgSundhed.html">Syn & Sundhed</a></li>
+      <li><a href="/oejensundhed.html">Øjensundhed</a></li>
+      <li><a href="/videnOmBrillerOgLinser.html">Viden om briller & linser</a></li>
+      <li><a href="/synstestOgBrilleafproevning.html">Synstest & Brilleafprøvning</a></li>
+      <li><a href="/omFocusOptik.html">Om Focus Optik</a></li>
+      <li><a href="/voresTeam.html">Vores Team</a></li>
+      <li><a href="/butikken.html">Butikken</a></li>
+      <li><a href="/focusFlex.html">Focus Flex</a></li>
+      <li><a class="bookingNav" href="/book-tid.html">BOOK TID</a></li>
+      
+    </ul>
+  </div>
 
   <div id="app"></div>
   <footer>

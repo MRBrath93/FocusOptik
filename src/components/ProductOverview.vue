@@ -522,7 +522,7 @@ watch(route, (newRoute) => {
         </div>
       </div>
 
-      <div class="flexFlex btnBox">
+      <div class="flexflex btnBox">
         <TheBtn class="customButton customButtonRotate" label="Anvend Filtre" :onClick="runApplyAndHide"><span>Anvend Filtre</span> <i class="fa-solid fa-rotate-right"></i></TheBtn>
         <TheBtn class="customButton customButtonWiggle" label="Reset Filtre" :onClick="resetFilters"><span>nulstil Filtre</span> <i class="fa-solid fa-trash"></i></TheBtn>
       </div>
@@ -890,8 +890,9 @@ label{
 }
 
 @media screen and (max-width: 1800px) {
-  .flexFlex {
+  .flexflex {
     flex-direction: column;
+    gap: 1rem;
 }
 }
 
