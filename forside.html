@@ -108,64 +108,16 @@
         <a class="bookingNav" href="/book-tid.html">BOOK TID</a>
       </div>
     </nav>
-    <section class="sectionSpace">
-      <aside class="imageContainer">
-        <div class="galleryItemContainer">
-          <img class="galleryItem" src="/public/assets/img/butikken_1_700x467.jpg"
-            alt="Focus Optik butikken med fokus på afprøvningsbord og kassen" loading="lazy">
-          <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
-        </div>
-        <div class="galleryItemContainer">
-          <img class="galleryItem" src="/public/assets/img/butikken_2_700x934.jpg"
-            alt="Focus Optik butikken med fokus på en af de mange udstillingsvægge med brillestel" loading="lazy">
-          <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
-        </div>
-        <div class="galleryItemContainer">
-          <img class="galleryItem" src="/public/assets/img/butikken_3_700x467.jpg"
-            alt="Focus Optik butikken med fokus på en udstillingsvæg med orange baggrund" loading="lazy">
-          <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
-        </div>
-        <div class="galleryItemContainer">
-          <img class="galleryItem" src="/public/assets/img/butikken_4_700x698.jpg"
-            alt="Focus Optik butikken med fokus på indgangen og vinduesudstilling" loading="lazy">
-          <!-- KILDE: Focus_Optik. 29. maj 2021. Instagram. [online] accessed 29.12.24, URL:https://www.instagram.com/p/CPdCRiBBcWM/ -->
-        </div>
-        <div class="galleryItemContainer">
-          <img class="galleryItem" src="/public/assets/img/butikken_5_600x640.jpg"
-            alt="Focus Optik med fokus på en udstillingsvæg med et brillestel og solbriller" loading="lazy">
-        </div>
-        <a href="#" id="previousBtn"><i class="iconStylingOrange fa-solid fa-chevron-left"></i></a>
-        <!-- KILDE: FontAwesome. chevron-left [online] accessed 01.01.25 URL: https://fontawesome.com/v6/icons/chevron-left?f=classic&s=solid -->
-        <a href="#" id="nextBtn"><i class="iconStylingOrange fa-solid fa-chevron-right"></i></a>
-        <!-- KILDE: FontAwesome. chevron-right [online] accessed 01.01.25 URL: https://fontawesome.com/icons/chevron-right?f=classic&s=solid&pc=%23fb6201&sc=%23fb6201 -->
-        <div class="galleryRow">
-          <div>
-            <img class="galleryDot" src="/public/assets/img/butikken_1_700x467.jpg"
-              alt="Focus Optik butikken med fokus på afprøvningsbord og kassen" loading="lazy" data-slide-number="1">
-          </div>
-          <div>
-            <img class="galleryDot" src="/public/assets/img/butikken_2_700x934.jpg"
-              alt="Focus Optik butikken med fokus på en af de mange udstillingsvægge med brillestel" loading="lazy"
-              data-slide-number="2">
-          </div>
-          <div>
-            <img class="galleryDot" src="/public/assets/img/butikken_3_700x467.jpg"
-              alt="Focus Optik butikken med fokus på en udstillingsvæg med orange baggrund" loading="lazy"
-              data-slide-number="3">
-          </div>
-          <div>
-            <img class="galleryDot" src="/public/assets/img/butikken_4_700x698.jpg"
-              alt="Focus Optik butikken med fokus på indgangen og vinduesudstilling" loading="lazy"
-              data-slide-number="4">
-          </div>
-          <div>
-            <img class="galleryDot" src="/public/assets/img/butikken_5_600x640.jpg"
-              alt="Focus Optik med fokus på en udstillingsvæg med et brillestel og solbriller" loading="lazy"
-              data-slide-number="5">
-          </div>
-        </div>
-      </aside>
-    </section>
+    <div class="slider">
+      <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+       
+      <img id="slide-image" src="./public/assets/img/alleBrillerCard_1000x479.jpg" alt="Billede 1">
+      
+      
+      <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+      
+      <div class="dots" id="dots-container"></div>
+    </div>
     
 
     <section class="lillegrid"></section>
@@ -352,11 +304,61 @@
   </body>
 </html>
 <style>
-.galleryDot{
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: black;
+.slider {
+  position: relative;
+  width: 100%;
+  margin: auto;
+  z-index: 1;
 }
+
+.slider img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--FocusOrange);
+  border: none;
+  cursor: pointer;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.dots {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.dots span {
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+  background-color: var(--FocusOrange);
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dots span.active {
+  background-color: var(--Black);
+}
+
+@media (max-width: 899px) {
+  .slider img {
+    height: 300px;
+  }
+}
+
 
 </style>

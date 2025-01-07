@@ -20,50 +20,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// IMAGE SLIDER - BUTIKKEN.HTML
-let slideIndex = 1; // Variabel til at holde styr på den aktive slide
+const images = [
+    { image: './public/assets/img/alleBrillerCard_1000x479.jpg', alt_text: 'Billede 1' },
+    { image: './public/assets/img/butikken_1_700x467.jpg', alt_text: 'Billede 2' },
+    { image: './public/assets/img/TwoColorTwoGlasses.jpg', alt_text: 'Billede 3' }
+];
 
-showSlides(); // showSlides funktionen kaldes for at vise den aktuelle slide
+let currentSlide = 0;
 
-document.querySelector('#previousBtn').addEventListener('click', e => { // Eventlistener der lytter efter klik på previousBtn
-    e.preventDefault(); // preventDefault forhindrer at siden scroller til toppen ved klik
-    slideIndex = slideIndex - 1; // slideIndex reduceres med 1 ved klik på previousBtn
-    showSlides();
-});
+const slideImage = document.getElementById('slide-image');
+const dotsContainer = document.getElementById('dots-container');
 
-document.querySelector('#nextBtn').addEventListener('click', e => { // Eventlistener der lytter efter klik på nextBtn
-    e.preventDefault();
-    slideIndex = slideIndex + 1;
-    showSlides();
-});
+const updateSlide = (index) => {
+    currentSlide = index;
+    slideImage.src = images[currentSlide].image;
+    slideImage.alt = images[currentSlide].alt_text;
 
-// GalleryItemSmall eventlisteners
-
-document.querySelectorAll('.galleryItemSmall').forEach(item => { // forEach metoden anvendes for at gennemgå alle galleryItemSmall elementer og tilføje eventlisteners 
-    item.addEventListener('click', e => {
-        slideIndex = e.target.dataset.slideNumber; // slideIndex sættes til værdien af data-slide-number attributten for det klikkede element 
-        showSlides();
+    const dots = document.querySelectorAll('.dots span');
+    dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
     });
-});
-// INSPIRATIONSKILDE: W3SCHOOL - HTML data-* Attribute - [online] Accessed 05.01.25. URL: https://www.w3schools.com/tags/att_data-.asp
-
-// GalleryItemContainer eventlisteners
-// Funktion til at vise den aktuelle slide i stort format og ændre opacity på galleryItemSmall elementer
-function showSlides() {
-
-    let galleryItemContainer = document.querySelectorAll('.imageContainer .galleryItemContainer');
-    if (slideIndex > galleryItemContainer.length) { slideIndex = 1 } // Hvis slideIndex er større end antallet af galleryItemContainer elementer, sættes slideIndex til 1 (der startes forfra)
-    if (slideIndex < 1) { slideIndex = galleryItemContainer.length } // Hvis slideIndex er mindre end 1, sættes slideIndex til sidste element i galleryItemContainer arrayet
-    for (let i = 0; i < galleryItemContainer.length; i++) { // For loop der gennemgår alle galleryItemContainer elementer og skjuler dem
-        galleryItemContainer[i].style.display = 'none';
-    }
-    galleryItemContainer[slideIndex - 1].style.display = 'unset';  // Det aktuelle galleryItemContainer element vises
-
-    let itemSmalls = document.querySelectorAll('.galleryItemSmall');
-    itemSmalls.forEach(item => { // forEach loop der gennemgår alle galleryItemSmall elementer og fjerner klassen galleryItemSmallActive
-        item.classList.remove('galleryItemSmallActive');
-    });
-
-    itemSmalls[slideIndex - 1].classList.add('galleryItemSmallActive'); // Den aktuelle galleryItemSmall får tilføjet klassen galleryItemSmallActive (der ændres opacity)
 };
 
+const createDots = () => {
+    images.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.addEventListener('click', () => updateSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+};
+
+document.querySelector('.next').addEventListener('click', () => {
+    updateSlide((currentSlide + 1) % images.length);
+});
+
+document.querySelector('.prev').addEventListener('click', () => {
+    updateSlide((currentSlide - 1 + images.length) % images.length);
+});
+
+createDots();
+updateSlide(0);
+
+// Skifter automatisk til næste slide hver 5. sekund
+setInterval(() => {
+    updateSlide((currentSlide + 1) % images.length);
+}, 5000); // 5000 ms = 5 sekunder
