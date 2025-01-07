@@ -31,7 +31,7 @@ const props = defineProps({
 }
 
 .commercial p {
-  width: 50ch;
+  max-width: 50ch;
 }
 
 .container{
@@ -40,6 +40,7 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   justify-content: space-around ;
+  gap: 0.5rem;
 }
 
 .customButton:hover{
@@ -75,6 +76,12 @@ const props = defineProps({
 
 .customButtonPoint:hover i {
   animation: PointRight 2s infinite linear;
+}
+
+@media screen and (max-width: 1600px) {
+  .commercial {
+    height: fit-content;
+}
 }
 
 </style>

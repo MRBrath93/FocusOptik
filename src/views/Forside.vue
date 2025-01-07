@@ -9,12 +9,20 @@ import { CommercialImages } from '@/assets/data/images';
 // Opretter en reaktiv variabel imageUrl med billedet fra CommercialImages[0]
 const imageUrl = ref(CommercialImages[4].image);
 
-// Funktion der opdaterer imageUrl og secondimageUrl baseret på skærmstørrelsen
+
 function updateImageUrl() {
    // Tjekker, om skærmbredden er mindre end eller lig med 1600px, hvis dette er opfyldt så er matches true.
   const isSmall = window.matchMedia('(max-width: 1600px)').matches;
-    // Opdaterer imageUrl og secondimageurl afhængigt af skærmbredden med en ternary operator.
-  imageUrl.value = isSmall ? CommercialImages[5].image : CommercialImages[4].image;
+  const isSmallest = window.matchMedia('(max-width: 900px)').matches;
+  
+  if (isSmallest) {
+    imageUrl.value = CommercialImages[7].image;
+  } else if (isSmall) {
+    imageUrl.value = CommercialImages[5].image;
+  } else {
+    imageUrl.value = CommercialImages[4].image;
+  }  
+  
 }
 
 // Når komponenterne er monteret:
@@ -36,5 +44,11 @@ onMounted(() => {
 .Flexend {
   display: flex;
   background-position: bottom;
+}
+
+@media screen and (max-width: 900px) {
+  .Flexend {
+    justify-content: center;
+}
 }
 </style>

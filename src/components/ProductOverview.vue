@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch  } from 'vue';
+import { ref, computed, watch, onMounted, onUnmounted  } from 'vue';
 import { useGlassesStore } from "../stores/glasses";
 import { useRoute } from 'vue-router';
 import goldenImage from '../assets/img/golden.webp';
@@ -57,6 +57,46 @@ const filteredResults = ref([]);
 const filterApplied = ref(false);
 // Variabel til at holde den nuværende sorteringskriterie
 const sortCriteria = ref('');
+const screenWidth = ref(window.innerWidth); // Initialiser skærmbredden
+const isSmallScreen = ref(screenWidth.value < 1000); // Holder styr på om skærmbredden er under 1000px
+
+
+const ShowFilters = () => {
+  isSmallScreen.value = screenWidth.value > 1000; // Holder styr på om skærmbredden er under 1000px
+  ; 
+};
+
+const hideFilters = () => {
+  isSmallScreen.value = screenWidth.value < 1000; // Holder styr på om skærmbredden er under 1000px
+  ; 
+};
+
+
+const runApplyAndHide = () => {
+  applyFilters();
+  hideFilters();
+};
+
+// Funktion til at opdatere skærmbredden og isSmallScreen ref
+const updateScreenWidth = () => {
+  screenWidth.value = window.innerWidth;
+  isSmallScreen.value = screenWidth.value < 1000; // Opdaterer om skærmen er under 1000px
+};
+
+// Tilføj event listener ved mounting
+onMounted(() => {
+  window.addEventListener('resize', updateScreenWidth);
+});
+
+// Fjern event listener ved unmounting
+onUnmounted(() => {
+  window.removeEventListener('resize', updateScreenWidth);
+});
+
+// Watcher for at reagere på ændringer i screenWidth
+watch(screenWidth, (newWidth) => {
+  isSmallScreen.value = newWidth < 1000;
+});
 
 // Computed property for at hente og sortere alle briller fra state management store. Computed reagere selv på ændringer.
 const allGlasses = computed(() => {
@@ -385,12 +425,14 @@ watch(route, (newRoute) => {
 
   <!-- Er is.loading = true så skal spinneren vises  -->
   <TheSpinner v-if="glassStore.isLoading"></TheSpinner>
-
+  <div class="btnBox">
+    <TheBtn v-if="isSmallScreen" class="customButton filtreHeadBtn" label="Filtre" :onClick="ShowFilters"><span>Filtre</span> <i class="fa-solid fa-filter"></i></TheBtn>
+  </div>
   <!-- Er is.loading = false så skal webshoppen vises  -->
   <div v-if="!glassStore.isLoading" class="webshop">
-    <div class="filter">
+    <div v-if="!isSmallScreen" class="filter">
       <!-- Indlæser alle muligheder for køn som kan filtres i. Der tages alle former for køn som brillerne indeholder og opretter en label samt check box til hver køns-mulighed  -->
-      <div>
+      <div class="genderFilter">
         <h4 class="filterheading">Vælg køn <i class="fa-solid fa-venus-mars"></i></h4>
         <div class="filter-group filterCheckBoxContainer">
           <div v-for="(gender, index) in glassGenderOptions" :key="index" class="color-checkbox">
@@ -400,7 +442,7 @@ watch(route, (newRoute) => {
         </div>
       </div>
 <!-- Indlæser alle muligheder for alder som kan filtres i. Der tages alle former for aldre som brillerne indeholder og opretter en label samt check box til hver alder-mulighed  -->
-      <div>
+      <div class="ageFilter">
         <h4 class="filterheading">Vælg Alder <i class="fa-solid fa-person-breastfeeding"></i></h4>
         <div class="filter-group filterCheckBoxContainer">
           <div v-for="(alder, index) in glassAgeOptions" :key="index" class="color-checkbox">
@@ -410,7 +452,7 @@ watch(route, (newRoute) => {
         </div>
       </div>
 
-      <div>
+      <div class="colorFilter">
         <h4 class="filterheading">Vælg Stelfarve <i class="fa-solid fa-palette"></i></h4>
         <div class="filter-group filterCheckBoxContainer">
           <div v-for="(color, index) in colorOptions" :key="index" class="color-checkbox">
@@ -420,7 +462,7 @@ watch(route, (newRoute) => {
         </div>
       </div>
 
-      <div>
+      <div class="typeFilter">
         <h4 class="filterheading">Vælg Brilletype <i class="fa-solid fa-glasses"></i></h4>
         <div class="filter-group brandBoxContainer">
           <div v-for="(type, index) in glassTypeOptions" :key="index" class="color-checkbox">
@@ -430,7 +472,7 @@ watch(route, (newRoute) => {
         </div>
       </div>
 
-      <div>
+      <div class="formFilter">
         <h4 class="filterheading">Vælg Form <i class="fa-solid fa-shapes"></i></h4>
         <div class="filter-group brandBoxContainer">
           <div v-for="(form, index) in glassformOptions" :key="index" class="color-checkbox">
@@ -440,7 +482,7 @@ watch(route, (newRoute) => {
         </div>
       </div>
       
-      <div>
+      <div class="brandfilter">
         <h4 class="filterheading">Vælg Brand <i class="fa-solid fa-tag"></i></h4>
         <div class="filter-group brandBoxContainer">
           <div v-for="(brand, index) in brandOptions" :key="index" class="brand-checkbox">
@@ -450,7 +492,7 @@ watch(route, (newRoute) => {
         </div>
       </div>
       <!-- getfocusFlexstyle anvendes til at hive farve eller billede ned som baggrund. -->
-      <div>
+      <div class="focusFilter">
         <h4 class="filterheading">Vælg Focus Flex Gruppe <i class="fa-solid fa-layer-group"></i></h4>
         <div class="filter-group filterCheckBoxContainer">
           <div v-for="(Hexkode, index) in focusFlexOptions" :key="index" class="color-checkbox">
@@ -464,7 +506,7 @@ watch(route, (newRoute) => {
         </div>
       </div>
 
-      <div>
+      <div class="priceFilter">
         <h4 class="filterheading">Pris <i class="fa-solid fa-coins"></i></h4>
         <div class="filter-group priceSlidersContainer">
           <div class="price-sliders">
@@ -480,9 +522,9 @@ watch(route, (newRoute) => {
         </div>
       </div>
 
-      <div class="flexFlex">
-        <TheBtn class="customButton customButtonRotate" label="Anvend Filtre" :onClick="applyFilters"><span>Anvend Filtre</span> <i class="fa-solid fa-rotate-right"></i></TheBtn>
-        <TheBtn class="customButton customButtonWiggle" label="Reset Filtre" :onClick="resetFilters"><span>Reset Filtre</span> <i class="fa-solid fa-trash"></i></TheBtn>
+      <div class="flexFlex btnBox">
+        <TheBtn class="customButton customButtonRotate" label="Anvend Filtre" :onClick="runApplyAndHide"><span>Anvend Filtre</span> <i class="fa-solid fa-rotate-right"></i></TheBtn>
+        <TheBtn class="customButton customButtonWiggle" label="Reset Filtre" :onClick="resetFilters"><span>nulstil Filtre</span> <i class="fa-solid fa-trash"></i></TheBtn>
       </div>
     </div>
 
@@ -517,6 +559,7 @@ watch(route, (newRoute) => {
 
 .flexContainer{
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin: 2rem var(--pageMarginDesktop);
 }
@@ -580,6 +623,7 @@ display: flex;
     justify-content: flex-start;
     grid-auto-rows: 300px;
     gap: 2rem 1rem;
+    justify-content: center;
 }
 
 .flexFlex{
@@ -651,6 +695,16 @@ position: relative;
 
 
 /* FILTRERING */
+
+.filtreHeadBtn{
+  height: fit-content;
+}
+
+.btnBox{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
 
 .filterheading{
   font-size: 16px;
@@ -833,6 +887,48 @@ label{
 
 .customButtonWiggle:hover i {
   animation: WiggleALittle 0.5s ease-in-out;
+}
+
+@media screen and (max-width: 1800px) {
+  .flexFlex {
+    flex-direction: column;
+}
+}
+
+@media screen and (max-width: 1000px) {
+  .glassesGrid{
+    grid-column: 1/-1;
+  }
+
+  .brandfilter {
+    grid-column: 1/-1;
+  }
+
+  .focusFilter{
+    grid-column: 2/-1;
+    grid-row: 3/4;
+  }
+
+  .btnBox{
+    justify-content: center;
+  }
+  
+  .filter {
+  margin:0.3rem;
+  border-radius: 8px 8px 8px 8px;
+  grid-column: 1/-1;
+  width:  100%;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 1rem 2rem;
+}
+}
+
+@media screen and (max-width: 600px) {
+  .flexContainer{
+    flex-direction: column;
+    gap: 2rem;
+  }
 }
 </style>
 

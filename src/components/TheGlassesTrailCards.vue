@@ -89,4 +89,20 @@ img{
 }
 }
 
+@media (max-width: 600px) {
+    .card{
+        flex-direction: column;
+        height: auto;
+    }
+
+    .card img{
+        width: 100%;
+        height: 200px
+    }
+
+    .textContent{
+        width: 100%;
+    }
+}
+
 </style>
