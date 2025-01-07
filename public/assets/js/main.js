@@ -1,8 +1,8 @@
 // Eksempel på elementer med små billeder (du kan bruge dine egne data her)
 const items = [
-    { name: 'Bellinger', imageUrl: './public/assets/img/bellinger_logo_vertical_v2.png' },
-    { name: 'Blackfin', imageUrl: './public/assets/img/Blackfin Horizontal_Logo.jpg' },
-    { name: 'Bloomdale', imageUrl: './public/assets/img/bloomdale-eyewear-logo-zwart-promo.png' },
+    { name: 'Bellinger', imageUrl: '.assets/img/bellinger_logo_vertical_v2.png' },
+    { name: 'Blackfin', imageUrl: '.assets/img/Blackfin Horizontal_Logo.jpg' },
+    { name: 'Bloomdale', imageUrl: '.assets/img/bloomdale-eyewear-logo-zwart-promo.png' },
 ];
 
 // Alfabetet inklusiv Æ, Ø og Å
