@@ -628,7 +628,8 @@ form {
   margin-bottom: 20px;
 }
 
-input {
+#name,
+#email {
   width: 100%;
   padding: 10px;
   padding-top: 20px;
@@ -643,7 +644,7 @@ input::placeholder {
   color: transparent;
 }
 
-label {
+.LabelForm {
   position: absolute;
   top: 12px;
   left: 12px;
@@ -656,8 +657,8 @@ label {
   font-family: var(--WixFont);
 }
 
-input:focus+label,
-input:not(:placeholder-shown)+label {
+input:focus+.LabelForm,
+input:not(:placeholder-shown)+.LabelForm {
   top: -10px;
   left: 12px;
   font-size: 12px;
@@ -1815,20 +1816,20 @@ button.active {
   }
 }
 
-@media screen and (max-width: 1400px){
-.articleContainer {
-  display: flex;
-  flex-direction: column;
-}
+@media screen and (max-width: 1400px) {
+  .articleContainer {
+    display: flex;
+    flex-direction: column;
+  }
 
-.articleContainerImg {
-  max-height: 20rem;
-}
+  .articleContainerImg {
+    max-height: 20rem;
+  }
 
-.articleFlexbox {
-  flex-direction: column;
-  gap: 2rem;
-}
+  .articleFlexbox {
+    flex-direction: column;
+    gap: 2rem;
+  }
 
 }
 
