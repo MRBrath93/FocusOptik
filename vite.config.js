@@ -16,5 +16,5 @@ export default defineConfig({
     },
   },
   // base: "/class/MMD-CSD-S23/10414032/MMD1/FocusOptik",
-  base: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK/'
+  base: './'
 })

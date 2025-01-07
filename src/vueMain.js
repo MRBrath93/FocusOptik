@@ -4,20 +4,12 @@ import { createPinia } from 'pinia'; // State management
 import App from './App.vue'; // Hovedapplikationskomponenten
 import router from './router'; // Importer Vue Router
 
-// Funktion til at initialisere Vue-applikationen
-function initializeVueApp() {
-    const app = createApp(App);
+const app = createApp(App);
 
-    app.use(createPinia()); // Bruger Pinia som state management
-    app.use(router); // Bruger Vue Router til navigation
+app.use(createPinia()); // Bruger Pinia som state management
+app.use(router); // Bruger Vue Router til navigation
 
-    app.mount('#app'); // Monterer appen til DOM-elementet med id 'app'
-}
-
-// Kontrollerer, om #app-elementet findes på siden
-if (document.getElementById('app')) {
-    initializeVueApp(); // Initialiserer Vue-applikationen, hvis #app findes
-}
+app.mount('#app'); // Monterer appen til DOM-elementet med id 'app'
 
 // DOM-manipulation efter indhold er loaded
 document.addEventListener('DOMContentLoaded', function () {
