@@ -600,7 +600,6 @@ footer .footerRow a i:hover {
    FORSIDE
    ================================================ */
 
-
 .lightbox {
   display: none;
   position: fixed;
@@ -656,8 +655,7 @@ form {
   margin-bottom: 20px;
 }
 
-#name,
-#email {
+#newsletterForm input {
   width: 100%;
   padding: 10px;
   padding-top: 20px;
@@ -668,11 +666,11 @@ form {
   transition: border-color 0.3s ease;
 }
 
-input::placeholder {
+#newsletterForm input::placeholder {
   color: transparent;
 }
 
-.LabelForm {
+#newsletterForm label {
   position: absolute;
   top: 12px;
   left: 12px;
@@ -685,8 +683,8 @@ input::placeholder {
   font-family: var(--WixFont);
 }
 
-input:focus+.LabelForm,
-input:not(:placeholder-shown)+.LabelForm {
+#newsletterForm input:focus+label,
+#newsletterForm input:not(:placeholder-shown)+label {
   top: -10px;
   left: 12px;
   font-size: 12px;
@@ -695,11 +693,10 @@ input:not(:placeholder-shown)+.LabelForm {
   background-color: var(--FocusOrange);
 }
 
-input:focus,
-input:not(:placeholder-shown) {
+#newsletterForm input:focus,
+#newsletterForm input:not(:placeholder-shown) {
   border-color: var(--FocusOrange);
 }
-
 
 
 .twoCardContainer {
