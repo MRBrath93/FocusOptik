@@ -1708,6 +1708,57 @@ p {
   font-weight: 700;
 }
 
+#silverColour {
+  background-image: url(/public/assets/img/silver.jpg);
+  background-size: cover;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+}
+
+#goldColour {
+  background-image: url(/public/assets/img/golden.webp);
+  background-size: cover;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+}
+
+#yellowColour {
+  background-color: yellow;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+}
+
+#greenColour {
+  background-color: green;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+}
+
+#redColour {
+  background-color: red;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+}
+
+#blueColour {
+  background-color: blue;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+}
+
+#blackColour {
+  background-color: black;
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+}
+
 .focusFlexColumn {
   padding: 2rem 6rem;
 }
@@ -1725,7 +1776,6 @@ p {
 /* ================================================
   MEDIA QUERIES
    ================================================ */
-
 
 @media screen and (max-width: 1700px) {
   .videoSect {
@@ -1806,7 +1856,6 @@ p {
     padding-top: 5rem;
   }
 }
-
 
 @media screen and (max-width: 1200px) {
 
@@ -1917,7 +1966,6 @@ p {
     width: 100%;
   }
 }
-
 
 @media screen and (max-width: 1000px) {
 
@@ -2107,8 +2155,6 @@ p {
     width: 100%;
   }
 }
-
-
 
 @media screen and (max-width: 500px) {
 
