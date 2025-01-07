@@ -12,12 +12,12 @@ import Forside from '@/views/Forside.vue';
 
 const routes = [
   {
-    path: './index.html',
+    path: '/index.html',
     name: 'ProductOverview',
     component: ProductAllGlassesOverview,
   },
   {
-    path: './forside.html',
+    path: '/forside.html',
     name: 'Forside',
     component: Forside
   },
