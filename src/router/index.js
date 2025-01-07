@@ -12,57 +12,57 @@ import Forside from '@/views/Forside.vue';
 
 const routes = [
   {
-    path: '/index.html',
+    path: 'mmd.ucn.dk/class/MMD-CSD-S23/10414032/MMD1/MMD3-FOCUS%20OPTIK/index.html',
     name: 'ProductOverview',
     component: ProductAllGlassesOverview,
   },
   {
-    path: '/forside.html',
+    path: 'mmd.ucn.dk/class/MMD-CSD-S23/10414032/MMD1/MMD3-FOCUS%20OPTIK/forside.html',
     name: 'Forside',
     component: Forside
   },
   {
-    path: '/herrebriller.html',
+    path: 'mmd.ucn.dk/class/MMD-CSD-S23/10414032/MMD1/MMD3-FOCUS%20OPTIK/herrebriller.html',
     name: 'ProductMenOverview',
     component: ProductMenOverview,
   },
   {
-    path: '/damebriller.html',
+    path: 'mmd.ucn.dk/class/MMD-CSD-S23/10414032/MMD1/MMD3-FOCUS%20OPTIK/damebriller.html',
     name: 'ProductWomenOverview',
     component: ProductWomenOverview,
   },
   {
-    path: '/boernebriller.html',
+    path: 'mmd.ucn.dk/class/MMD-CSD-S23/10414032/MMD1/MMD3-FOCUS%20OPTIK/boernebriller.html',
     name: 'ProductChildOverview',
     component: ProductChildOverview,
   },
   {
-    path: '/inspiration.html',
+    path: 'mmd.ucn.dk/class/MMD-CSD-S23/10414032/MMD1/MMD3-FOCUS%20OPTIK/inspiration.html',
     name: 'MyInspirationsite',
     component: InspirationsSite,
   },
   {
-    path: '/ProductFormOverview/:initialSelectedGlassForm',
+    path: 'mmd.ucn.dk/class/MMD-CSD-S23/10414032/MMD1/MMD3-FOCUS%20OPTIK/ProductFormOverview/:initialSelectedGlassForm',
     name: 'ProductFormOverview',
     component: ProductFormOverview,
     // Dette gør, at ruteparametre bliver sendt som props til komponenten
     props: true,
   },
   {
-    path: '/ProductFocusFlexOverview/:initialSelectedFocusFlexGroup',
+    path: 'mmd.ucn.dk/class/MMD-CSD-S23/10414032/MMD1/MMD3-FOCUS%20OPTIK/ProductFocusFlexOverview/:initialSelectedFocusFlexGroup',
     name: 'ProductFocusFlexOverview',
     component: ProductFlexGroupOverview,
     props: true,
   },
   {
-    path: '/ProductTypeOverview/:initialSelectedGlassType',
+    path: 'mmd.ucn.dk/class/MMD-CSD-S23/10414032/MMD1/MMD3-FOCUS%20OPTIK/ProductTypeOverview/:initialSelectedGlassType',
     name: 'ProductTypeOverview',
     component: ProductTypeOverview,
     props: true,
   },
   {
     // Dynamisk rute for produktside
-    path: '/product/:id',
+    path: 'mmd.ucn.dk/class/MMD-CSD-S23/10414032/MMD1/MMD3-FOCUS%20OPTIK/product/:id',
     name: 'ProductDetails',
     component: ProductDetails,
     props: true,
