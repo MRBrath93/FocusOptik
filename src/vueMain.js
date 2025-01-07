@@ -1,4 +1,4 @@
-import './assets/vuemain.css'; // CSS-styling
+import './assets/vueMain.css'; // CSS-styling
 import { createApp } from 'vue'; // Vue-applikationen
 import { createPinia } from 'pinia'; // State management
 import App from './App.vue'; // Hovedapplikationskomponenten
