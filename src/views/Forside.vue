@@ -36,7 +36,7 @@ onMounted(() => {
 
 <template>
       <TheNewestProducts title="De nyeste Produkter"></TheNewestProducts>
-  <Commercial class="Flexend" title="Nye Læsebriller?" label="Se alle briller" link="/focusFlex.html" textContent="Vinteren er over os, og det betyder mørke aftener. Hvilket er perfekt til at fordybe sig i en god bog! Men hvad nytter det, hvis teksten bliver sløret? Nu er det tid til at forkæle dig selv med et par læsebriller, der passer til både din stil og dine behov. " :imageUrl="imageUrl" 
+  <Commercial class="Flexend" title="Nye Læsebriller?" label="Se alle briller" link="/index.html" textContent="Vinteren er over os, og det betyder mørke aftener. Hvilket er perfekt til at fordybe sig i en god bog! Men hvad nytter det, hvis teksten bliver sløret? Nu er det tid til at forkæle dig selv med et par læsebriller, der passer til både din stil og dine behov. " :imageUrl="imageUrl" 
   ></Commercial>
 </template>
 
