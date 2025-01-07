@@ -367,7 +367,7 @@ li {
   top: 0;
   left: -100%;
   width: 100%;
-  height: fit-content´;
+  height: fit-content;
   background-color: var(--SnowWhite);
   display: flex;
   flex-direction: column;
@@ -1740,6 +1740,10 @@ button.active {
     width: 100%;
     justify-content: space-evenly;
   }
+
+  .item2 {
+    padding-left: 35%;
+  }
 }
 
 @media screen and (max-width: 1400px) {
@@ -1755,6 +1759,31 @@ button.active {
   .articleFlexbox {
     flex-direction: column;
     gap: 2rem;
+  }
+
+  .commentsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 1rem;
+  }
+
+  .comments {
+    align-items: center;
+  }
+
+  .commentsGrid p {
+    max-width: unset;
+    text-align: center;
+  }
+
+  .item1 {
+    grid-column: 1/-1;
+    border-right: none;
+  }
+
+  .item2 {
+    grid-row: 2/4;
+    background-image: url(/assets/img/StatueWithGlasses1000x700.jpg);
+    padding-top: 5rem;
   }
 }
 
