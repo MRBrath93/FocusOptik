@@ -809,7 +809,7 @@ form {
 .item2 {
   grid-column: 3/6;
   grid-row: 1/4;
-  background-image: url(/assets/img/StoneGlasesOrange1000x900.jpg);
+  background-image: url('/assets/img/StoneGlasesOrange1000x900.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;
@@ -823,7 +823,7 @@ form {
 .item3 {
   grid-column: 1/3;
   grid-row: 2/5;
-  background-image: url(/assets/img/TwocolorWoodGlass1000x950.jpg);
+  background-image: url('/assets/img/TwocolorWoodGlass1000x950.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 9;
@@ -837,7 +837,7 @@ form {
   grid-column: 2/6;
   grid-row: 4/5;
   z-index: 10;
-  background-image: url(/assets/img/MintGreenGlassesbackground1000x400.jpg);
+  background-image: url('/assets/img/MintGreenGlassesbackground1000x400.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
