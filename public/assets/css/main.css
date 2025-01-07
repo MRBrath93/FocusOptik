@@ -702,7 +702,6 @@ form {
 .twoCardContainer {
   display: flex;
   gap: 1rem;
-  margin: var(--VerticalSectionSpace);
 }
 
 .infoCard {
@@ -935,6 +934,8 @@ p {
   display: flex;
   gap: 2rem;
 }
+
+
 
 #video {
   max-width: 50%;
@@ -1719,6 +1720,18 @@ button.active {
   MEDIA QUERIES
    ================================================ */
 
+
+@media screen and (max-width: 1700px) {
+  .videoSect {
+    flex-direction: column;
+    align-items: center;
+    margin-top: var(--VerticalSectionSpace);
+  }
+
+  #video {
+    max-width: 100%;
+  }
+}
 
 @media screen and (max-width: 1600px) {
   .cardMiddleText {
