@@ -1029,6 +1029,10 @@ p {
   gap: 2rem;
 }
 
+#video {
+  max-width: 50%;
+}
+
 .singleTextSect {
   display: flex;
   flex-direction: column;
@@ -1815,20 +1819,20 @@ button.active {
   }
 }
 
-@media screen and (max-width: 1400px){
-.articleContainer {
-  display: flex;
-  flex-direction: column;
-}
+@media screen and (max-width: 1400px) {
+  .articleContainer {
+    display: flex;
+    flex-direction: column;
+  }
 
-.articleContainerImg {
-  max-height: 20rem;
-}
+  .articleContainerImg {
+    max-height: 20rem;
+  }
 
-.articleFlexbox {
-  flex-direction: column;
-  gap: 2rem;
-}
+  .articleFlexbox {
+    flex-direction: column;
+    gap: 2rem;
+  }
 
 }
 
