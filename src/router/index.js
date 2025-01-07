@@ -22,7 +22,7 @@ const routes = [
     component: Forside
   },
   {
-    path: '/herrebriller.html',
+    path: '/class/MMD-CSD-S23/10414032/MMD1/MMD3-FOCUS-OPTIK/herrebriller.html',
     name: 'ProductMenOverview',
     component: ProductMenOverview,
   },
