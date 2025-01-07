@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import ProductAllGlassesOverview from '@/views/ProductAllGlassesOverview.vue';
 import ProductDetails from '@/views/ProductDetails.vue';
 import ProductMenOverview from '@/views/ProductMenOverview.vue';
@@ -12,57 +12,57 @@ import Forside from '@/views/Forside.vue';
 
 const routes = [
   {
-    path: '/index.html',
+    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK/index.html',
     name: 'ProductOverview',
     component: ProductAllGlassesOverview,
   },
   {
-    path: '/forside.html',
+    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK/forside.html',
     name: 'Forside',
     component: Forside
   },
   {
-    path: '/herrebriller.html',
+    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK/herrebriller.html',
     name: 'ProductMenOverview',
     component: ProductMenOverview,
   },
   {
-    path: '/damebriller.html',
+    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK/damebriller.html',
     name: 'ProductWomenOverview',
     component: ProductWomenOverview,
   },
   {
-    path: '/boernebriller.html',
+    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK/boernebriller.html',
     name: 'ProductChildOverview',
     component: ProductChildOverview,
   },
   {
-    path: '/inspiration.html',
+    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK/inspiration.html',
     name: 'MyInspirationsite',
     component: InspirationsSite,
   },
   {
-    path: '/ProductFormOverview/:initialSelectedGlassForm',
+    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK/ProductFormOverview/:initialSelectedGlassForm',
     name: 'ProductFormOverview',
     component: ProductFormOverview,
     // Dette gør, at ruteparametre bliver sendt som props til komponenten
     props: true,
   },
   {
-    path: '/ProductFocusFlexOverview/:initialSelectedFocusFlexGroup',
+    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK/ProductFocusFlexOverview/:initialSelectedFocusFlexGroup',
     name: 'ProductFocusFlexOverview',
     component: ProductFlexGroupOverview,
     props: true,
   },
   {
-    path: '/ProductTypeOverview/:initialSelectedGlassType',
+    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK/ProductTypeOverview/:initialSelectedGlassType',
     name: 'ProductTypeOverview',
     component: ProductTypeOverview,
     props: true,
   },
   {
     // Dynamisk rute for produktside
-    path: '/product/:id',
+    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK/product/:id',
     name: 'ProductDetails',
     component: ProductDetails,
     props: true,
@@ -70,7 +70,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
 
