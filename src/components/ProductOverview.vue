@@ -402,8 +402,8 @@ watch(route, (newRoute) => {
 <template>
 
   <div class="flexContainer">
-    <nav>
-        <ol class="breadcrumbs">
+    <nav class="breadcrumbs">
+        <ol>
             <li><a class="smallText" href="/forside.html">Forside</a></li>
             <li class="smallText">/</li>
             <li class="smallText">Alle Briller</li>
@@ -522,7 +522,7 @@ watch(route, (newRoute) => {
         </div>
       </div>
 
-      <div class="flexFlex btnBox">
+      <div class="flexflex btnBox">
         <TheBtn class="customButton customButtonRotate" label="Anvend Filtre" :onClick="runApplyAndHide"><span>Anvend Filtre</span> <i class="fa-solid fa-rotate-right"></i></TheBtn>
         <TheBtn class="customButton customButtonWiggle" label="Reset Filtre" :onClick="resetFilters"><span>nulstil Filtre</span> <i class="fa-solid fa-trash"></i></TheBtn>
       </div>
@@ -580,6 +580,7 @@ watch(route, (newRoute) => {
   display: flex;
   gap: 0.5rem;
   grid-column: 1/2;
+  margin: 0;
 }
 
 ol {
@@ -889,8 +890,9 @@ label{
 }
 
 @media screen and (max-width: 1800px) {
-  .flexFlex {
+  .flexflex {
     flex-direction: column;
+    gap: 1rem;
 }
 }
 

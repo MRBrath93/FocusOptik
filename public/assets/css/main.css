@@ -214,6 +214,10 @@ main {
   width: 120px;
 }
 
+.bookingNav:hover {
+  text-decoration: underline;
+}
+
 .nav-links {
   display: flex;
   gap: 0.5rem;
@@ -409,7 +413,7 @@ li {
     MEDIA PREFERENCE 
    ================================================ */
 
-
+/* KEYFRAME ANIMATIONS - Slået fra ved anden indstilling - for accessability */
 @media (prefers-reduced-motion: no-preference) {
 
 
@@ -437,21 +441,6 @@ li {
     }
   }
 
-
-
-  /* KEYFRAME ANIMATIONS - Slået fra ved anden indstilling - for accessability */
-  @keyframes arrowMoveRight {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-
-    100% {
-      transform: translateX(20px);
-      opacity: 0;
-    }
-  }
-
   @keyframes pulse {
     0% {
       transform: scale(1);
@@ -463,6 +452,42 @@ li {
 
     100% {
       transform: scale(1);
+    }
+  }
+
+  @keyframes bounceInLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+
+    60% {
+      transform: translateX(5px);
+    }
+
+    80% {
+      transform: translateX(-10px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes bounceInRight {
+    0% {
+      transform: translateX(100%);
+    }
+
+    60% {
+      transform: translateX(-5px);
+    }
+
+    80% {
+      transform: translateX(10px);
+    }
+
+    100% {
+      transform: translateX(0);
     }
   }
 
@@ -511,11 +536,30 @@ li {
 .breadcrumbs {
   display: flex;
   gap: 0.5rem;
+  margin: 1rem var(--pageMarginDesktop);
 }
 
-.breadcrumbs a {
-  text-decoration: none;
+.breadcrumbs ol {
+  padding-inline-start: 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.breadcrumbs a,
+.breadcrumbs li {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgb(94, 94, 94);
+}
+
+.breadcrumbs a:hover {
   color: var(--Black);
+}
+
+.smallText {
+  font-family: var(--WixFont);
+  font-weight: 400;
+  font-size: 0.9rem;
 }
 
 /* Bottom Card styling */
@@ -600,7 +644,6 @@ footer .footerRow a i:hover {
    FORSIDE
    ================================================ */
 
-
 .lightbox {
   display: none;
   position: fixed;
@@ -656,8 +699,7 @@ form {
   margin-bottom: 20px;
 }
 
-#name,
-#email {
+#newsletterForm input {
   width: 100%;
   padding: 10px;
   padding-top: 20px;
@@ -668,11 +710,11 @@ form {
   transition: border-color 0.3s ease;
 }
 
-input::placeholder {
+#newsletterForm input::placeholder {
   color: transparent;
 }
 
-.LabelForm {
+#newsletterForm label {
   position: absolute;
   top: 12px;
   left: 12px;
@@ -685,8 +727,8 @@ input::placeholder {
   font-family: var(--WixFont);
 }
 
-input:focus+.LabelForm,
-input:not(:placeholder-shown)+.LabelForm {
+#newsletterForm input:focus+label,
+#newsletterForm input:not(:placeholder-shown)+label {
   top: -10px;
   left: 12px;
   font-size: 12px;
@@ -695,17 +737,15 @@ input:not(:placeholder-shown)+.LabelForm {
   background-color: var(--FocusOrange);
 }
 
-input:focus,
-input:not(:placeholder-shown) {
+#newsletterForm input:focus,
+#newsletterForm input:not(:placeholder-shown) {
   border-color: var(--FocusOrange);
 }
-
 
 
 .twoCardContainer {
   display: flex;
   gap: 1rem;
-  margin: var(--VerticalSectionSpace);
 }
 
 .infoCard {
@@ -837,41 +877,6 @@ p {
 }
 
 /* Bounce-effekter */
-@keyframes bounceInLeft {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  60% {
-    transform: translateX(5px);
-  }
-
-  80% {
-    transform: translateX(-10px);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes bounceInRight {
-  0% {
-    transform: translateX(100%);
-  }
-
-  60% {
-    transform: translateX(-5px);
-  }
-
-  80% {
-    transform: translateX(10px);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
 
 /* Animer de andre elementer for at afsløres langsomt */
 .opacity {
@@ -939,6 +944,8 @@ p {
   gap: 2rem;
 }
 
+
+
 #video {
   max-width: 50%;
 }
@@ -968,7 +975,7 @@ p {
   margin-top: var(--VerticalSectionSpace);
 }
 
-button {
+.alphabet button {
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
@@ -978,11 +985,11 @@ button {
   color: grey;
 }
 
-button:hover {
+.alphabet button:hover {
   background-color: #f0f0f0;
 }
 
-button.active {
+.alphabet button.active {
   color: var(--Black);
 }
 
@@ -1532,9 +1539,6 @@ button.active {
   padding-left: 0.5rem;
 }
 
-.cardBtn:hover .iconStylingWhite {
-  animation: arrowMoveRight 1s ease infinite;
-}
 
 
 /* *TILFØJELSE OBS MERCH */
@@ -1770,6 +1774,18 @@ button.active {
    ================================================ */
 
 
+@media screen and (max-width: 1700px) {
+  .videoSect {
+    flex-direction: column;
+    align-items: center;
+    margin-top: var(--VerticalSectionSpace);
+  }
+
+  #video {
+    max-width: 100%;
+  }
+}
+
 @media screen and (max-width: 1600px) {
   .cardMiddleText {
     top: 4%;
@@ -1951,6 +1967,14 @@ button.active {
 
 
 @media screen and (max-width: 1000px) {
+
+  .navbar {
+    display: none !important;
+  }
+
+  .Mobilnavbar {
+    display: flex;
+  }
 
   .twoCardContainer {
     flex-direction: column;

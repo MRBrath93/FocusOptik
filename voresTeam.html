@@ -14,14 +14,14 @@
 
 <body>
   <nav class="navbar">
-    <a class="logo" href="/forside.html">
-      <img class="logo" src="./assets/img/logo_80.png" alt="Logo fra Focus Optik" >
+    <a class="logo" href="./forside.html">
+      <img class="logo" src="./assets/img/logo_80.png" alt="Logo fra Focus Optik" />
     </a>
     <ul class="nav-links">
       <!-- Forside link -->
-      <li><a class="nav-link" href="/forside.html">Forside</a></li>
+      <li><a class="nav-link" href="./forside.html">Forside</a></li>
       <li class="dropdown">
-        <a class="nav-link" href="/briller.html">Briller
+        <a class="nav-link" href="./briller.html">Briller
           <svg viewBox="0 0 448 512" class="plusIcon">
             <g>
               <g>
@@ -33,28 +33,28 @@
         </a>
         <ul class="dropdown-menu">
           <li>
-            <a class="nav-link" href="/omBriller.html">Om Briller</a>
+            <a class="nav-link" href="./omBriller.html">Om Briller</a>
           </li>
           <li>
-            <a class="nav-link" href="/inspiration.html">Inspiration</a>
+            <a class="nav-link" href="./inspiration.html">Inspiration</a>
           </li>
           <li>
-            <a class="nav-link" href="/index.html">Alle Briller</a>
+            <a class="nav-link" href="./index.html">Alle Briller</a>
           </li>
           <li>
-            <a class="nav-link" href="/herrebriller.html">Herrebriller</a>
+            <a class="nav-link" href="./herrebriller.html">Herrebriller</a>
           </li>
           <li>
-            <a class="nav-link" href="/damebriller.html">Damebriller</a>
+            <a class="nav-link" href="./damebriller.html">Damebriller</a>
           </li>
           <li>
-            <a class="nav-link" href="/boernebriller.html">Børnebriller</a>
+            <a class="nav-link" href="./boernebriller.html">Børnebriller</a>
           </li>
         </ul>
       </li>
-      <li><a class="nav-link" href="/kontaktlinser.html">Kontaktlinser</a></li>
+      <li><a class="nav-link" href="./kontaktlinser.html">Kontaktlinser</a></li>
       <li class="dropdown">
-        <a class="nav-link" href="/synOgSundhed.html">Syn & Sundhed
+        <a class="nav-link" href="./synOgSundhed.html">Syn & Sundhed
           <svg viewBox="0 0 448 512" class="plusIcon">
             <g>
               <g>
@@ -66,18 +66,18 @@
         </a>
         <ul class="dropdown-menu">
           <li>
-            <a class="nav-link" href="/oejensundhed.html">Øjensundhed</a>
+            <a class="nav-link" href="./oejensundhed.html">Øjensundhed</a>
           </li>
           <li>
-            <a class="nav-link" href="/videnOmBrillerOgLinser.html">Viden om briller & linser</a>
+            <a class="nav-link" href="./videnOmBrillerOgLinser.html">Viden om briller & linser</a>
           </li>
           <li>
-            <a class="nav-link" href="/synstestOgBrilleafproevning.html">Synstest & brilleafprøvning</a>
+            <a class="nav-link" href="./synstestOgBrilleafproevning.html">Synstest & Afprøvning</a>
           </li>
         </ul>
       </li>
       <li class="dropdown">
-        <a class="nav-link" href="/omFocusOptik.html">Om Focus Optik
+        <a class="nav-link" href="./omFocusOptik.html">Om Focus Optik
           <svg viewBox="0 0 448 512" class="plusIcon">
             <g>
               <g>
@@ -88,25 +88,80 @@
           </svg>
         </a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="/voresTeam.html">Vores Team</a></li>
-          <li><a class="nav-link" href="/butikken.html">Butikken</a></li>
+          <li><a class="nav-link" href="./voresTeam.html">Vores Team</a></li>
+          <li><a class="nav-link" href="./butikken.html">Butikken</a></li>
         </ul>
       </li>
-      <li><a class="nav-link" href="/focusFlex.html">Focus Flex</a></li>
+      <li><a class="nav-link" href="./focusFlex.html">Focus Flex</a></li>
     </ul>
     <div class="bookingNav">
-      <a class="bookingNav" href="/book-tid.html">BOOK TID</a>
+      <a class="bookingNav" href="./book-tid.html">BOOK TID</a>
     </div>
   </nav>
+  <div class="Mobilnavbar">
+    <a class="Mobillogo" href="./forside.html">
+      <img
+        class="Mobillogo"
+        src="./assets/img/logo_80.png"
+        alt="Logo fra Focus Optik"
+      />
+    </a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  
+  <div class="sidebar">
+    <div class="flexNav">
+      <a class="Mobillogo" href="./forside.html">
+        <img
+          class="Mobillogo"
+          src="./assets/img/logo_80.png"
+          alt="Logo fra Focus Optik"
+        />
+      </a>
+      <div class="closeMark" onclick="toggleMenu()">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+    </div>
+    <ul>
+      <li><a href="./forside.html">Forside</a></li>
+      <li><a href="./briller.html">Briller</a></li>
+      <li><a href="./omBriller.html">Om Briller</a></li>
+      <li><a href="./inspiration.html">Inspiration</a></li>
+      <li><a href="./index.html">Alle Briller</a></li>
+      <li><a href="./herrebriller.html">Herrebriller</a></li>
+      <li><a href="./damebriller.html">Damebriller</a></li>
+      <li><a href="./boernebriller.html">Børnebriller</a></li>
+      <li><a href="./kontaktlinser.html">Kontaktlinser</a></li>
+      <li><a href="./synOgSundhed.html">Syn & Sundhed</a></li>
+      <li><a href="./oejensundhed.html">Øjensundhed</a></li>
+      <li><a href="./videnOmBrillerOgLinser.html">Viden om briller & linser</a></li>
+      <li><a href="./synstestOgBrilleafproevning.html">Synstest & Brilleafprøvning</a></li>
+      <li><a href="./omFocusOptik.html">Om Focus Optik</a></li>
+      <li><a href="./voresTeam.html">Vores Team</a></li>
+      <li><a href="./butikken.html">Butikken</a></li>
+      <li><a href="./focusFlex.html">Focus Flex</a></li>
+      <li><a class="bookingNav" href="./book-tid.html">BOOK TID</a></li>
+      
+    </ul>
+  </div>
+
   <header>
+    <nav class="breadcrumbs">
+      <ol>
+          <li><a class="smallText" href="/forside.html">Forside</a></li>
+          <li class="smallText">/</li>
+          <li><a class="smallText" href="./omFocusOptik.html">Om Focus Optik</a></li>
+          <li class="smallText">/</li>
+          <li class="smallText">Vores Team</li>
+      </ol>
+  </nav>
+</header>
+<main>
     <h1>Vores Team</h1>
-  </header>
-  <main>
-    <aside class="breadcrumbs">
-      <a href="/forside.html">Forside /</a>
-      <a href="/omFocusOptik.html">Om Focus Optik /</a>
-      <a href="/voresTeam.html">Vores Team</a>
-    </aside>
     <section class="teamContainer">
       <div class="teamMember">
         <img class="teamMemberImg" src="/public/assets/img/lars.png" alt="Billede af medarbejder og indehaver Lars"
@@ -179,7 +234,7 @@
           behov
           for hjælp til briller eller kontaktlinser.</p>
         <div class="theButton button">
-          <a href="/index.html">BOOK TID<i class="iconStylingWhite fa-solid fa-arrow-right"></i></a>
+          <a href="/book-tid.html">BOOK TID<i class=" fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
     </article>

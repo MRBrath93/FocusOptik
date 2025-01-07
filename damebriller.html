@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
   <title>Forcus Optik - Damebriller</title>
   <script type="module" src="./src/vueMain.js" defer></script>
+  <script type="module" src="./src/vueMain.js" defer></script>
+  <script src="./assets/js/main.js" defer></script>
   <link rel="stylesheet" href="./src/assets/vueMain.css" >
+  <link rel="stylesheet" href="./assets/css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" >
@@ -15,14 +18,14 @@
 
 <body>
   <nav class="navbar">
-    <a class="logo" href="/forside.html">
+    <a class="logo" href="./forside.html">
       <img class="logo" src="./assets/img/logo_80.png" alt="Logo fra Focus Optik" />
     </a>
     <ul class="nav-links">
       <!-- Forside link -->
-      <li><a class="nav-link" href="/forside.html">Forside</a></li>
+      <li><a class="nav-link" href="./forside.html">Forside</a></li>
       <li class="dropdown">
-        <a class="nav-link" href="/briller.html">Briller
+        <a class="nav-link" href="./briller.html">Briller
           <svg viewBox="0 0 448 512" class="plusIcon">
             <g>
               <g>
@@ -34,28 +37,28 @@
         </a>
         <ul class="dropdown-menu">
           <li>
-            <a class="nav-link" href="/omBriller.html">Om Briller</a>
+            <a class="nav-link" href="./omBriller.html">Om Briller</a>
           </li>
           <li>
-            <a class="nav-link" href="/inspiration.html">Inspiration</a>
+            <a class="nav-link" href="./inspiration.html">Inspiration</a>
           </li>
           <li>
-            <a class="nav-link" href="/index.html">Alle Briller</a>
+            <a class="nav-link" href="./index.html">Alle Briller</a>
           </li>
           <li>
-            <a class="nav-link" href="/herrebriller.html">Herrebriller</a>
+            <a class="nav-link" href="./herrebriller.html">Herrebriller</a>
           </li>
           <li>
-            <a class="nav-link" href="/damebriller.html">Damebriller</a>
+            <a class="nav-link" href="./damebriller.html">Damebriller</a>
           </li>
           <li>
-            <a class="nav-link" href="/boernebriller.html">Børnebriller</a>
+            <a class="nav-link" href="./boernebriller.html">Børnebriller</a>
           </li>
         </ul>
       </li>
-      <li><a class="nav-link" href="/kontaktlinser.html">Kontaktlinser</a></li>
+      <li><a class="nav-link" href="./kontaktlinser.html">Kontaktlinser</a></li>
       <li class="dropdown">
-        <a class="nav-link" href="/synOgSundhed.html">Syn & Sundhed
+        <a class="nav-link" href="./synOgSundhed.html">Syn & Sundhed
           <svg viewBox="0 0 448 512" class="plusIcon">
             <g>
               <g>
@@ -67,18 +70,18 @@
         </a>
         <ul class="dropdown-menu">
           <li>
-            <a class="nav-link" href="/oejensundhed.html">Øjensundhed</a>
+            <a class="nav-link" href="./oejensundhed.html">Øjensundhed</a>
           </li>
           <li>
-            <a class="nav-link" href="/videnOmBrillerOgLinser.html">Viden om briller & linser</a>
+            <a class="nav-link" href="./videnOmBrillerOgLinser.html">Viden om briller & linser</a>
           </li>
           <li>
-            <a class="nav-link" href="/synstestOgBrilleafproevning.html">Synstest & Brilleafprøvning</a>
+            <a class="nav-link" href="./synstestOgBrilleafproevning.html">Synstest & Afprøvning</a>
           </li>
         </ul>
       </li>
       <li class="dropdown">
-        <a class="nav-link" href="/omFocusOptik.html">Om Focus Optik
+        <a class="nav-link" href="./omFocusOptik.html">Om Focus Optik
           <svg viewBox="0 0 448 512" class="plusIcon">
             <g>
               <g>
@@ -89,18 +92,155 @@
           </svg>
         </a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="/voresTeam.html">Vores Team</a></li>
-          <li><a class="nav-link" href="/butikken.html">Butikken</a></li>
+          <li><a class="nav-link" href="./voresTeam.html">Vores Team</a></li>
+          <li><a class="nav-link" href="./butikken.html">Butikken</a></li>
         </ul>
       </li>
-      <li><a class="nav-link" href="/focusFlex.html">Focus Flex</a></li>
+      <li><a class="nav-link" href="./focusFlex.html">Focus Flex</a></li>
     </ul>
     <div class="bookingNav">
-      <a class="bookingNav" href="/book-tid.html">BOOK TID</a>
+      <a class="bookingNav" href="./book-tid.html">BOOK TID</a>
     </div>
   </nav>
+  <div class="Mobilnavbar">
+    <a class="Mobillogo" href="./forside.html">
+      <img
+        class="Mobillogo"
+        src="./assets/img/logo_80.png"
+        alt="Logo fra Focus Optik"
+      />
+    </a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  
+  <div class="sidebar">
+    <div class="flexNav">
+      <a class="Mobillogo" href="./forside.html">
+        <img
+          class="Mobillogo"
+          src="./assets/img/logo_80.png"
+          alt="Logo fra Focus Optik"
+        />
+      </a>
+      <div class="closeMark" onclick="toggleMenu()">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+    </div>
+    <ul>
+      <li><a href="./forside.html">Forside</a></li>
+      <li><a href="./briller.html">Briller</a></li>
+      <li><a href="./omBriller.html">Om Briller</a></li>
+      <li><a href="./inspiration.html">Inspiration</a></li>
+      <li><a href="./index.html">Alle Briller</a></li>
+      <li><a href="./herrebriller.html">Herrebriller</a></li>
+      <li><a href="./damebriller.html">Damebriller</a></li>
+      <li><a href="./boernebriller.html">Børnebriller</a></li>
+      <li><a href="./kontaktlinser.html">Kontaktlinser</a></li>
+      <li><a href="./synOgSundhed.html">Syn & Sundhed</a></li>
+      <li><a href="./oejensundhed.html">Øjensundhed</a></li>
+      <li><a href="./videnOmBrillerOgLinser.html">Viden om briller & linser</a></li>
+      <li><a href="./synstestOgBrilleafproevning.html">Synstest & Brilleafprøvning</a></li>
+      <li><a href="./omFocusOptik.html">Om Focus Optik</a></li>
+      <li><a href="./voresTeam.html">Vores Team</a></li>
+      <li><a href="./butikken.html">Butikken</a></li>
+      <li><a href="./focusFlex.html">Focus Flex</a></li>
+      <li><a class="bookingNav" href="./book-tid.html">BOOK TID</a></li>
+      
+    </ul>
+  </div>
+
 
   <div id="app"></div>
-</body>
+  <footer>
+    <section class="footerContainer">
+      <div class="footerColumn footerDesktop">
+        <a href="/briller.html">
+          <h3>Briller</h3>
+        </a>
+        <a href="/omBriller.html">Om Briller</a>
+        <a href="/index.html">Alle Briller</a>
+        <a href="/index.html">Herrebriller</a>
+        <a href="/index.html">Damebriller</a>
+        <a href="/index.html">Børnebriller</a>
+      </div>
+      <div class="footerColumn footerDesktop">
+        <a href="#">
+          <h3>Kontaktlinser</h3>
+        </a>
+        <a href="#">Tilbehør til Kontaktlinser</a>
+        <a href="#">Køb Kontaktlinser</a>
+      </div>
+      <div class="footerColumn footerDesktop">
+        <a href="/synOgSundhed.html">
+          <h3>Syn & Sundhed</h3>
+        </a>
+        <a href="/oejensundhed.html">Øjensundhed</a>
+        <a href="/videnOmBrillerOgLinser.html">Viden om Brille- og Synsstyrker</a>
+        <a href="/synstestOgBrilleafproevning.html">Synstest & Brilleafprøvning</a>
+      </div>
+      <div class="footerColumn footerDesktop">
+        <a href="/omFocusOptik.html">
+          <h3>Om Focus Optik</h3>
+        </a>
+        <a href="/voresTeam.html">Vores Team</a>
+        <a href="/butikken.html">Butikken</a>
+      </div>
+      <div class="footerColumn footerDesktop">
+        <a href="/focusFlex.html">
+          <h3>Focus Flex</h3>
+        </a>
+        <a href="#">Focus Flex Events</a>
+        <a href="#">Priser</a>
+      </div>
 
+      <div class="footerColumn footerDesktop">
+        <h3>Åbningstider</h3>
+        <ul class="openingHours">
+          <li>Mandag: 9:00 - 17:30</li>
+          <li>Tirsdag: 9:00 - 17:30</li>
+          <li>Onsdag: 9:00 - 17:30</li>
+          <li>Torsdag: 9:00 - 17:30</li>
+          <li>Fredag: 9:00 - 18:30</li>
+          <li>Lørdag: 9:00 - 14:00</li>
+          <li>Søndag: Lukket</li>
+        </ul>
+      </div>
+
+
+      <div class="footerColumn">
+        <h3>Kontakt</h3>
+        <div class="centerIcon">
+          <i class="iconStylingGreySmall fa-solid fa-location-dot"></i>
+          <!-- KILDE: Font-Awesome. Location-dot [online] accessed: 03.01.25. URL: https://fontawesome.com/icons/location-dot?f=classic&s=solid -->
+          <div class="footerAdress">
+            <p>Loftbrovej 17</p>
+            <p>9400, Nørresundby</p>
+          </div>
+        </div>
+        <div class="centerText">
+          <i class="iconStylingGreySmall fa-solid fa-mobile-screen-button"></i>
+          <!-- KILDE: Font-Awesome. Mobile-screen-button [online] accessed: 01.01.25. URL: https://fontawesome.com/v6/icons/mobile-screen-button?f=classic&s=solid -->
+          <p>Tlf: 98 17 47 77</p>
+        </div>
+        <div class="centerText">
+          <i class="iconStylingGreySmall fa-regular fa-envelope"></i>
+          <!-- KILDE: Font-Awesome. Envelope [online] accessed: 01.01.25. URL: https://fontawesome.com/v6/icons/envelope?f=classic&s=regular -->
+          <p>butik@focusoptik.dk</p>
+        </div>
+        <p>CVR: 25503023</p>
+      </div>
+    </section>
+    <div class="footerRow">
+      <a href="https://www.facebook.com/focusoptik.focusflex"><i
+          class="iconStylingGreyLarge fa-brands fa-facebook-f"></i></a>
+      <!-- KILDE: Font-Awesome. Facebook-F [online] accessed: 03.01.25. URL: https://fontawesome.com/icons/facebook-f?f=brands&s=solid -->
+      <a href="https://www.instagram.com/focus_optik/"><i class="iconStylingGreyLarge fa-brands fa-instagram"></i></a>
+      <!-- KILDE: Font-Awesome. instagram [online] accessed: 03.01.25. URL: https://fontawesome.com/icons/instagram?f=brands&s=solid -->
+    </div>
+  </footer>
+</body>
 </html>

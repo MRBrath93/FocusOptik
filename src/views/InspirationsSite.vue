@@ -46,6 +46,13 @@ onMounted(() => {
 </script>
 
 <template>
+  <nav class="breadcrumbs">
+        <ol>
+            <li><a class="smallText" href="/forside.html">Forside</a></li>
+            <li class="smallText">/</li>
+            <li class="smallText">Inspiration</li>
+        </ol>
+    </nav>
     <!-- Indsætter komponenter -->
   <ShopAfterGlassForm></ShopAfterGlassForm> 
   <ShopAfterFocusFlexGroup></ShopAfterFocusFlexGroup> 
@@ -64,6 +71,26 @@ onMounted(() => {
   display: flex;
   justify-content: flex-end;
 
+}
+
+.breadcrumbs{
+  display: flex;
+  gap: 0.5rem;
+  grid-column: 1/2;
+}
+
+ol {
+    padding-inline-start: 0;
+}
+
+.breadcrumbs a, .breadcrumbs li{
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgb(94, 94, 94);
+}
+
+.breadcrumbs a:hover{
+    color: var(--Black);
 }
 
 @media screen and (max-width: 900px) {
