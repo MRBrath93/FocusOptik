@@ -7,7 +7,7 @@
     <title>Forcus Optik</title>
     <script src="./public/assets/js/main.js" defer></script>
     <script src="./public/assets/js/forside.js" defer></script>
-    <script src="./src/vueMain.js" defer></script>
+    <script type="module" src="./src/vueMain.js" defer></script>
     <link rel="stylesheet" href="./assets/css/main.css" />
     <link rel="stylesheet" href="./src/assets/vueMain.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -108,7 +108,65 @@
         <a class="bookingNav" href="/book-tid.html">BOOK TID</a>
       </div>
     </nav>
-    <h1>Forside</h1>
+    <section class="sectionSpace">
+      <aside class="imageContainer">
+        <div class="galleryItemContainer">
+          <img class="galleryItem" src="/public/assets/img/butikken_1_700x467.jpg"
+            alt="Focus Optik butikken med fokus på afprøvningsbord og kassen" loading="lazy">
+          <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
+        </div>
+        <div class="galleryItemContainer">
+          <img class="galleryItem" src="/public/assets/img/butikken_2_700x934.jpg"
+            alt="Focus Optik butikken med fokus på en af de mange udstillingsvægge med brillestel" loading="lazy">
+          <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
+        </div>
+        <div class="galleryItemContainer">
+          <img class="galleryItem" src="/public/assets/img/butikken_3_700x467.jpg"
+            alt="Focus Optik butikken med fokus på en udstillingsvæg med orange baggrund" loading="lazy">
+          <!-- KILDE: Focus Optik [online] accessed 29.12.24, URL:https://www.focusoptik.dk/raadgivning.aspx -->
+        </div>
+        <div class="galleryItemContainer">
+          <img class="galleryItem" src="/public/assets/img/butikken_4_700x698.jpg"
+            alt="Focus Optik butikken med fokus på indgangen og vinduesudstilling" loading="lazy">
+          <!-- KILDE: Focus_Optik. 29. maj 2021. Instagram. [online] accessed 29.12.24, URL:https://www.instagram.com/p/CPdCRiBBcWM/ -->
+        </div>
+        <div class="galleryItemContainer">
+          <img class="galleryItem" src="/public/assets/img/butikken_5_600x640.jpg"
+            alt="Focus Optik med fokus på en udstillingsvæg med et brillestel og solbriller" loading="lazy">
+        </div>
+        <a href="#" id="previousBtn"><i class="iconStylingOrange fa-solid fa-chevron-left"></i></a>
+        <!-- KILDE: FontAwesome. chevron-left [online] accessed 01.01.25 URL: https://fontawesome.com/v6/icons/chevron-left?f=classic&s=solid -->
+        <a href="#" id="nextBtn"><i class="iconStylingOrange fa-solid fa-chevron-right"></i></a>
+        <!-- KILDE: FontAwesome. chevron-right [online] accessed 01.01.25 URL: https://fontawesome.com/icons/chevron-right?f=classic&s=solid&pc=%23fb6201&sc=%23fb6201 -->
+        <div class="galleryRow">
+          <div>
+            <img class="galleryDot" src="/public/assets/img/butikken_1_700x467.jpg"
+              alt="Focus Optik butikken med fokus på afprøvningsbord og kassen" loading="lazy" data-slide-number="1">
+          </div>
+          <div>
+            <img class="galleryDot" src="/public/assets/img/butikken_2_700x934.jpg"
+              alt="Focus Optik butikken med fokus på en af de mange udstillingsvægge med brillestel" loading="lazy"
+              data-slide-number="2">
+          </div>
+          <div>
+            <img class="galleryDot" src="/public/assets/img/butikken_3_700x467.jpg"
+              alt="Focus Optik butikken med fokus på en udstillingsvæg med orange baggrund" loading="lazy"
+              data-slide-number="3">
+          </div>
+          <div>
+            <img class="galleryDot" src="/public/assets/img/butikken_4_700x698.jpg"
+              alt="Focus Optik butikken med fokus på indgangen og vinduesudstilling" loading="lazy"
+              data-slide-number="4">
+          </div>
+          <div>
+            <img class="galleryDot" src="/public/assets/img/butikken_5_600x640.jpg"
+              alt="Focus Optik med fokus på en udstillingsvæg med et brillestel og solbriller" loading="lazy"
+              data-slide-number="5">
+          </div>
+        </div>
+      </aside>
+    </section>
+    
 
     <section class="lillegrid"></section>
     <section class="grid">
@@ -293,4 +351,12 @@
     </footer>
   </body>
 </html>
+<style>
+.galleryDot{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: black;
+}
 
+</style>
