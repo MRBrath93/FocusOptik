@@ -623,7 +623,6 @@ display: flex;
     justify-content: flex-start;
     grid-auto-rows: 300px;
     gap: 2rem 1rem;
-    justify-content: center;
 }
 
 .flexFlex{
@@ -898,6 +897,7 @@ label{
 @media screen and (max-width: 1000px) {
   .glassesGrid{
     grid-column: 1/-1;
+    justify-content: center;
   }
 
   .brandfilter {

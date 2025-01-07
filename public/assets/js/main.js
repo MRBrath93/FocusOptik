@@ -114,5 +114,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+function toggleMenu() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('active'); // Toggler mellem at vise/skjule menuen
+}
+
+
+
 
 
