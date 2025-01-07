@@ -402,8 +402,8 @@ watch(route, (newRoute) => {
 <template>
 
   <div class="flexContainer">
-    <nav>
-        <ol class="breadcrumbs">
+    <nav class="breadcrumbs">
+        <ol>
             <li><a class="smallText" href="/forside.html">Forside</a></li>
             <li class="smallText">/</li>
             <li class="smallText">Alle Briller</li>
@@ -580,6 +580,7 @@ watch(route, (newRoute) => {
   display: flex;
   gap: 0.5rem;
   grid-column: 1/2;
+  margin: 0;
 }
 
 ol {

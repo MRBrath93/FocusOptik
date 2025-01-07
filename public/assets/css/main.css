@@ -515,11 +515,30 @@ li {
 .breadcrumbs {
   display: flex;
   gap: 0.5rem;
+  margin: 1rem var(--pageMarginDesktop);
 }
 
-.breadcrumbs a {
-  text-decoration: none;
+.breadcrumbs ol {
+  padding-inline-start: 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.breadcrumbs a,
+.breadcrumbs li {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgb(94, 94, 94);
+}
+
+.breadcrumbs a:hover {
   color: var(--Black);
+}
+
+.smallText {
+  font-family: var(--WixFont);
+  font-weight: 400;
+  font-size: 0.9rem;
 }
 
 /* Bottom Card styling */
