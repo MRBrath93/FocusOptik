@@ -113,6 +113,7 @@ const getFocusFlexStyle = (hexValue) => {
 .shapeLinks {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   margin-top: 1rem;
 }
