@@ -1,18 +1,146 @@
 <!DOCTYPE html>
 <html lang="">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Forcus Optik</title>
+    <meta charset="UTF-8" >
+    <link rel="icon" href="/favicon.ico" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Focus Optik</title>
     <script src="./public/assets/js/main.js" defer></script>
     <script src="./public/assets/js/forside.js" defer></script>
     <script type="module" src="./src/vueMain.js" defer></script>
-    <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="stylesheet" href="./src/assets/vueMain.css" />
+    <link rel="stylesheet" href="./assets/css/main.css" >
+    <link rel="stylesheet" href="./src/assets/vueMain.css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    crossorigin="anonymous" referrerpolicy="no-referrer" >
+</head>
+
+<body>
+  <nav class="navbar">
+    <a class="logo" href="/forside.html">
+      <img class="logo" src="./assets/img/logo_80.png" alt="Logo fra Focus Optik" />
+    </a>
+    <ul class="nav-links">
+      <!-- Forside link -->
+      <li><a class="nav-link" href="/forside.html">Forside</a></li>
+      <li class="dropdown">
+        <a class="nav-link" href="/briller.html">Briller
+          <svg viewBox="0 0 448 512" class="plusIcon">
+            <g>
+              <g>
+                <line class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
+                <line class="cls-1" x1="66.8" y1="235.8" x2="381.2" y2="235.8" />
+              </g>
+            </g>
+          </svg>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="nav-link" href="/omBriller.html">Om Briller</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/inspiration.html">Inspiration</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/index.html">Alle Briller</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/herrebriller.html">Herrebriller</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/damebriller.html">Damebriller</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/boernebriller.html">Børnebriller</a>
+          </li>
+        </ul>
+      </li>
+      <li><a class="nav-link" href="/kontaktlinser.html">Kontaktlinser</a></li>
+      <li class="dropdown">
+        <a class="nav-link" href="/synOgSundhed.html">Syn & Sundhed
+          <svg viewBox="0 0 448 512" class="plusIcon">
+            <g>
+              <g>
+                <line class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
+                <line class="cls-1" x1="66.8" y1="235.8" x2="381.2" y2="235.8" />
+              </g>
+            </g>
+          </svg>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="nav-link" href="/oejensundhed.html">Øjensundhed</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/videnOmBrillerOgLinser.html">Viden om briller & linser</a>
+          </li>
+          <li>
+            <a class="nav-link" href="/synstestOgBrilleafproevning.html">Synstest & Brilleafprøvning</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="nav-link" href="/omFocusOptik.html">Om Focus Optik
+          <svg viewBox="0 0 448 512" class="plusIcon">
+            <g>
+              <g>
+                <line class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
+                <line class="cls-1" x1="66.8" y1="235.8" x2="381.2" y2="235.8" />
+              </g>
+            </g>
+          </svg>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="nav-link" href="/voresTeam.html">Vores Team</a></li>
+          <li><a class="nav-link" href="/butikken.html">Butikken</a></li>
+        </ul>
+      </li>
+      <li><a class="nav-link" href="/focusFlex.html">Focus Flex</a></li>
+    </ul>
+    <div class="bookingNav">
+      <a class="bookingNav" href="/book-tid.html">BOOK TID</a>
+    </div>
+  </nav>
+  <h1>Forside</h1>
+  <section class="lillegrid"></section>
+  <section class="grid">
+    <div class="item1 left textCard">
+      <div>
+        <h1>Velkommen til Focus optik</h1>
+        <h6>I Focus Optik har vi focus på kvalitet, service, kompetencer samt de rigtige løsninger!</h6>
+        <p>Vores kompetente og autoriserede optikere bruger alt den tid der er nødvendig til at undersøge dine øjne, og
+          vores synsprøver kan bl.a. indeholde: Synsevne, styrke tjek, sundhedsundersøgelse, synsanalyse,
+          Fundusbilleder, trykmålinger, screening for gråstær, grønstær, forkalkning/AMD, samsynsproblemer, mm.</p>
+      </div>
+    </div>
+    <div class="item2 right textCard">
+      <div>
+        <h2>Focus flex</h2>
+        <p>Vi har verdens bedste brille ordning, hvis vi selv skal sige det. Den ordning kalder vi Focus Flex, og den
+          giver dig mulighed for at få alle de briller du ønsker dig, og vi giver dig gode rabatter på stellet samt
+          gratis glas.</p>
+      </div>
+    </div>
+    <div class="item3 left textCard">
+      <div>
+        <h2>Briller på under 1 time</h2>
+        <p>Vi har eget værksted og glaslager, dette giver os mulighed for lave enkeltstyrke briller til dig på under 1
+          time. Vi har også et stort udvalg af linser på lager, hvilket betyder at du kan have linser med hjem allerede
+          efter første kontaktlinse synsprøve. Der skal dog tages visse forbehold for styrker, da vi ikke kan have alle
+          styrker på lager.</p>
+      </div>
+    </div>
+    <div class="item4 right textCard">
+      <div>
+        <h2>Få tjekket dit syn</h2>
+        <p>Vi er 3 kompetente autoriserede optikere, der ønsker at hjælpe dig på bedst mulig måde, så du får den rigtige
+          brilleløsning, og vi tager os den tid der skal til, for at lave en grundig synsprøve og finde de rigtige
+          brillestel og brilleglas.</p>
+      </div>
+    </div>
+  </section>
+</body>
+
   </head>
   <body>
     <nav class="navbar">

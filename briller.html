@@ -8,13 +8,14 @@
   <meta name="description" content="Focus Optik. Vi har et stort udvalg af kvalitetsbriller." />
   <meta name="keywords" content="Focus Optik, Om Focus Optik, Briller, Brillestel" />
   <title>Focus Optik - Briller</title>
-  <script type="module" src="./assets/js/main.js" defer></script>
+  <script src="./assets/js/main.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- KILDE:cdnjs. font-awesome. 2025. [online] accessed: 01.01.25. URL: https://cdnjs.com/libraries/font-awesome -->
   <link rel="stylesheet" href="./assets/css/main.css" />
 </head>
+
 <body>
   <nav class="navbar">
     <a class="logo" href="/forside.html">
@@ -27,9 +28,9 @@
         <a class="nav-link" href="/briller.html">Briller
           <svg viewBox="0 0 448 512" class="plusIcon">
             <g>
-              <g id="Layer_1">
-                <line id="Lodret" class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
-                <line id="Vandret" class="cls-1" x1="66.8" y1="235.8" x2="381.2" y2="235.8" />
+              <g>
+                <line class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
+                <line class="cls-1" x1="66.8" y1="235.8" x2="381.2" y2="235.8" />
               </g>
             </g>
           </svg>
@@ -61,9 +62,9 @@
         <a class="nav-link" href="/synOgSundhed.html">Syn & Sundhed
           <svg viewBox="0 0 448 512" class="plusIcon">
             <g>
-              <g id="Layer_1">
-                <line id="Lodret" class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
-                <line id="Vandret" class="cls-1" x1="66.8" y1="235.8" x2="381.2" y2="235.8" />
+              <g>
+                <line class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
+                <line class="cls-1" x1="66.8" y1="235.8" x2="381.2" y2="235.8" />
               </g>
             </g>
           </svg>
@@ -84,9 +85,9 @@
         <a class="nav-link" href="/omFocusOptik.html">Om Focus Optik
           <svg viewBox="0 0 448 512" class="plusIcon">
             <g>
-              <g id="Layer_1">
-                <line id="Lodret" class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
-                <line id="Vandret" class="cls-1" x1="66.8" y1="235.8" x2="381.2" y2="235.8" />
+              <g>
+                <line class="cls-1" x1="224" y1="78.5" x2="224" y2="393" />
+                <line class="cls-1" x1="66.8" y1="235.8" x2="381.2" y2="235.8" />
               </g>
             </g>
           </svg>
@@ -109,7 +110,7 @@
       <source srcset="/public/assets/img/briller_heroimg_1921x291.jpg" media="(max-width: 1920px)">
       <source srcset="/public/assets/img/briller_heroimg_2500x378.jpg">
       <img class="imgStyling imgArticle heroImg" src="/public/assets/img/briller_heroimg_2500x378.jpg"
-        alt="fem brillestel på en beige baggrund" loading="lazy" />
+        alt="fem brillestel på en beige baggrund" loading="lazy">
       <!-- KILDE: Vitalii Humeniuk, billede: #60838738, Colourbox.dk [online] accessed 06.01.25, URL:https://www.colourbox.dk/billede/tilbehoer-baggrund-skoenhed-billede-60838738 -->
     </picture>
   </header>
@@ -121,7 +122,8 @@
     <section class="navCardContainerGrid">
       <div class="navCard">
         <a href="/inspiration.html">
-          <img src="/public/assets/img/inspiration_800x534.jpg" alt="person der holder briller i begge hænder" loading="lazy" />
+          <img src="/public/assets/img/inspiration_800x534.jpg" alt="person der holder briller i begge hænder"
+            loading="lazy">
           <!-- KILDE: Peopleimages.com, Colourbox.dk, billede: #61819616 [online] accessed 29.12.24, URL:https://www.colourbox.dk/billede/glas-butik-briller-billede-61819616 -->
           <div class="cardText">
             <h3>INSPIRATION</h3>
@@ -138,12 +140,13 @@
       </div>
       <div class="navCard">
         <a href="/omBriller.html">
-          <img src="/public/assets/img/ombriller_greenbackground_800x533.jpg" alt="Ung kvinde med briller der holder sin mobil"
-            loading="lazy">
+          <img src="/public/assets/img/ombriller_greenbackground_800x533.jpg"
+            alt="Ung kvinde med briller der holder sin mobil" loading="lazy">
           <!-- KILDE:  #285561, Colourbox.dk. billede: #51100555 [online] accessed 29.12.24, URL:https://www.colourbox.dk/billede/mobil-dame-glad-billede-51100555-->
           <div class="cardText">
             <h3>OM BRILLER</h3>
-            <p>Vil du vide mere om vores nøje udvalgte brillemærker, eller søger du faglig viden om brillers funktioner og egenskaber?</p>
+            <p>Vil du vide mere om vores nøje udvalgte brillemærker, eller søger du faglig viden om brillers funktioner
+              og egenskaber?</p>
           </div>
           <div class="cardBtn">
             <div class="theButton button">
@@ -154,12 +157,12 @@
       </div>
       <div class="navCard">
         <a href="/index.html">
-          <img src="/public/assets/img/seAlleBriller_800x534.jpg" alt="udstillingsvæg med briller"
-            loading="lazy">
+          <img src="/public/assets/img/seAlleBriller_800x534.jpg" alt="udstillingsvæg med briller" loading="lazy">
           <!-- KILDE: Andrzej Siwiec, Colourbox.dk. billede: #43279792 [online] accessed 29.12.24, URL:https://www.colourbox.dk/billede/optikere-optik-indvendig-billede-43279792 -->
           <div class="cardText">
             <h3>SE ALLE BRILLER</h3>
-            <p>Udforsk nogle af vores udvalgte brillestel som vi har hos Focus Optik. Dit næste par briller findes hér.</p>
+            <p>Udforsk nogle af vores udvalgte brillestel som vi har hos Focus Optik. Dit næste par briller findes hér.
+            </p>
           </div>
           <div class="cardBtn">
             <div class="theButton button">
