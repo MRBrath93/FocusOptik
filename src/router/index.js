@@ -49,20 +49,20 @@ const routes = [
     props: true,
   },
   {
-    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK//ProductFocusFlexOverview/:initialSelectedFocusFlexGroup',
+    path: '/ProductFocusFlexOverview/:initialSelectedFocusFlexGroup',
     name: 'ProductFocusFlexOverview',
     component: ProductFlexGroupOverview,
     props: true,
   },
   {
-    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK//ProductTypeOverview/:initialSelectedGlassType',
+    path: '/ProductTypeOverview/:initialSelectedGlassType',
     name: 'ProductTypeOverview',
     component: ProductTypeOverview,
     props: true,
   },
   {
     // Dynamisk rute for produktside
-    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK//product/:id',
+    path: '/product/:id',
     name: 'ProductDetails',
     component: ProductDetails,
     props: true,

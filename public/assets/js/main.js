@@ -1,14 +1,14 @@
 // Eksempel på elementer med små billeder (du kan bruge dine egne data her)
 const items = [
-    { name: 'Bellinger', imageUrl: './public/assets/img/bellinger_logo_vertical_v2.png' },
-    { name: 'Blackfin', imageUrl: './public/assets/img/Blackfin Horizontal_Logo.jpg' },
-    { name: 'Bloomdale', imageUrl: './public/assets/img/bloomdale-eyewear-logo-zwart-promo.png' },
+    { name: 'Bellinger', imageUrl: './assets/img/bellinger_logo_vertical_v2.png' },
+    { name: 'Blackfin', imageUrl: './assets/img/Blackfin Horizontal_Logo.jpg' },
+    { name: 'Bloomdale', imageUrl: './assets/img/bloomdale-eyewear-logo-zwart-promo.png' },
 ];
 
 // Alfabetet inklusiv Æ, Ø og Å
 const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Æ', 'Ø', 'Å'];
 
-// Funktion til at filtrere billeder baseret på valgt bogstav
+// Funktion til at filtrere billeder baseret på valgt bogsta
 function filterItems(letter) {
     const filteredItems = items.filter(item => item.name.startsWith(letter));
 
