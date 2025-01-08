@@ -703,6 +703,7 @@ position: relative;
 .btnBox{
   width: 100%;
   display: flex;
+  gap: 1rem;
   justify-content: flex-end;
 }
 
