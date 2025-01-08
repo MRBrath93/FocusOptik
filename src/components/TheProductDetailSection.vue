@@ -135,4 +135,13 @@ const glass = computed(() =>
 .lessFatFont{
   font-weight: 500;
 }
+
+
+@media screen and (max-width: 1000px) {
+   .halfHalf{
+    grid-template-columns: 1fr;
+   }
+  
+  
+  }
 </style>

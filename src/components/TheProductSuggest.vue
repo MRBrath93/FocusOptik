@@ -217,21 +217,44 @@ width: 100%;
 
 
 
+
 @media screen and (max-width: 1600px) {
-  .productCard {
-    width: 200px;
-}
+    .productCard {
+      width: 200px;
+  }
+  
+  img {
+    height: 80px;
+  }
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .productCard {
+      width: 150px;
+  }
+  
+  
+  }
 
-img {
-  height: 80px;
-}
-}
+  @media screen and (max-width: 900px) {
+    .related-glasses{
+      grid-template-columns: repeat(2,1fr);
+    }
+  
+    .btnContainer{
+    grid-column: 2/3;
+  }
+  }
 
-@media screen and (max-width: 1200px) {
-  .productCard {
-    width: 150px;
-}
-
-}
+  @media screen and (max-width: 500px) {
+    .related-glasses{
+      grid-template-columns: 1fr;
+    }
+  
+    .btnContainer{
+    grid-column: 1/2;
+  }
+  }
+  
 
 </style>

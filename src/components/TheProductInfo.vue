@@ -174,6 +174,7 @@ const discountPercentage = computed(() => {
 .breadcrumbs{
   display: flex;
   gap: 0.5rem;
+  margin: 0;
 }
 
 ol {
@@ -349,7 +350,9 @@ ol {
 }
 
 .focusFlexGroup{
+  background-color: var(--Snowwhite);
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 1rem;
   padding: 0.5rem;
@@ -423,5 +426,11 @@ text-decoration: underline;
 .customButtonPoint:hover i {
   animation: PointRight 2s infinite linear;
 }
+
+@media screen and (max-width: 1000px) {
+   .productSection{
+    grid-template-columns: 1fr;
+   }
+  }
 
 </style>
