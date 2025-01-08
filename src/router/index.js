@@ -12,37 +12,37 @@ import Forside from '@/views/Forside.vue';
 
 const routes = [
   {
-    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK/index.html',
+    path: '/index.html',
     name: 'ProductOverview',
     component: ProductAllGlassesOverview,
   },
   {
-    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK/forside.html',
+    path: '/forside.html',
     name: 'Forside',
     component: Forside
   },
   {
-    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK//herrebriller.html',
+    path: '/herrebriller.html',
     name: 'ProductMenOverview',
     component: ProductMenOverview,
   },
   {
-    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK//damebriller.html',
+    path: '/damebriller.html',
     name: 'ProductWomenOverview',
     component: ProductWomenOverview,
   },
   {
-    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK//boernebriller.html',
+    path: '/boernebriller.html',
     name: 'ProductChildOverview',
     component: ProductChildOverview,
   },
   {
-    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK//inspiration.html',
+    path: '/inspiration.html',
     name: 'MyInspirationsite',
     component: InspirationsSite,
   },
   {
-    path: '/class/MMD-CSD-S23/10414032/MMD1/FOCUS_OPTIK//ProductFormOverview/:initialSelectedGlassForm',
+    path: '/ProductFormOverview/:initialSelectedGlassForm',
     name: 'ProductFormOverview',
     component: ProductFormOverview,
     // Dette gør, at ruteparametre bliver sendt som props til komponenten
