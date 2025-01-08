@@ -1709,7 +1709,7 @@ p {
 }
 
 #silverColour {
-  background-image: url(./assets/img/silver.jpg);
+  background-image: url(/assets/img/silver.jpg);
   background-size: cover;
   height: 34px;
   width: 34px;
@@ -1717,7 +1717,7 @@ p {
 }
 
 #goldColour {
-  background-image: url(./assets/img/golden.webp);
+  background-image: url(/assets/img/golden.webp);
   background-size: cover;
   height: 34px;
   width: 34px;
