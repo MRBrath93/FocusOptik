@@ -84,4 +84,11 @@ const props = defineProps({
 }
 }
 
+
+@media screen and (max-width: 1000px) {
+  .commercial {
+    margin: 2rem;
+}
+}
+
 </style>
