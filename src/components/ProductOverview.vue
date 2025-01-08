@@ -523,7 +523,9 @@ watch(route, (newRoute) => {
       </div>
 
       <div class="flexflex btnBox">
-        <TheBtn class="customButton customButtonRotate" label="Anvend Filtre" :onClick="runApplyAndHide"><span>Anvend Filtre</span> <i class="fa-solid fa-rotate-right"></i></TheBtn>
+        <TheBtn class="customButton customButtonRotate" label="Anvend Filtre" :onClick="runApplyAndHide">
+          <span>Anvend Filtre</span> <i class="fa-solid fa-rotate-right"></i>
+        </TheBtn>
         <TheBtn class="customButton customButtonWiggle" label="Reset Filtre" :onClick="resetFilters"><span>nulstil Filtre</span> <i class="fa-solid fa-trash"></i></TheBtn>
       </div>
     </div>
